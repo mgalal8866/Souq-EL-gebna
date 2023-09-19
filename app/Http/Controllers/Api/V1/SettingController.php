@@ -8,6 +8,7 @@ class SettingController  extends Controller
 {
      public function index(){
        $setting =  setting::get();
+       return Resp($setting,'success',200,true);
      }
 
 }
