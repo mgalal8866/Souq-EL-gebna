@@ -26,11 +26,11 @@ return new class extends Migration
             $table->integer('region')->nullable();
             $table->string('address')->nullable();
             $table->timestamp('date_payment')->nullable();
-            $table->boolean('featured')->nullable();
-            $table->boolean('sales_active')->nullable();
+            $table->boolean('featured')->default(1)->nullable();
+            $table->boolean('sales_active')->default(1)->nullable();
             $table->integer('type_activity')->nullable();
-            $table->string('star')->nullable();
-            $table->string('active')->nullable();
+            $table->boolean('rating_view')->default(1);
+            $table->boolean('active')->default(1)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
