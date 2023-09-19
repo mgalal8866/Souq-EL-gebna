@@ -10,6 +10,7 @@ class ApiVersion
 {
     public function handle(Request $request, Closure $next, $guard): Response
     {
+    
         if (config('app.api_latest') == $guard) {
             return $next($request);
         } else {
