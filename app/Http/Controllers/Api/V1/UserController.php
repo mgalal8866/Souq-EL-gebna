@@ -14,6 +14,7 @@ use App\Http\Resources\CityResource;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\RegionResource;
 use App\Http\Resources\ActivityResource;
+use App\Models\question;
 use App\Repositoryinterface\UserRepositoryinterface;
 
 class UserController extends Controller
@@ -27,6 +28,12 @@ class UserController extends Controller
     {
         $activity = activity::get();
         return Resp( ActivityResource::collection( $activity),'success');
+
+    }
+    public function question()
+    {
+        $question = question::get();
+        return Resp($question,'success');
 
     }
     public function register(RegisterUser $request)

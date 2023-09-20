@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_name')->nullable();
+            $table->string('password')->nullable();
             $table->string('phone')->unique();
             $table->string('phone1')->nullable();
             $table->string('store_name')->nullable();
@@ -31,6 +32,10 @@ return new class extends Migration
             $table->integer('type_activity')->nullable();
             $table->boolean('rating_view')->default(1);
             $table->boolean('active')->default(1)->nullable();
+            $table->integer('question1_id')->nullable();
+            $table->integer('question2_id')->nullable();
+            $table->string('answer1')->nullable();
+            $table->string('ي')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

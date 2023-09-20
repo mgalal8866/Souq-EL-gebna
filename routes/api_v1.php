@@ -15,5 +15,6 @@ Route::post('/verificationcode',   [UserController::class, 'verificationcode']);
 Route::get('/city',   [UserController::class, 'city']);
 Route::get('/region/{id?}',   [UserController::class, 'region']);
 Route::get('/activity',   [UserController::class, 'activity']);
+Route::get('/question',   [UserController::class, 'question']);
 
 Route::get('setting', [SettingController::class, 'index']);
