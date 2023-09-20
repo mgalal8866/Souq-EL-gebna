@@ -43,6 +43,36 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'store' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/store'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'item' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/item'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'slider' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/slider'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'brand' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/brand'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'category' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/category'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

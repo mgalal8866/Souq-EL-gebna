@@ -1,49 +1,13 @@
 <?php
 
 use Carbon\Carbon;
-use App\Models\Otp;
 use App\Models\User;
-use App\Facade\Tenants;
-use App\Models\setting;
-use App\Models\notifiction;
+use App\Models\notification;
 use Illuminate\Support\Str;
-use App\service\TenantService;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 
-function getsetting()
-{
-    $namedomain = Tenants::getdomain();
-
-    if (Cache::get($namedomain . '_settings', []) == null) {
-        Cache::forget($namedomain . '_settings');
-        Cache::rememberForever($namedomain . '_settings', function () {
-            return DB::table('settings')->find(1);
-        });
-    }
-    return Cache::get($namedomain . '_settings', []);
-}
-function setsettingwithdomain($namedomain)
-{
-    Cache::forget($namedomain . '_settings');
-    Cache::rememberForever($namedomain . '_settings', function () {
-        return setting::on('tenant')->find(1);
-    });
-    // return Cache::get($namedomain.'_settings',[]) ;
-}
-function setsetting()
-{
-    $namedomain = Tenants::getdomain();
-    Cache::forget($namedomain . '_settings');
-    Cache::rememberForever($namedomain . '_settings', function () {
-        return DB::table('settings')->find(1);
-    });
-    // return Cache::get($namedomain.'_settings',[]) ;
-}
 function Resp($data = null, $msg = null, $status = 200, $statusval = true)
 {
     if ($status == 422) {
@@ -56,24 +20,21 @@ function Resp($data = null, $msg = null, $status = 200, $statusval = true)
 }
 function sendsms($phone)
 {
-    $setting  =  getsetting();
-    if (env('SMS_OTP', false) === false && $setting->sms_active == 0) {
+
+    if (env('SMS_OTP', false) === false) {
         return 1;
     } else {
 
         // $code = rand(123456, 999999);
         // $msg = 'كود التحقق ' . $code;
         $response = Http::contentType('application/json')->accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send', [
-            'username'  => $setting->sms_username,
-            'password'  => $setting->sms_password,
-            'sender'    => $setting->sms_senderid,
+            'username'  => '$setting->sms_username',
+            'password'  => '$setting->sms_password',
+            'sender'    => '$setting->sms_senderid',
             'mobile'    => '2' . $phone,
             'lang'      => 'ar'
         ]);
         $res = $response->json();
-        // Log::error($phone);
-        // Log::error($res);
-
         if ($res['type'] ?? 'error' == 'error') {
             return 0;
         } else {
@@ -84,13 +45,13 @@ function sendsms($phone)
 
 function otp_check($phone, $code)
 {
-    $setting = getsetting();
-    if (env('SMS_OTP', false) === false && $setting->sms_active == 0) {
+
+    if (env('SMS_OTP', false) === false) {
         return 1;
     } else {
         $response = Http::accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-check', [
-            'username'  => $setting->sms_username,
-            'password'  => $setting->sms_password,
+            'username'  => '$setting->sms_username',
+            'password'  => '$setting->sms_password',
             'mobile'    => '2' . $phone,
             'otp'       => $code,
             'verify' => true
@@ -106,15 +67,13 @@ function otp_check($phone, $code)
 }
 function deleteimage($folder, $image)
 {
-    $nametenant = Tenants::gettenantname();
-    $file = public_path() . '/asset/images/'  . $nametenant . '/' . $folder . '/' . $image;
+    $file = public_path() . '/asset/images/' . $folder . '/' . $image;
     $img = File::delete($file);
     // Storage::disk($path)->delete($image);
 }
 function uploadbase64images($folder, $image)
 {
-    $nametenant = Tenants::gettenantname();
-    $path = public_path() . '/asset/images2/' . $nametenant . '/' . $folder;
+    $path = public_path() . '/asset/images2/' . $folder;
     if (!File::exists($path)) {
         mkdir($path, 0777, true);
     }
@@ -170,7 +129,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
         $uu = User::where('fsm', $users[0])->first();
     }
     if ($sav == true) {
-        notifiction::create(['title' => $title, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
+        notification::create(['title' => $title, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
     }
     return  curl_exec($ch);
 }
@@ -194,9 +153,9 @@ function replacetext($originalString, $user = null, $product = null, $cart = nul
 }
 function getimage($imagename, $folder)
 {
-    $nametenant = Tenants::gettenantname();
-    $mainpath   = 'asset/images2/' . $nametenant . '/';
-    $unfiend    = asset($mainpath . 'logos/' . getsetting()->logo_shop);
+
+    $mainpath   = 'asset/images/';
+    $unfiend    = asset($mainpath . 'logo.png');
     $path       = public_path($mainpath . $folder . '/' . $imagename);
 
     if (File::exists($path)) {
