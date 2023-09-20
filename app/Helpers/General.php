@@ -151,13 +151,14 @@ function replacetext($originalString, $user = null, $product = null, $cart = nul
 
     return $originalString;
 }
-function getimage($imagename, $folder)
+function getimage($imagename, $folder = null)
 {
 
     $mainpath   = 'asset/images/';
     $unfiend    = asset($mainpath . 'logo.png');
+    if($folder == null ){ return   $unfiend;}
     $path       = public_path($mainpath . $folder . '/' . $imagename);
-
+    
     if (File::exists($path)) {
         return ($imagename !== null) ? asset($mainpath .  $folder . '/' . $imagename) : $unfiend;
     } else {

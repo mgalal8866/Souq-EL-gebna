@@ -14,7 +14,7 @@ class SettingResource extends JsonResource
             'maintenance'       =>$this->maintenance,
             'logo'              =>$this->logo,
             'name'              =>$this->name,
-            'splash'            =>getimage($this->splash,'logo'),
+            'splash'            =>$this->urlsplash,
             'phone'             =>$this->phone,
             'phone1'            =>$this->phone1,
             'policy'            =>$this->policy,

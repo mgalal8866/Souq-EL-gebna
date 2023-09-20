@@ -34,4 +34,16 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->getKey();
     }
+    public function getUrllogoAttribute()
+    {
+        return  getimage($this->logo,'store');
+    }
+    public function getUrlimg1Attribute()
+    {
+        return  getimage($this->img1,'store');
+    }
+    public function getUrlimg2Attribute()
+    {
+        return  getimage($this->img2,'store');
+    }
 }

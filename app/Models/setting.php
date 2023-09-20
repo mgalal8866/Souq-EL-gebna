@@ -9,4 +9,9 @@ class setting extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function getUrlsplashAttribute()
+    {
+        return  getimage($this->splash);
+    }
 }

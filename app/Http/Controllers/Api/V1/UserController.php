@@ -13,10 +13,10 @@ use App\Repositoryinterface\UserRepositoryinterface;
 class UserController extends Controller
 {
     private $userRepositry;
-    // public function __construct(UserRepositoryinterface $userRepositry)
-    // {
-    //     $this->userRepositry = $userRepositry;
-    // }
+    public function __construct(UserRepositoryinterface $userRepositry)
+    {
+        $this->userRepositry = $userRepositry;
+    }
     public function register(RegisterUser $request)
     {
         $data = new UserResource($this->userRepositry->register($request->validated()));
