@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('img2')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
-            $table->string('balance')->nullable();
+            $table->string('balance')->default(0)->nullable();
             $table->integer('region')->nullable();
             $table->string('address')->nullable();
             $table->timestamp('date_payment')->nullable();

@@ -6,12 +6,14 @@ use App\Models\city;
 use App\Models\User;
 use App\Models\region;
 use App\Models\setting;
+use App\Models\activity;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterUser;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CityResource;
-use App\Http\Resources\RegionResource;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\RegionResource;
+use App\Http\Resources\ActivityResource;
 use App\Repositoryinterface\UserRepositoryinterface;
 
 class UserController extends Controller
@@ -21,10 +23,16 @@ class UserController extends Controller
     {
         $this->userRepositry = $userRepositry;
     }
+    public function activity()
+    {
+        $activity = activity::get();
+        return Resp( ActivityResource::collection( $activity),'success');
+
+    }
     public function register(RegisterUser $request)
     {
-        $data = new UserResource($this->userRepositry->register($request->validated()));
-        return Resp($data, 'Success', 200, true);
+
+        return $this->userRepositry->register($request->validated());
     }
     public function verificationcode(Request $request)
     {

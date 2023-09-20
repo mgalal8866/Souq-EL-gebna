@@ -41,16 +41,8 @@ class DBUserRepository implements UserRepositoryinterface
         if (!$token = auth('api')->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
-
         $user->token = $token;
         $data =  new UserResource($user);
-        // $user->setting = $this->settings();
-
-
-        // $text = getsetting()->notif_welcome_text;
-
-        // $rep = replacetext($text, $user);
-        // notificationFCM('اهلا بك', $rep, [$user->fsm]);
         return Resp($data, 'Success', 200, true);
     }
     public function edit($request)
@@ -82,31 +74,30 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
-        // Log::warning($request);
-        $user = User::create([
-            'client_name' => $request['client_name'] ?? null,
-            'phone' => $request['phone'] ?? null,
-            'client_fhoneLeter' => $request['client_fhoneLeter'] ?? null,
-            'region_id' => $request['region_id'] ?? null,
-            'lat_mab' => $request['lat_mab'] ?? null,
-            'long_mab' => $request['long_mab'] ?? null,
-            'client_state' => $request['client_state'] ?? null,
-            'long_mab' => $request['long_mab'] ?? null,
-            'CategoryAPP' => $request['CategoryAPP'] ?? null,
-            'client_code' => $request['client_code'] ?? null,
-            'store_name' => $request['store_name'] ?? null
-        ]);
 
+        $user = User::create([
+            'user_name'  => $request['user_name'] ?? null,
+            'store_name' => $request['store_name'] ?? null,
+            'phone'   => $request['phone'] ?? null,
+            'phone1'  => $request['phone1'] ?? null,
+            'lat'     => $request['lat'] ?? null,
+            'long'    => $request['long'] ?? null,
+            'logo'    => $request['logo'] ?? null,
+            'img1'    => $request['img1'] ?? null,
+            'img2'    => $request['img2'] ?? null,
+            'region'  => $request['region'] ?? null,
+            'address' => $request['address'] ?? null
+        ]);
+        // $this->login($user);
         if (!$token = auth('api')->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
+        // $user->token = $token;
+        $user = User::where('phone', $user->phone)->first();
         $user->token = $token;
-        $user->setting = $this->settings();
-        $text = getsetting()->notif_welcome_text;
-        // Log::error($user);
-        $rep = replacetext($text,  $user);
-        notificationFCM('اهلا بك', $rep, [$user->fsm]);
-        return $user;
+        $data =  new UserResource($user);
+        return Resp($data, 'Success', 200, true);
+        // return $user;
     }
     public function getusers($pg = 30)
     {
