@@ -36,6 +36,7 @@ return new class extends Migration
             $table->integer('question2_id')->nullable();
             $table->string('answer1')->nullable();
             $table->string('answer2')->nullable();
+            $table->text('fsm')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -81,7 +81,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
- 
+
         $user = User::create([
             'user_name'    => $request['user_name'] ?? null,
             'store_name'   => $request['store_name'] ?? null,
@@ -124,9 +124,6 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function sendtoken($token)
     {
-
-        // Log::alert('sendtoken', ['user' => auth('api')->user(), 'token' => $token]);
-
         if (auth('api')->user() != null) {
             $user = User::find(auth('api')->user()->id);
             $user->update(['fsm' => $token]);

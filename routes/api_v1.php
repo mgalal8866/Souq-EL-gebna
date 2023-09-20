@@ -16,5 +16,6 @@ Route::get('/city',   [UserController::class, 'city']);
 Route::get('/region/{id?}',   [UserController::class, 'region']);
 Route::get('/activity',   [UserController::class, 'activity']);
 Route::get('/question',   [UserController::class, 'question']);
+Route::get('/sendtoken/{token?}',   [UserController::class, 'sendtoken']);
 
 Route::get('setting', [SettingController::class, 'index']);
