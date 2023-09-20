@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Requests;
+
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+
 
 class RegisterUser extends FormRequest
 {
@@ -18,20 +20,23 @@ class RegisterUser extends FormRequest
     public function rules(): array
     {
         return [
-            'phone' => 'required|unique:users',
+            'phone'      => 'required|unique:users',
             'user_name'  => '',
+            'password'   => 'required',
             'store_name' => '',
-            'phone1'       => '',
-            'lat'       => '',
-            'long'      => '',
-            'img1'      => '',
-            'logo'      => '',
-            'img2'      => '',
-            'region'    => '',
+            'phone1'     => '',
+            'lat'        => '',
+            'long'       => '',
+            'img1'       => '',
+            'logo'       => '',
+            'img2'       => '',
+            'region'     => '',
             'address'    => '',
             'balance'    => '',
-
-
+            'question1_id' => 'required',
+            'question2_id' => 'required',
+            'answer1'      => 'required',
+            'answer2'      => 'required'
         ];
 
         // switch ($this->method()) {
@@ -57,14 +62,9 @@ class RegisterUser extends FormRequest
     public function messages()
     {
         return [
-            'client_name.required'      => 'الاسم مطلوب',
-            'client_fhonewhats.unique'  => 'رقم الهاتف مسجل مسبقا',
-            'client_fhoneLeter.required'=> '',
-            'region_id.required'        => 'المحافظة مطلوبة',
-            'lat_mab.required'          => 'required',
-            'long_mab.required'         => 'required',
-            'client_state.required'     => 'required',
-            'CategoryAPP.required'      => 'required',
+            'user_name.required'      => 'الاسم مطلوب',
+            'phone.unique'  => 'رقم الهاتف مسجل مسبقا',
+
         ];
     }
     public function failedValidation(Validator $validator)

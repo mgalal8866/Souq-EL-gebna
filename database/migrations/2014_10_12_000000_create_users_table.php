@@ -35,7 +35,7 @@ return new class extends Migration
             $table->integer('question1_id')->nullable();
             $table->integer('question2_id')->nullable();
             $table->string('answer1')->nullable();
-            $table->string('ي')->nullable();
+            $table->string('answer2')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
