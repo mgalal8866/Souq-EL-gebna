@@ -20,23 +20,23 @@ class RegisterUser extends FormRequest
     public function rules(): array
     {
         return [
-            'phone'      => 'required|unique:users',
-            'user_name'  => '',
-            'password'   => 'required',
-            'store_name' => '',
-            'phone1'     => '',
-            'lat'        => '',
-            'long'       => '',
-            'img1'       => '',
-            'logo'       => '',
-            'img2'       => '',
-            'region'     => '',
-            'address'    => '',
-            'balance'    => '',
+            'phone'        => 'required|unique:users',
+            'password'     => 'required',
+            'activity_id'  => 'required',
             'question1_id' => 'required',
             'question2_id' => 'required',
             'answer1'      => 'required',
-            'answer2'      => 'required'
+            'answer2'      => 'required',
+            'user_name'    => '',
+            'store_name'   => '',
+            'phone1'       => '',
+            'lat'          => '',
+            'long'         => '',
+            'img1'         => '',
+            'logo'         => '',
+            'img2'         => '',
+            'region'       => '',
+            'address'      => '',
         ];
 
         // switch ($this->method()) {

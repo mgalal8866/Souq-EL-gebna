@@ -94,6 +94,7 @@ class DBUserRepository implements UserRepositoryinterface
             'img1'         => $request['img1'] ?? null,
             'img2'         => $request['img2'] ?? null,
             'region'       => $request['region'] ?? null,
+            'activity_id'  => $request['activity_id'] ?? null,
             'address'      => $request['address'] ?? null,
             'question1_id' => $request['question1_id'] ?? null,
             'question2_id' => $request['question2_id'] ?? null,
