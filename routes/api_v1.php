@@ -12,5 +12,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 Route::get('/sendotp/{phone?}',   [UserController::class, 'sendotp']);
 Route::post('/verificationcode',   [UserController::class, 'verificationcode']);
+Route::get('/city',   [UserController::class, 'city']);
+Route::get('/region/{id?}',   [UserController::class, 'region']);
 
 Route::get('setting', [SettingController::class, 'index']);

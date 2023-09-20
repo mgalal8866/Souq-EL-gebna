@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\city;
 use App\Models\User;
+use App\Models\region;
 use App\Models\setting;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterUser;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CityResource;
+use App\Http\Resources\RegionResource;
 use App\Http\Resources\UserResource;
 use App\Repositoryinterface\UserRepositoryinterface;
 
@@ -57,6 +61,16 @@ class UserController extends Controller
     public function sendtoken($token)
     {
         return $this->userRepositry->sendtoken($token);
+    }
+    public function city()
+    {
+         $city = city::get();
+         return Resp(CityResource::collection($city),'success');
+    }
+    public function region($id= null)
+    {
+        $region= region::where('city_id',$id)->get();
+        return Resp(RegionResource::collection($region),'success');
     }
 
 }
