@@ -85,6 +85,9 @@ function uploadbase64images($folder, $image)
 }
 function uploadimages($folder, $image)
 {
+    if($image == null){
+        return null;
+    }
     $image->store('/', $folder);
     $filename = $image->hashName();
     return  $filename;
