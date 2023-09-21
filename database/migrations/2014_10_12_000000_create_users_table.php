@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->string('balance')->default(0)->nullable();
-            $table->integer('region')->nullable();
+            $table->integer('region_id')->nullable();
+            $table->integer('city_id')->nullable();
             $table->string('address')->nullable();
             $table->timestamp('date_payment')->nullable();
             $table->boolean('featured')->default(1)->nullable();
