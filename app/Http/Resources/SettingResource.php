@@ -12,7 +12,7 @@ class SettingResource extends JsonResource
     {
         return [
             'maintenance'       => $this->maintenance ?? '',
-            'logo'              => $this->logo ?? '',
+            'logo'              => $this->urllogo ?? '',
             'name'              => $this->name ?? '',
             'splash'            => $this->urlsplash ?? '',
             'phone'             => $this->phone ?? '',

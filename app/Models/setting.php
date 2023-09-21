@@ -14,4 +14,8 @@ class setting extends Model
     {
         return  getimage($this->splash);
     }
+    public function getUrllogoAttribute()
+    {
+        return  getimage($this->logo);
+    }
 }
