@@ -11,13 +11,13 @@ class SettingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'maintenance'       =>$this->maintenance,
-            'logo'              =>$this->logo,
-            'name'              =>$this->name,
-            'splash'            =>$this->urlsplash,
-            'phone'             =>$this->phone,
-            'phone1'            =>$this->phone1,
-            'policy'            =>$this->policy,
+            'maintenance'       => $this->maintenance ?? '',
+            'logo'              => $this->logo ?? '',
+            'name'              => $this->name ?? '',
+            'splash'            => $this->urlsplash ?? '',
+            'phone'             => $this->phone ?? '',
+            'phone1'            => $this->phone1 ?? '',
+            'policy'            => $this->policy ?? '',
         ];
     }
 }
