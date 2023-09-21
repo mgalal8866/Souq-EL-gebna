@@ -40,6 +40,7 @@ Route::get('/slider',   [SliderController::class, 'getslider']);
 Route::get('/category',   [CategoryController::class, 'getcategory']);
 Route::get('/brand',   [BrandController::class, 'getbrand']);
 Route::get('setting', [SettingController::class, 'index']);
+
 Route::middleware(['jwt.verify'])->group(function () {
     Route::post('/create/item',   [ItemsController::class, 'createitem']);
 });
