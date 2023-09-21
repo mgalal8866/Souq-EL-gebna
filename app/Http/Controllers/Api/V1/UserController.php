@@ -49,6 +49,14 @@ class UserController extends Controller
     {
         return $this->userRepositry->sendotp($phone);
     }
+    public function checkphone($phone)
+    {
+        return $this->userRepositry->checkphone($phone);
+    }
+    public function checkanswer(Request $request)
+    {
+        return $this->userRepositry->checkanswer($request);
+    }
 
     public function login(Request $request)
     {

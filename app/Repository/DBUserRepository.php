@@ -2,12 +2,14 @@
 
 namespace App\Repository;
 
+use App\Http\Resources\QuestionResource;
 use App\Models\User;
 use App\Models\setting;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\UserResource;
+use App\Models\question;
 use Illuminate\Support\Facades\Auth;
 use App\Repositoryinterface\UserRepositoryinterface;
 
@@ -22,6 +24,32 @@ class DBUserRepository implements UserRepositoryinterface
             return Resp('', 'خطاء فى ارسال كود التحقق', 302, false);
         }
     }
+    public function checkphone($phone)
+    {
+        $user = User::where('phone', $phone)->first();
+        if ($user != null) {
+
+            $question = question::whereIn('id', [$user->question1_id, $user->question2_id])->get();
+            return Resp(QuestionResource::collection($question), 'success', 200, true);
+        } else {
+            return Resp('', 'هاتف غير مسجل', 302, false);
+        }
+    }
+    public function checkanswer($request)
+    {
+        $user = User::where(
+            [
+                'phone'   => $request->phone,
+                'answer1' => $request->answer1,
+                'answer2' => $request->answer2,
+            ]
+            )->first();
+        if ($user != null) {
+            return $this->credentials($user);
+        } else {
+            return Resp('', 'هاتف غير مسجل', 302, false);
+        }
+    }
     public function verificationcode($request)
     {
         $response = otp_check($request->get('phone'), $request->code);
@@ -34,16 +62,11 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function login($request)
     {
-
         $token =  Auth::guard('api')->attempt(['phone' => $request->get('phone'), 'password' => $request->get('password')]);
-        // $user = User::where(['phone'=> $request->get('phone'), 'password'=> $request->get('password')])->first();
         if ($token == null) {
             return Resp(null, 'User Not found', 404, false);
         }
-        // if (!$token = auth('api')->login($user)) {
-        //     return Resp(null, 'Unauthorized', 404, false);
-        // }
-        $user=  auth('api')->user();
+        $user =  auth('api')->user();
         $user->token = $token;
         $data =  new UserResource($user);
         return Resp($data, 'Success', 200, true);
@@ -102,20 +125,21 @@ class DBUserRepository implements UserRepositoryinterface
             'answer2'      => $request['answer2'] ?? null
 
         ]);
-        // $this->login($user);
-        if (!$token = auth('api')->login($user)) {
-            return Resp(null, 'Unauthorized', 404, false);
-        }
-        // $user->token = $token;
-        $user = User::where('phone', $user->phone)->first();
-        $user->token = $token;
-        $data =  new UserResource($user);
-        return Resp($data, 'Success', 200, true);
-        // return $user;
+        $this->credentials($user);
     }
     public function getusers($pg = 30)
     {
         return  User::paginate($pg);
+    }
+    public function credentials($user)
+    {
+        if (!$token = auth('api')->login($user)) {
+            return Resp(null, 'Unauthorized', 404, false);
+        }
+        $user = User::where('phone', $user->phone)->first();
+        $user->token = $token;
+        $data =  new UserResource($user);
+        return Resp($data, 'Success', 200, true);
     }
 
     public function settings()
