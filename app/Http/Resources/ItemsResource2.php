@@ -16,6 +16,7 @@ class ItemsResource2 extends JsonResource
             'count'          => $this['count'],
             'brand'          => $this['brand'],
             'category'       => $this['category'],
+            'store'          => $this['store'],
             // 'categorys'          => $this['count'],
             // 'id'              => $this->id,
             // 'name'            => $this->name ?? '',

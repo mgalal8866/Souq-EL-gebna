@@ -14,7 +14,10 @@ class DBItemsRepository implements ItemsRepositoryinterface
     {
         $item = items::where('name', 'LIKE', "%" .  $data['search'] . "%")
             ->whereIn('category_id', $data['category_ids'])
-            ->with(['brand', 'category'])->get();
+            // ->when('user', function ($q) {
+            //     $q->where('region', '1');
+            // })
+            ->with(['brand', 'category', 'user'])->get();
 
         // WhereHas('category', function ($q) use ($data) {
         //     $q->whereIn('id', $data['category_ids']);
@@ -25,6 +28,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
             [
                 'item'       => $item,
                 'count'      => $item->count(),
+                'store'      => $item->pluck('user.store_name', 'user_id'),
                 'category'   => $item->pluck('category.name', 'category_id'),
                 'brand'      => $item->pluck('brand.name', 'brand_id')
             ];

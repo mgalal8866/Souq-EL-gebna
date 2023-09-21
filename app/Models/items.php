@@ -19,4 +19,8 @@ class items extends Model
     {
         return $this->belongsTo(brand::class, 'brand_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(user::class, 'user_id');
+    }
 }
