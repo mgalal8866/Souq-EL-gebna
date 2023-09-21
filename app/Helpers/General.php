@@ -69,7 +69,6 @@ function deleteimage($folder, $image)
 {
     $file = public_path() . '/asset/images/' . $folder . '/' . $image;
     $img = File::delete($file);
-    // Storage::disk($path)->delete($image);
 }
 function uploadbase64images($folder, $image)
 {
@@ -157,7 +156,7 @@ function getimage($imagename, $folder = null)
     $mainpath   = 'asset/images/';
     $unfiend    = asset($mainpath . 'logo.png');
     if($folder == null ){ return   $unfiend;}
-    
+
     $folder = $folder == '/' ? '' :  $folder .  '/'   ;
 
     $path       = public_path($mainpath . $folder   . $imagename);
