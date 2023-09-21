@@ -43,11 +43,11 @@ class DBUserRepository implements UserRepositoryinterface
                 'answer1' => $request->answer1,
                 'answer2' => $request->answer2,
             ]
-            )->first();
+        )->first();
         if ($user != null) {
             return $this->credentials($user);
         } else {
-            return Resp('', 'هاتف غير مسجل', 302, false);
+            return Resp('', 'اجابة الاسئلة غير صحيحه او هاتفك غير مسجل', 302, false);
         }
     }
     public function verificationcode($request)

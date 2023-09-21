@@ -28,5 +28,4 @@ Route::get('/question',   [UserController::class, 'question']);
 Route::get('/sendtoken/{token?}',   [UserController::class, 'sendtoken']);
 Route::get('/slider',   [SliderController::class, 'getslider']);
 Route::get('/category',   [CategoryController::class, 'getcategory']);
-
 Route::get('setting', [SettingController::class, 'index']);
