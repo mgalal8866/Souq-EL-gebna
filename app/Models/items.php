@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\brand;
 use App\Models\category;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,6 @@ class items extends Model
     }
     public function user()
     {
-        return $this->belongsTo(user::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
