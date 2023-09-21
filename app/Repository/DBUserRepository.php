@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\UserResource;
 use App\Models\question;
+use App\Models\region;
 use Illuminate\Support\Facades\Auth;
 use App\Repositoryinterface\UserRepositoryinterface;
 
@@ -104,7 +105,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
-
+        $region = region::find($request['region'])->first();
         $user = User::create([
             'user_name'    => $request['user_name'] ?? null,
             'store_name'   => $request['store_name'] ?? null,
@@ -116,7 +117,8 @@ class DBUserRepository implements UserRepositoryinterface
             'logo'         => uploadimages('store', $request['logo'] ?? null) ?? null,
             'img1'         => uploadimages('store', $request['img1'] ?? null) ?? null,
             'img2'         => uploadimages('store',$request['img2']  ?? null) ?? null,
-            'region'       => $request['region'] ?? null,
+            'region_id'    => $request['region'] ?? null,
+            'city_id'      => $region->city_id ?? null,
             'activity_id'  => $request['activity_id'] ?? null,
             'address'      => $request['address'] ?? null,
             'question1_id' => $request['question1_id'] ?? null,

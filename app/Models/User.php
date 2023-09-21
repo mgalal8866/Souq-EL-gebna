@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\city;
+use App\Models\region;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -26,6 +28,14 @@ class User extends Authenticatable implements JWTSubject
         'phone_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function city()
+    {
+        return $this->belongsTo(city::class,'city_id');
+    }
+    public function region()
+    {
+        return $this->belongsTo(region::class,'region_id');
+    }
     public function getJWTCustomClaims()
     {
         return [];
