@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\ItemsController;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::post('/check/answer',   [UserController::class, 'checkanswer']);
 ################################### Forgot Password ##########################
 
 
+Route::get('/search',   [ItemsController::class, 'search']);
 Route::get('/city',   [UserController::class, 'city']);
 Route::get('/region/{id?}',   [UserController::class, 'region']);
 Route::get('/activity',   [UserController::class, 'activity']);
