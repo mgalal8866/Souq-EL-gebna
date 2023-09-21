@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\V1\CategoryController;
-use App\Http\Controllers\Api\V1\ItemsController;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\UserController;
-use App\Http\Controllers\Api\V1\SettingController;
+
+use App\Http\Controllers\Api\V1\BrandController;
+use App\Http\Controllers\Api\V1\ItemsController;
 use App\Http\Controllers\Api\V1\SliderController;
+use App\Http\Controllers\Api\V1\SettingController;
+use App\Http\Controllers\Api\V1\CategoryController;
 
 
 
@@ -37,4 +38,8 @@ Route::get('/question',   [UserController::class, 'question']);
 Route::get('/sendtoken/{token?}',   [UserController::class, 'sendtoken']);
 Route::get('/slider',   [SliderController::class, 'getslider']);
 Route::get('/category',   [CategoryController::class, 'getcategory']);
+Route::get('/brand',   [BrandController::class, 'getbrand']);
 Route::get('setting', [SettingController::class, 'index']);
+Route::middleware(['jwt.verify'])->group(function () {
+    Route::post('/create/item',   [ItemsController::class, 'createitem']);
+});

@@ -17,6 +17,11 @@ class ItemsController extends Controller
     public function search(Request $request)
     {
         return $this->itemsRepositry->search($request->all());
-     
+
+    }
+    public function createitem(Request $request)
+    {
+        return $this->itemsRepositry->createitem($request->all());
+
     }
 }
