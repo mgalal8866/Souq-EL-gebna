@@ -13,5 +13,9 @@ class brand extends Model
     {
         return $this->hasMany(items::class, 'brand_id');
     }
+    public function getUrlimgAttribute()
+    {
+        return  getimage($this->img, 'brand');
+    }
 }
 
