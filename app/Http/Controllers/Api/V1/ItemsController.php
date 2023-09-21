@@ -16,6 +16,7 @@ class ItemsController extends Controller
 
     public function search(Request $request)
     {
-        return  dd($request->all());
+        return $this->itemsRepositry->search($request->all());
+     
     }
 }

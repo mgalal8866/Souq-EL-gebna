@@ -29,7 +29,7 @@ Route::post('/check/answer',   [UserController::class, 'checkanswer']);
 ################################### Forgot Password ##########################
 
 
-Route::get('/item/search',   [ItemsController::class, 'search']);
+Route::post('/item/search',   [ItemsController::class, 'search']);
 Route::get('/city',   [UserController::class, 'city']);
 Route::get('/region/{id?}',   [UserController::class, 'region']);
 Route::get('/activity',   [UserController::class, 'activity']);

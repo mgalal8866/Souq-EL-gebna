@@ -13,5 +13,11 @@ class category extends Model
     {
         return  getimage($this->img, 'category');
     }
+    public function item()
+    {
+        return $this->hasMany(items::class, 'category_id');
+    }
+
+
 
 }
