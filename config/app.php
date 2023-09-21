@@ -16,6 +16,7 @@ return [
     |
     */
     'api_latest' => 'v1',
+    
     'name' => env('APP_NAME', 'Laravel'),
 
     /*

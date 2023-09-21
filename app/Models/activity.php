@@ -9,4 +9,9 @@ class activity extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function getUrlimgAttribute()
+    {
+        return  getimage($this->img, 'activity');
+    }
 }

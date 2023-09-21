@@ -9,4 +9,9 @@ class slider extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function getUrlimgAttribute()
+    {
+        return  getimage($this->img, 'category');
+    }
 }

@@ -113,9 +113,9 @@ class DBUserRepository implements UserRepositoryinterface
             'phone1'       => $request['phone1'] ?? null,
             'lat'          => $request['lat'] ?? null,
             'long'         => $request['long'] ?? null,
-            'logo'         => $request['logo'] ?? null,
-            'img1'         => $request['img1'] ?? null,
-            'img2'         => $request['img2'] ?? null,
+            'logo'         => uploadimages('store', $request['logo']) ?? null,
+            'img1'         => uploadimages('store', $request['img1']) ?? null,
+            'img2'         => uploadimages('store',$request['img2']) ?? null,
             'region'       => $request['region'] ?? null,
             'activity_id'  => $request['activity_id'] ?? null,
             'address'      => $request['address'] ?? null,
@@ -125,7 +125,7 @@ class DBUserRepository implements UserRepositoryinterface
             'answer2'      => $request['answer2'] ?? null
 
         ]);
-        $this->credentials($user);
+        return $this->credentials($user);
     }
     public function getusers($pg = 30)
     {
