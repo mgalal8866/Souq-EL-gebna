@@ -24,4 +24,19 @@ class ItemsController extends Controller
         return $this->itemsRepositry->createitem($request->all());
 
     }
+    public function getitembyuser()
+    {
+        return $this->itemsRepositry->getitembyuser();
+
+    }
+    public function change_active_item($id)
+    {
+        return $this->itemsRepositry->change_active_item($id);
+
+    }
+    public function get_item_by_store($id)
+    {
+        return $this->itemsRepositry->get_item_by_store($id);
+
+    }
 }

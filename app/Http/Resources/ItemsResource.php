@@ -24,7 +24,9 @@ class ItemsResource extends JsonResource
             'price_offer'     => $this->price_offer ?? '',
             'exp_date'        => $this->exp_date ?? '',
             'pro_date'        => $this->pro_date ?? '',
+            'description'     => $this->description ?? '',
             'store_name'      => $this->user->store_name ?? '',
+            'active'          => $this->active ?? '',
             'stars'           => culcrating($this->comments->count(),$this->comments->sum('rating')) ?? '',
             'comments'        => CommentResource::collection($this->comments) ?? '',
 

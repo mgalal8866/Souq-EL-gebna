@@ -33,4 +33,12 @@ class items extends Model
     {
         return $this->morphMany(comments::class,'commentable');
     }
+    public function scopeActive($q)
+    {
+        return $q->where('active','1');
+    }
+    public function scopeActive_admin($q)
+    {
+        return $q->where('active_admin','1');
+    }
 }

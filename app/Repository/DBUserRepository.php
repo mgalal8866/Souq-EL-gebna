@@ -2,20 +2,27 @@
 
 namespace App\Repository;
 
-use App\Http\Resources\QuestionResource;
 use App\Models\User;
+use App\Models\region;
 use App\Models\setting;
-use Illuminate\Support\Facades\DB;
+use App\Models\question;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\UserResource;
-use App\Models\question;
-use App\Models\region;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\QuestionResource;
 use App\Repositoryinterface\UserRepositoryinterface;
 
 class DBUserRepository implements UserRepositoryinterface
 {
+
+    protected Model $model;
+    public function __construct(User $model)
+    {
+        $this->model = $model;
+    }
     public function sendotp($phone)
     {
         $response = sendsms($phone);
@@ -27,7 +34,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function checkphone($phone)
     {
-        $user = User::where('phone', $phone)->first();
+        $user = $this->model->where('phone', $phone)->first();
         if ($user != null) {
 
             $question = question::whereIn('id', [$user->question1_id, $user->question2_id])->get();
@@ -38,7 +45,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function checkanswer($request)
     {
-        $user = User::where(
+        $user = $this->model->where(
             [
                 'phone'   => $request->phone,
                 'answer1' => $request->answer1,
@@ -76,7 +83,7 @@ class DBUserRepository implements UserRepositoryinterface
     {
         DB::beginTransaction();
         try {
-            $user =  User::find(Auth::guard('api')->user()->id);
+            $user =  $this->model->find(Auth::guard('api')->user()->id);
             $user->client_name       = $request['client_name'] ?? $user->client_name;
             $user->client_fhoneLeter = $request['client_fhoneLeter'] ?? $user->client_fhoneLeter;
             $user->region_id         = $request['region_id'] ?? $user->region_id;
@@ -106,7 +113,7 @@ class DBUserRepository implements UserRepositoryinterface
     public function register($request)
     {
         $region = region::find($request['region'])->first();
-        $user = User::create([
+        $user = $this->model->create([
             'user_name'    => $request['user_name'] ?? null,
             'store_name'   => $request['store_name'] ?? null,
             'password'     => $request['password'] ?? null,
@@ -131,14 +138,14 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function getusers($pg = 30)
     {
-        return  User::paginate($pg);
+        return  $this->model->paginate($pg);
     }
     public function credentials($user)
     {
         if (!$token = auth('api')->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
-        $user = User::where('phone', $user->phone)->first();
+        $user = $this->model->where('phone', $user->phone)->first();
         $user->token = $token;
         $data =  new UserResource($user);
         return Resp($data, 'Success', 200, true);
@@ -152,7 +159,7 @@ class DBUserRepository implements UserRepositoryinterface
     public function sendtoken($token)
     {
         if (auth('api')->user() != null) {
-            $user = User::find(auth('api')->user()->id);
+            $user = $this->model->find(auth('api')->user()->id);
             $user->update(['fsm' => $token]);
         }
         return response()->json(['Token successfully stored.']);
