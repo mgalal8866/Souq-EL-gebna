@@ -32,6 +32,27 @@ class DBItemsRepository implements ItemsRepositoryinterface
         ];
         return Resp(new ItemsResource2($result), 'success');
     }
+    public function edititem($data)
+    {
+        $result =  $this->model->update(['id'=> $data['id'],'user_id' => auth('api')->user()->id],[
+            'name'        => $data['name'],
+            'img'         => uploadimages('item', $data['img'] ?? null) ?? null,
+            'category_id' => $data['category_id'],
+            'brand_id'    => $data['brand_id'],
+            'min_qty'     => $data['min_qty'],
+            'max_qty'     => $data['max_qty'],
+            'price_salse' => $data['price_salse'],
+            'price_offer' => $data['price_offer'],
+            'exp_date'    => $data['exp_date'],
+            'pro_date'    => $data['pro_date'],
+            'description' => $data['description']
+        ]);
+        if ($result != null) {
+            return Resp(new ItemsResource($result), 'success');
+        } else {
+            return Resp('', 'error', 301);
+        }
+    }
     public function createitem($data)
     {
         $result =  $this->model->create([
