@@ -34,6 +34,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
     }
     public function edititem($data)
     {
+        dd($data);
         $result =  $this->model->update(['id'=> $data['id'],'user_id' => auth('api')->user()->id],[
             'name'        => $data['name'],
             'img'         => uploadimages('item', $data['img'] ?? null) ?? null,
@@ -50,7 +51,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
         if ($result != null) {
             return Resp(new ItemsResource($result), 'success');
         } else {
-            return Resp('', 'error', 301);
+            return Resp($result, 'error', 301);
         }
     }
     public function createitem($data)
