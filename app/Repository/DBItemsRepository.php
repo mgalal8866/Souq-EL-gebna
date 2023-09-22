@@ -16,7 +16,8 @@ class DBItemsRepository implements ItemsRepositoryinterface
             ->whereIn('category_id', $data['category_ids'])->WhereHas('user', function ($q) use ($data) {
                 $q->where('city_id', $data['city_id']);
             })
-            ->with(['brand', 'category', 'user'])->get();
+            ->with(['brand', 'category', 'comments', 'user'])->get();
+          
         $result = [
             'item'       => $item,
             'count'      => $item->count(),
@@ -30,6 +31,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
        $result =  items::create([
             'name'        => $data['name'],
             'user_id'     => auth('api')->user()->id,
+            'img'         => uploadimages('item',$data['img']??null)??null,
             'category_id' => $data['category_id'],
             'brand_id'    => $data['brand_id'],
             'min_qty'     => $data['min_qty'],

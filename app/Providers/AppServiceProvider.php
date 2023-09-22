@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\items;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
@@ -66,19 +69,26 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Put this inside boot() function
-        Collection::macro('pick', function (...$columns) {
-            return $this->map(function ($item, $key) use ($columns) {
-                $data = [];
-                foreach ($columns as $column) {
-                    $collection_pieces = explode('.', $column);
-                    if (count($collection_pieces) == 2) {
-                        $data[$collection_pieces[1]] = $item->{$collection_pieces[0]}->{$collection_pieces[1]} ?? null;
-                    } else {
-                        $data[$column] = $item[$column] ?? null;
-                    }
-                }
-                return $data;
-            });
-        });
+        // Collection::macro('pick', function (...$columns) {
+        //     return $this->map(function ($item, $key) use ($columns) {
+        //         $data = [];
+        //         foreach ($columns as $column) {
+        //             $collection_pieces = explode('.', $column);
+        //             if (count($collection_pieces) == 2) {
+        //                 $data[$collection_pieces[1]] = $item->{$collection_pieces[0]}->{$collection_pieces[1]} ?? null;
+        //             } else {
+        //                 $data[$column] = $item[$column] ?? null;
+        //             }
+        //         }
+        //         return $data;
+        //     });
+        // });
+
+
+        Relation::morphMap([
+            'user'=> User::class,
+            'item'=> items::class,
+
+        ]);
     }
 }

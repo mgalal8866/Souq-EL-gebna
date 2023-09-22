@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
+            $table->string('img')->nullable();
             $table->integer('category_id')->nullable();
             $table->integer('brand_id')->nullable();
             $table->string('min_qty')->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->timestamp('pro_date')->nullable();
             $table->string('description')->nullable();
             $table->boolean('active')->default(1);
+            $table->boolean('active_admin')->default(1);
             $table->boolean('rating_view')->default(1);
             $table->timestamps();
         });

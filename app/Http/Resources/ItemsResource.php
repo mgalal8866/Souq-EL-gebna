@@ -13,6 +13,7 @@ class ItemsResource extends JsonResource
         return [
             'id'              => $this->id,
             'name'            => $this->name ?? '',
+            'img'             => $this->img == null ?  $this->brand->urlimg : $this->urlimg ?? '',
             'category_id'     => $this->category_id ?? '',
             'category_name'   => $this->category->name ?? '',
             'brand_id'        => $this->brand_id ?? '',
@@ -24,6 +25,7 @@ class ItemsResource extends JsonResource
             'exp_date'        => $this->exp_date ?? '',
             'pro_date'        => $this->pro_date ?? '',
             'store_name'      => $this->user->store_name ?? '',
+            'comments'        => CommentResource::collection($this->comments) ?? '',
 
         ];
     }

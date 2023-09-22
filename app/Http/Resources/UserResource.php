@@ -33,6 +33,7 @@ class UserResource extends JsonResource
             'rating_view'   => $this->rating_view ?? '',
             'active'        => $this->active ?? '',
             'access_token'  => $this->token ?? '',
+            'comments'        => CommentResource::collection($this->comments) ?? '',
 
         ];
     }

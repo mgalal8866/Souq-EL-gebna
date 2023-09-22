@@ -9,8 +9,9 @@ use App\Http\Controllers\Api\V1\ItemsController;
 use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\CategoryController;
-
-
+use App\Http\Controllers\Api\V1\CommentController;
+use App\Models\comments;
+use App\Models\items;
 
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
@@ -41,6 +42,9 @@ Route::get('/category',   [CategoryController::class, 'getcategory']);
 Route::get('/brand',   [BrandController::class, 'getbrand']);
 Route::get('setting', [SettingController::class, 'index']);
 
+
 Route::middleware(['jwt.verify'])->group(function () {
     Route::post('/create/item',   [ItemsController::class, 'createitem']);
+    Route::post('/comment/item',   [CommentController::class, 'CreateCommentItem']);
+    Route::post('/comment/store',   [CommentController::class, 'CreateCommentStore']);
 });

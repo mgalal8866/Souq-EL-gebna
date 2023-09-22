@@ -24,4 +24,12 @@ class items extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function getUrlimgAttribute()
+    {
+        return  getimage($this->img, 'brand');
+    }
+    public function comments()
+    {
+        return $this->morphMany(comments::class,'commentable');
+    }
 }
