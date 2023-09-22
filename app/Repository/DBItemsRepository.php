@@ -34,7 +34,6 @@ class DBItemsRepository implements ItemsRepositoryinterface
     }
     public function edititem($data)
     {
-        dd($data);
         $result =  $this->model->update(['id'=> $data['id'],'user_id' => auth('api')->user()->id],[
             'name'        => $data['name'],
             'img'         => uploadimages('item', $data['img'] ?? null) ?? null,
