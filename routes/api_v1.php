@@ -45,6 +45,7 @@ Route::get('setting', [SettingController::class, 'index']);
 
 Route::middleware(['jwt.verify'])->group(function () {
     Route::post('/create/item',   [ItemsController::class, 'createitem']);
+    Route::post('/edit/item',   [ItemsController::class, 'edititem']);
     Route::post('/comment/item',   [CommentController::class, 'CreateCommentItem']);
     Route::post('/comment/store',   [CommentController::class, 'CreateCommentStore']);
     Route::get('/user/items',   [ItemsController::class, 'getitembyuser']);

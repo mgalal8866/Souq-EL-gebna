@@ -24,6 +24,11 @@ class ItemsController extends Controller
         return $this->itemsRepositry->createitem($request->all());
 
     }
+    public function edititem(Request $request)
+    {
+        return $this->itemsRepositry->edititem($request->all());
+
+    }
     public function getitembyuser()
     {
         return $this->itemsRepositry->getitembyuser();
