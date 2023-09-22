@@ -184,7 +184,7 @@ function splititem($item)
 function culcrating($count,$stars)
 {
     if($count == 0){
-        return 0;
+        return "0";
     }else{
         return number_format($stars/$count,2);
     }
