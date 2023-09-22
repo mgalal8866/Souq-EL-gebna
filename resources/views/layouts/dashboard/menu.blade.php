@@ -1,32 +1,44 @@
- <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-     <div class="navbar-header">
+ <div  wire:ignore class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+     <div class="navbar-header" wire:ignore>
          <ul class="nav navbar-nav flex-row">
              <li class="nav-item me-auto"><a class="navbar-brand" href="/"><span class="brand-logo">
-                         <img src="https://{{ request()->getHttpHost() }}/asset/images/logo.png"
-                             width="50" />
+                         <img src="https://{{ request()->getHttpHost() }}/asset/images/logo.png" width="50" />
                      </span>
                      {{-- <h2 class="brand-text" style="color: {{ $setting->site_color_primary }}">{{ $setting->name_shop }} --}}
                      </h2>
                  </a></li>
              <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
-                         class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i
-                         class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc"
-                         data-ticon="disc"></i></a></li>
+                         class="d-block d-xl-none text-primary toggle-icon font-medium-4"> <svg
+                             xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="feather feather-x d-block d-xl-none text-primary toggle-icon font-medium-4">
+                             <line x1="18" y1="6" x2="6" y2="18"></line>
+                             <line x1="6" y1="6" x2="18" y2="18"></line>
+                         </svg></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary"
+                         data-ticon="disc">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="feather feather-disc d-none d-xl-block collapse-toggle-icon primary font-medium-4">
+                             <circle cx="12" cy="12" r="10"></circle>
+                             <circle cx="12" cy="12" r="3"></circle>
+                         </svg></i></a></li>
          </ul>
      </div>
      <div class="shadow-bottom"></div>
-     <div class="main-menu-content">
-         {{-- <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('dashboard') }}"><i
+     <div class="main-menu-content"  wire:ignore>
+         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+             <li class=" nav-item "><a class="d-flex align-items-center" href="{{route('dashboard')}}"><i
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.dashboard') }}</span></a>
              </li>
 
-             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('products') }}"><i
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('brands')}}"><i
                          data-feather="home"></i><span
-                         class="menu-title text-truncate">{{ __('tran.products') }}</span></a>
+                         class="menu-title text-truncate">{{ __('tran.brands') }}</span></a>
              </li>
-             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('categorys') }}"><i
+             {{--  <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('categorys') }}"><i
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.categorys') }}</span></a>
              </li>
@@ -209,7 +221,7 @@
 
                  </ul>
              </li>
-
-         </ul> --}}
+--}}
+         </ul>
      </div>
  </div>
