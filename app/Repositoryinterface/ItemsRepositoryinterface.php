@@ -8,6 +8,7 @@ interface ItemsRepositoryinterface{
     public function getitembyuser();
     public function change_active_item($id);
     public function get_item_by_store($id);
+    public function get_item_by_category($id);
 
 }
 

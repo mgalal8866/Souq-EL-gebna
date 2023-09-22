@@ -80,9 +80,23 @@ class DBItemsRepository implements ItemsRepositoryinterface
             return Resp('', 'error', 301);
         }
     }
+    public function get_item_by_category($id)
+    {
+
+        $result = $this->model->active_admin()->active()->where(['category_id' => $id])->get();
+        if ($result != null) {
+            if ($result != null) {
+                return Resp(ItemsResource::collection($result), 'success');
+            } else {
+                return Resp('', 'error', 301);
+            }
+        } else {
+            return Resp('', 'error', 301);
+        }
+    }
     public function get_item_by_store($id)
     {
-        
+
         $result = $this->model->active_admin()->active()->where(['user_id' => $id])->get();
         if ($result != null) {
             if ($result != null) {

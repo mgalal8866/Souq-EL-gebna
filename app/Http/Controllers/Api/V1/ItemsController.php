@@ -39,4 +39,9 @@ class ItemsController extends Controller
         return $this->itemsRepositry->get_item_by_store($id);
 
     }
+    public function get_item_by_category($id)
+    {
+        return $this->itemsRepositry->get_item_by_category($id);
+
+    }
 }
