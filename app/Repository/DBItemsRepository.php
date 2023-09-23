@@ -37,7 +37,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
         Log::error($data);
         $result =  $this->model->update(['id' => $data['id'], 'user_id' => auth('api')->user()->id], [
             'name'        => $data['name'],
-            'img'         => $data['img'] != null ? uploadimages('item', $data['img'] ?? null) : null,
+            'img'         =>   uploadimages('item', $data['img'] ?? null) ?? null,
             'category_id' => $data['category_id'],
             'brand_id'    => $data['brand_id'],
             'min_qty'     => $data['min_qty'],
