@@ -7,7 +7,7 @@ use App\Http\Resources\ItemsResource;
 use App\Http\Resources\ItemsResource2;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositoryinterface\ItemsRepositoryinterface;
-
+use Illuminate\Support\Facades\Log;
 
 class DBItemsRepository implements ItemsRepositoryinterface
 {
@@ -34,9 +34,10 @@ class DBItemsRepository implements ItemsRepositoryinterface
     }
     public function edititem($data)
     {
-        $result =  $this->model->update(['id'=> $data['id'],'user_id' => auth('api')->user()->id],[
+        Log::error($data);
+        $result =  $this->model->update(['id' => $data['id'], 'user_id' => auth('api')->user()->id], [
             'name'        => $data['name'],
-            'img'         => uploadimages('item', $data['img'] ?? null) ?? null,
+            'img'         => $data['img'] != null ? uploadimages('item', $data['img'] ?? null) : null,
             'category_id' => $data['category_id'],
             'brand_id'    => $data['brand_id'],
             'min_qty'     => $data['min_qty'],
