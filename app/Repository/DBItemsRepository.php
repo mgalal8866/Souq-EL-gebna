@@ -35,9 +35,10 @@ class DBItemsRepository implements ItemsRepositoryinterface
     public function edititem($data)
     {
         Log::error($data);
-        $result =  $this->model->update(['id' => $data['id'], 'user_id' => auth('api')->user()->id], [
+        $result1 =  $this->model->where(['id' => $data['id'], 'user_id' => auth('api')->user()->id])->first();
+        $result =  $result1->update([
             'name'        => $data['name'],
-            'img'         =>  isset($data['img']) == true? uploadimages('item', $data['img'] ?? null) :null,
+            'img'         => isset($data['img']) == true ? uploadimages('item', $data['img'] ?? null) : $result1->img ?? null,
             'category_id' => $data['category_id'],
             'brand_id'    => $data['brand_id'],
             'min_qty'     => $data['min_qty'],
