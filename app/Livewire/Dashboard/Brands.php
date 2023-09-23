@@ -24,11 +24,12 @@ class Brands extends Component
     }
     function  savebrand()
     {
-        brand::create([
+        $brand = brand::find($this->selectbrand);
+        $brand->update([
             'name' => $this->name,
             'img' => $this->imagenew != null ? uploadimages('brand', $this->imagenew) : null,
         ]);
-        // $this->dispatchBrowserEvent('swal',['message'=>'تم التعديل بنجاح' ]);
+        $this->dispatch('swal', message:'تم التعديل بنجاح' );
 
     }
     public function render()
