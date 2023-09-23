@@ -35,10 +35,11 @@ class DBItemsRepository implements ItemsRepositoryinterface
     public function edititem($data)
     {
         Log::error($data);
+        Log::error( auth('api')->user()->id);
         $result1 =  $this->model->where(['id' => $data['id'], 'user_id' => auth('api')->user()->id])->first();
         $result =  $result1->update([
             'name'        => $data['name'],
-            'img'         => isset($data['img']) == true ? uploadimages('item', $data['img'] ?? null) : $result1->img ?? null,
+            'img'         => (isset($data['img']) == true) ? uploadimages('item', $data['img'] ?? null) : $result1->img ?? null,
             'category_id' => $data['category_id'],
             'brand_id'    => $data['brand_id'],
             'min_qty'     => $data['min_qty'],
@@ -49,8 +50,9 @@ class DBItemsRepository implements ItemsRepositoryinterface
             'pro_date'    => $data['pro_date'],
             'description' => $data['description']
         ]);
+
         if ($result != null) {
-            return Resp(new ItemsResource($result), 'success');
+            return Resp(new ItemsResource($result1), 'success');
         } else {
             return Resp($result, 'error', 301);
         }
