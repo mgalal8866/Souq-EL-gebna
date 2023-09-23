@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Livewire\Dashboard\Brands;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Artisan;
@@ -21,6 +22,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function registerLivewireComponents()
     {
-        Livewire::component('comment', Comment::class);
+        Livewire::component('Brands', Brands::class);
     }
 }
