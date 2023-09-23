@@ -49,6 +49,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::post('/comment/item',   [CommentController::class, 'CreateCommentItem']);
     Route::post('/comment/store',   [CommentController::class, 'CreateCommentStore']);
     Route::get('/user/items',   [ItemsController::class, 'getitembyuser']);
+    Route::post('/user/edit/profile',   [UserController::class, 'editprofile']);
     Route::get('/items/store/{id?}',   [ItemsController::class, 'get_item_by_store']);
     Route::get('/items/category/{id?}',   [ItemsController::class, 'get_item_by_category']);
     Route::get('/change/active/item/{id?}',   [ItemsController::class, 'change_active_item']);

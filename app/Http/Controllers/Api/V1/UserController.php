@@ -41,6 +41,10 @@ class UserController extends Controller
 
         return $this->userRepositry->register($request->validated());
     }
+    public function editprofile(Request $request)
+    {
+        return $this->userRepositry->editprofile($request);
+    }
     public function verificationcode(Request $request)
     {
         return  $this->userRepositry->verificationcode($request);

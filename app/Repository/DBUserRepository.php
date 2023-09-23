@@ -123,7 +123,7 @@ class DBUserRepository implements UserRepositoryinterface
             'long'         => $request['long'] ?? null,
             'logo'         => uploadimages('store', $request['logo'] ?? null) ?? null,
             'img1'         => uploadimages('store', $request['img1'] ?? null) ?? null,
-            'img2'         => uploadimages('store',$request['img2']  ?? null) ?? null,
+            'img2'         => uploadimages('store', $request['img2']  ?? null) ?? null,
             'region_id'    => $request['region'] ?? null,
             'city_id'      => $region->city_id ?? null,
             'activity_id'  => $request['activity_id'] ?? null,
@@ -135,6 +135,27 @@ class DBUserRepository implements UserRepositoryinterface
 
         ]);
         return $this->credentials($user);
+    }
+    public function editprofile($request)
+    {
+        $user = $this->model->find(auth('api')->user()->id);
+        $user->user_name   = $request['user_name'] ?? $user->user_name;
+        $user->store_name  = $request['store_name'] ?? $user->store_name;
+        $user->phone       = $request['phone'] ?? $user->phone;
+        $user->phone1      = $request['phone1'] ?? $user->phone1;
+        $user->lat         = $request['lat'] ?? $user->lat;
+        $user->long        = $request['long'] ?? $user->long;
+        $user->logo        = isset($request['logo']) == true ? uploadimages('store', $request['logo']) : $user->logo;
+        $user->img1        = isset($request['img1']) == true ? uploadimages('store', $request['img1']) : $user->img1;
+        $user->img2        = isset($request['img2']) == true ? uploadimages('store', $request['img2']) : $user->img2;
+        $user->region_id   = $request['region'] ?? $user->region_id;
+        $user->city_id     = $user->city_id;
+        $user->activity_id = $request['activity_id'] ?? $user->activity_id;
+        $user->address     = $request['address'] ?? $user->address;
+        $user->save();
+        $data =  new UserResource($user);
+        return Resp($data, 'Success', 200, true);
+
     }
     public function getusers($pg = 30)
     {
