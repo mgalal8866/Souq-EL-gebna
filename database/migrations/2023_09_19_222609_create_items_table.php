@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('brand_id')->nullable();
             $table->string('min_qty')->nullable();
             $table->string('max_qty')->nullable();
+            $table->string('stock')->nullable();
             $table->string('price_salse')->nullable();
             $table->string('price_offer')->nullable();
             $table->timestamp('exp_date')->nullable();
