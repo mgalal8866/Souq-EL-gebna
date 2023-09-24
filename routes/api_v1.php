@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\CommentController;
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Models\comments;
 use App\Models\items;
 
@@ -55,6 +56,12 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('/cart/add/{$item_id?}',   [CartController::class, 'add_to_cart']);
     Route::get('/cart/delete/{$item_id?}',   [CartController::class, 'del_from_cart']);
     Route::get('/cart/edit/qty/{$item_id?}/{$qty?}',   [CartController::class, 'edit_qty_cart']);
+    ################################### End Cart  ##########################
+
+    ################################### Start Cart  ########################
+    Route::post('/order/please',   [OrderController::class, 'please_order']);
+    Route::get('/order/user',      [OrderController::class, 'get_order_user']);
+
     ################################### End Cart  ##########################
 
     ################################### Start ITEMS ##########################

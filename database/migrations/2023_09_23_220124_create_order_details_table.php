@@ -16,9 +16,10 @@ return new class extends Migration
             $table->integer('order_id')->nullable();
             $table->integer('item_id')->nullable();
             $table->decimal('qty')->default(0);
-            $table->decimal('price',8,2)->default(0);
-            $table->decimal('total',8,2)->default(0);
-            $table->decimal('discount',8,3)->nullable();//الخصم
+            $table->decimal('price', 8, 2)->default(0);
+            $table->decimal('total', 8, 2)->default(0);
+            $table->decimal('subtotal', 8, 3)->nullable(); 
+            $table->decimal('discount', 8, 3)->nullable(); //الخصم
             $table->timestamps();
         });
     }
