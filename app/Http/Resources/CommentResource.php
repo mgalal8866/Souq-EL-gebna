@@ -15,6 +15,7 @@ class CommentResource extends JsonResource
             'user_name'       => $this->user->user_name ?? '',
             'comment'         => $this->comment ?? '',
             'rating'          => $this->rating ?? '',
+            'created_at'      => $this->created_at ?? '',
 
 
         ];
