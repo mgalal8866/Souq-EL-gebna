@@ -15,6 +15,7 @@ class OrderController extends Controller
     }
     function please_order(Request $request)
     {
+        return $this->orderRepositry->please_order($request);
     }
 
 
