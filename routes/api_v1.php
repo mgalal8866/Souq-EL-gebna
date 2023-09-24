@@ -45,15 +45,19 @@ Route::get('setting', [SettingController::class, 'index']);
 
 
 Route::middleware(['jwt.verify'])->group(function () {
-
+    ################################### Start Comments ##########################
     Route::post('/comment/item',   [CommentController::class, 'CreateCommentItem']);
     Route::post('/comment/store',   [CommentController::class, 'CreateCommentStore']);
+    ################################### End Comments ##########################
 
+    ################################### Start Cart  ########################
     Route::get('/cart/user',   [CartController::class, 'getusercart']);
     Route::get('/cart/add/{$item_id?}',   [CartController::class, 'add_to_cart']);
     Route::get('/cart/delete/{$item_id?}',   [CartController::class, 'del_from_cart']);
     Route::get('/cart/edit/qty/{$item_id?}/{$qty?}',   [CartController::class, 'edit_qty_cart']);
+    ################################### End Cart  ##########################
 
+    ################################### Start ITEMS ##########################
     Route::post('/create/item',   [ItemsController::class, 'createitem']);
     Route::post('/edit/item',   [ItemsController::class, 'edititem']);
     Route::post('/user/edit/profile',   [UserController::class, 'editprofile']);
@@ -61,4 +65,5 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('/items/store/{id?}',   [ItemsController::class, 'get_item_by_store']);
     Route::get('/items/category/{id?}',   [ItemsController::class, 'get_item_by_category']);
     Route::get('/change/active/item/{id?}',   [ItemsController::class, 'change_active_item']);
+    ################################### End ITEMS ##########################
 });
