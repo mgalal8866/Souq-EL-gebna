@@ -20,9 +20,9 @@ class CartController extends Controller
 
         return $this->cartRepositry->getusercart();
     }
-    function add_to_cart($item_id, $qty)
+    function add_to_cart($item_id)
     {
-        return $this->cartRepositry->add_to_cart($item_id, $qty);
+        return $this->cartRepositry->add_to_cart($item_id);
     }
     function del_from_cart($item_id)
     {

@@ -53,9 +53,9 @@ Route::middleware(['jwt.verify'])->group(function () {
 
     ################################### Start Cart  ########################
     Route::get('/cart/user',   [CartController::class, 'getusercart']);
-    Route::get('/cart/add/{$item_id?}',   [CartController::class, 'add_to_cart']);
-    Route::get('/cart/delete/{$item_id?}',   [CartController::class, 'del_from_cart']);
-    Route::get('/cart/edit/qty/{$item_id?}/{$qty?}',   [CartController::class, 'edit_qty_cart']);
+    Route::get('/cart/add/{item_id?}',   [CartController::class, 'add_to_cart']);
+    Route::get('/cart/delete/{item_id?}',   [CartController::class, 'del_from_cart']);
+    Route::get('/cart/edit/{item_id?}/{qty?}',   [CartController::class, 'edit_qty_cart']);
     ################################### End Cart  ##########################
 
     ################################### Start Cart  ########################
