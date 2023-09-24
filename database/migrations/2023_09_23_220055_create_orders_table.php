@@ -18,9 +18,8 @@ return new class extends Migration
             $table->decimal('subtotal',8,2)->default(0);
             $table->decimal('total',8,2)->default(0);
             $table->integer('statu_delivery')->nullable();
+            $table->integer('order_type')->nullable();
             $table->text('note')->nullable();
-            $table->increments('id');
-            $table->increments('id');
             $table->timestamps();
         });
     }
