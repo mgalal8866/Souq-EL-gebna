@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('stock_qty')->nullable();
             $table->string('price_salse')->nullable();
             $table->string('price_offer')->nullable();
+            $table->boolean('is_offer')->default(0);
             $table->timestamp('exp_date')->nullable();
             $table->timestamp('pro_date')->nullable();
             $table->string('description')->nullable();

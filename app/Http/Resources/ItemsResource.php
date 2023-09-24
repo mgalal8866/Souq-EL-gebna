@@ -23,6 +23,7 @@ class ItemsResource extends JsonResource
             'price_salse'     => $this->price_salse ?? '',
             'stock_qty'       => $this->stock_qty ?? '',
             'price_offer'     => $this->price_offer ?? '',
+            'is_offer'        => $this->is_offer ?? '',
             'exp_date'        => $this->exp_date ?? '',
             'pro_date'        => $this->pro_date ?? '',
             'description'     => $this->description ?? '',
