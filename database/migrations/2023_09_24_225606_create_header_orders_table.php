@@ -6,18 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('header_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable();//id العميل
-            $table->integer('header_order_id')->nullable();//id العميل
             $table->decimal('discount',8,2)->default(0);
             $table->decimal('subtotal',8,2)->default(0);
             $table->decimal('total',8,2)->default(0);
-            $table->integer('statu_delivery')->nullable();
-            $table->integer('order_type')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('header_orders');
     }
 };

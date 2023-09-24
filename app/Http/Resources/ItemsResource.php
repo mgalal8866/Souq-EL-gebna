@@ -31,6 +31,7 @@ class ItemsResource extends JsonResource
             'active'          => $this->active ?? '',
             'stars'           => culcrating($this->comments->count(), $this->comments->sum('rating')) ?? '',
             'comments'        => CommentResource::collection($this->comments) ?? '',
+            'store'           => new UserResource($this->user) ?? '',
 
         ];
     }

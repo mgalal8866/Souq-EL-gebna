@@ -7,6 +7,7 @@ use App\Models\city;
 use App\Models\region;
 use App\Models\comments;
 use Laravel\Sanctum\HasApiTokens;
+
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use  HasFactory, Notifiable,HasApiTokens;
     protected $guarded = [];
     // protected $fillable = [
     //     'name',
