@@ -18,6 +18,7 @@ class DBOrderRepository implements OrderRepositoryinterface
     }
     public function please_order($data)
     {
+
         $neworder = $this->model->create([
             'user_id'  => auth('api')->user()->id,
             'subtotal' => $data['data']['subtotal'],
@@ -25,7 +26,7 @@ class DBOrderRepository implements OrderRepositoryinterface
             'total'    => $data['data']['total'],
         ]);
         foreach ($data['invo'] as $item) {
-            $neworder->orderdetails->create([
+            $neworder->orderdetails()->create([
                 'item_id'  => $item['item_id'],
                 'qty'      => $item['qty'],
                 'price'    => $item['price'],
@@ -34,6 +35,7 @@ class DBOrderRepository implements OrderRepositoryinterface
                 'total'    => $item['total'],
             ]);
         }
+        return  Resp(new OrderResource($neworder), 'success');
     }
     public function get_order_user()
     {
