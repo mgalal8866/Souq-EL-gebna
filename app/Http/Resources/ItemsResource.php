@@ -29,7 +29,7 @@ class ItemsResource extends JsonResource
             'description'     => $this->description ?? '',
             'store_name'      => $this->user->store_name ?? '',
             'active'          => $this->active ?? '',
-            'stars'           => culcrating($this->comments->count(),$this->comments->sum('rating')) ?? '',
+            'stars'           => culcrating($this->comments->count(), $this->comments->sum('rating')) ?? '',
             'comments'        => CommentResource::collection($this->comments) ?? '',
 
         ];
