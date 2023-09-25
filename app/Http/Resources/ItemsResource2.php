@@ -12,7 +12,7 @@ class ItemsResource2 extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'items'          => ItemsResource::collection($this['item']),
+            'items'          => ItemsSearchResource::collection($this['item']),
             'brand'          => BrandResource::collection($this['brand']->unique()),
             'category'       => CategoryResource::collection($this['category']->unique()),
             'count'          => $this['count'],
