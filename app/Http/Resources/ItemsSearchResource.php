@@ -33,7 +33,8 @@ class ItemsSearchResource extends JsonResource
                     'store_id'   => $this->user->id ?? '',
                     'store_name' => $this->user->store_name ?? '',
                     'logo'       => $this->user->urllogo ?? '',
-                    'rating_view'       => $this->user->rating_view ?? '',
+                    'rating_view' => $this->user->rating_view ?? '',
+                    'featured'    => $this->user->featured ?? '',
                     'stars'      => culcrating($this->user->comments->count(),$this->user->comments->sum('rating')) ?? '',
                 ]
 
