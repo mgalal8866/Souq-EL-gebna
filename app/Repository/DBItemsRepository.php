@@ -129,7 +129,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
 
         if ($result != null) {
             if ($result != null) {
-                $data=['items'=>$result];
+                $data = ['items' => $result];
                 return Resp(new ItemsStoreMainResource($data), 'success');
             } else {
                 return Resp('', 'error', 301);
