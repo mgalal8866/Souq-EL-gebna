@@ -14,9 +14,9 @@ class ItemsStoreMainResource extends JsonResource
     {
         return [
             'items'    => ItemsStoreResource::collection($this['item']),
-            'category' => category::WhereHas('item', function ($q) {
-                $q->where('user_id', $this['item']->user->id);
-            })->get()
+            // 'category' => category::WhereHas('item', function ($q) {
+            //     $q->where('user_id', $this['item']->user->id);
+            // })->get()
         ];
     }
 }
