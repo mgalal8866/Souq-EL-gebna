@@ -36,7 +36,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
     public function edititem($data)
     {
         Log::error($data);
-        Log::error( auth('api')->user()->id);
+        Log::error(auth('api')->user()->id);
         $result1 =  $this->model->where(['id' => $data['id'], 'user_id' => auth('api')->user()->id])->first();
         $result =  $result1->update([
             'name'        => $data['name'],

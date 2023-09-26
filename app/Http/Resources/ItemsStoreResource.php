@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -34,8 +35,11 @@ class ItemsStoreResource extends JsonResource
                 'store_name'  => $this->user->store_name ?? '',
                 'logo'        => $this->user->urllogo ?? '',
                 'featured'    => $this->user->featured ?? '',
-                'stars'       => culcrating($this->user->comments->count(),$this->user->comments->sum('rating')) ?? '',
-            ]
+                'stars'       => culcrating($this->user->comments->count(), $this->user->comments->sum('rating')) ?? '',
+            ],
+            'category'        => category::WhereHas('item', function ($q) {
+                $q->where('user_id', $this->user->id);
+            })->get()
         ];
     }
 }
