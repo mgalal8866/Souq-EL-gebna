@@ -27,12 +27,15 @@ class ItemsStoreResource extends JsonResource
             'exp_date'        => $this->exp_date ?? '',
             'pro_date'        => $this->pro_date ?? '',
             'description'     => $this->description ?? '',
-            'store_name'      => $this->user->store_name ?? '',
-            'active'          => $this->active ?? '',
+            'rating_view'     => $this->rating_view ?? '',
             'stars'           => culcrating($this->comments->count(), $this->comments->sum('rating')) ?? '',
-            'comments'        => CommentResource::collection($this->comments) ?? '',
-            'store'           => new UserResource($this->user) ?? '',
-
+            'store'           => [
+                'store_id'    => $this->user->id ?? '',
+                'store_name'  => $this->user->store_name ?? '',
+                'logo'        => $this->user->urllogo ?? '',
+                'featured'    => $this->user->featured ?? '',
+                'stars'       => culcrating($this->user->comments->count(),$this->user->comments->sum('rating')) ?? '',
+            ]
         ];
     }
 }
