@@ -13,10 +13,10 @@ class ItemsStoreMainResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'items'    => ItemsStoreResource::collection($this['item']),
-            // 'category' => category::WhereHas('item', function ($q) {
-            //     $q->where('user_id', $this['item']->user->id);
-            // })->get()
+            'items'    => ItemsStoreResource::collection($this['items']),
+            'category' => category::WhereHas('item', function ($q) {
+                $q->where('user_id', $this['items']->user->id);
+            })->get()
         ];
     }
 }
