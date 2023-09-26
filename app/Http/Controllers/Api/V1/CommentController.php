@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\items;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommentResource;
 use App\Repositoryinterface\CategoryRepositoryinterface;
 
 class CommentController extends Controller
@@ -32,5 +33,15 @@ class CommentController extends Controller
             'rating' => $request->rating,
         ]);
         return Resp('', 'تم اضافه تقيمك بنجاح', 200);
+    }
+    function get_item_by_id($id)
+    {
+        $item = items::find($id);
+        return Resp(CommentResource::collection($item->comments), 'success', 200);
+    }
+    function get_store_by_id($id)
+    {
+        $user = User::find($id);
+        return Resp(CommentResource::collection($user->comments), 'success', 200);
     }
 }

@@ -18,7 +18,6 @@ use App\Models\items;
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
-
 ################################### OTP ######################################
 Route::get('/sendotp/{phone?}',   [UserController::class, 'sendotp']);
 Route::post('/verificationcode',   [UserController::class, 'verificationcode']);
@@ -48,7 +47,9 @@ Route::get('setting', [SettingController::class, 'index']);
 Route::middleware(['jwt.verify'])->group(function () {
     ################################### Start Comments ##########################
     Route::post('/comment/item',   [CommentController::class, 'CreateCommentItem']);
-    Route::post('/comment/store',   [CommentController::class, 'CreateCommentStore']);
+    Route::post('/comment/store',  [CommentController::class, 'CreateCommentStore']);
+    Route::get('/comment/store/{id?}', [CommentController::class, 'get_store_by_id']);
+    Route::get('/comment/item/{id?}',  [CommentController::class, 'get_item_by_id']);
     ################################### End Comments ##########################
 
     ################################### Start Cart  ########################
