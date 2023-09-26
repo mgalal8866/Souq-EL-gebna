@@ -22,7 +22,7 @@ class ItemsSearchResource extends JsonResource
             'max_qty'         => $this->max_qty ?? '',
             'price_salse'     => $this->price_salse ?? '',
             'stock_qty'       => $this->stock_qty ?? '',
-            'price_offer'     => $this->price_offer ?? '',
+            'price_offer'     => $this->price_offer > 0 ? '1' : '0' ?? '',
             'is_offer'        => $this->is_offer ?? '',
             'exp_date'        => $this->exp_date ?? '',
             'pro_date'        => $this->pro_date ?? '',
@@ -37,8 +37,6 @@ class ItemsSearchResource extends JsonResource
                 'featured'    => $this->user->featured ?? '',
                 'stars'       => culcrating($this->user->comments->count(), $this->user->comments->sum('rating')) ?? '',
             ]
-
-
         ];
     }
 }
