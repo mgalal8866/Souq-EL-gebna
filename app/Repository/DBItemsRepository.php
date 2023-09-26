@@ -3,11 +3,12 @@
 namespace App\Repository;
 
 use App\Models\items;
+use Illuminate\Support\Facades\Log;
 use App\Http\Resources\ItemsResource;
 use App\Http\Resources\ItemsResource2;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\ItemsStoreResource;
 use App\Repositoryinterface\ItemsRepositoryinterface;
-use Illuminate\Support\Facades\Log;
 
 class DBItemsRepository implements ItemsRepositoryinterface
 {
@@ -127,7 +128,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
         $result = $this->model->active_admin()->active()->where(['user_id' => $id])->get();
         if ($result != null) {
             if ($result != null) {
-                return Resp(ItemsResource::collection($result), 'success');
+                return Resp(ItemsStoreResource::collection($result), 'success');
             } else {
                 return Resp('', 'error', 301);
             }
