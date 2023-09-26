@@ -30,13 +30,7 @@ class ItemsStoreResource extends JsonResource
             'description'     => $this->description ?? '',
             'rating_view'     => $this->rating_view ?? '',
             'stars'           => culcrating($this->comments->count(), $this->comments->sum('rating')) ?? '',
-            'store'           => [
-                'store_id'    => $this->user->id ?? '',
-                'store_name'  => $this->user->store_name ?? '',
-                'logo'        => $this->user->urllogo ?? '',
-                'featured'    => $this->user->featured ?? '',
-                'stars'       => culcrating($this->user->comments->count(), $this->user->comments->sum('rating')) ?? '',
-            ]
+           
         ];
     }
 }

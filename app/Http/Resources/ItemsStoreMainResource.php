@@ -16,7 +16,14 @@ class ItemsStoreMainResource extends JsonResource
             'items'    => ItemsStoreResource::collection($this['items']),
             'category' => CategoryResource::collection( category::WhereHas('item', function ($q) {
                 $q->where('user_id', $this['items'][0]->user->id);
-            })->get())
+            })->get()),
+            'store'           => [
+                'store_id'    => $this['items'][0]->user->id ?? '',
+                'store_name'  => $this['items'][0]->user->store_name ?? '',
+                'logo'        => $this['items'][0]->user->urllogo ?? '',
+                'featured'    => $this['items'][0]->user->featured ?? '',
+                'stars'       => culcrating($this['items'][0]->user->comments->count(), $this['items'][0]->user->comments->sum('rating')) ?? '',
+            ]
         ];
     }
 }
