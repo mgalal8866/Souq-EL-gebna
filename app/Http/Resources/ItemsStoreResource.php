@@ -36,10 +36,7 @@ class ItemsStoreResource extends JsonResource
                 'logo'        => $this->user->urllogo ?? '',
                 'featured'    => $this->user->featured ?? '',
                 'stars'       => culcrating($this->user->comments->count(), $this->user->comments->sum('rating')) ?? '',
-            ],
-            'category'        => category::WhereHas('item', function ($q) {
-                $q->where('user_id', $this->user->id);
-            })->get()
+            ]
         ];
     }
 }
