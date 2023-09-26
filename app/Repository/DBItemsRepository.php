@@ -125,7 +125,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
     }
     public function get_item_by_store($id)
     {
-        $result = $this->model->active_admin()->active()->where(['user_id' => $id])->get();
+        $result = $this->model->active_admin()->active()->with('user')->where(['user_id' => $id])->get();
 
         if ($result != null) {
             if ($result != null) {
