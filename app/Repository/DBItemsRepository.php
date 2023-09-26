@@ -6,6 +6,7 @@ use App\Models\items;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\ItemsResource;
 use App\Http\Resources\ItemsResource2;
+use App\Http\Resources\ItemsStoreMainResource;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\ItemsStoreResource;
 use App\Repositoryinterface\ItemsRepositoryinterface;
@@ -128,8 +129,8 @@ class DBItemsRepository implements ItemsRepositoryinterface
 
         if ($result != null) {
             if ($result != null) {
-                $data=[ 'items'=>$result];
-                return Resp(new ItemsStoreResource( $data), 'success');
+                $data=['items'=>$result];
+                return Resp(new ItemsStoreMainResource($data), 'success');
             } else {
                 return Resp('', 'error', 301);
             }
