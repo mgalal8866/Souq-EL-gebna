@@ -14,7 +14,12 @@ class SliderController extends Controller
     {
         $this->sliderRepositry = $sliderRepositry;
     }
-    function getslider(Request $request) {
+    function getslider(Request $request)
+    {
         return $this->sliderRepositry->getslider($request->all());
+    }
+    function deleteslider($id)
+    {
+        return $this->sliderRepositry->deleteslider($id);
     }
 }

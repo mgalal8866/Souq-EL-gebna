@@ -19,5 +19,12 @@ class DBSlideRepository implements Sliderepositoryinterface
         })->get();
         return Resp(SliderResource::collection($slider),'success');
     }
+    public function deleteslider($id)
+    {
+
+        $slider = slider::find($id);
+        $slider->delete();
+        return Resp('','success');
+    }
 
   }

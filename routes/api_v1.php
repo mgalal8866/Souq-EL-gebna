@@ -39,6 +39,7 @@ Route::get('/activity',   [UserController::class, 'activity']);
 Route::get('/question',   [UserController::class, 'question']);
 Route::get('/sendtoken/{token?}',   [UserController::class, 'sendtoken']);
 Route::get('/slider',   [SliderController::class, 'getslider']);
+Route::get('/delete/slider/{id?}',   [SliderController::class, 'deleteslider']);
 Route::get('/category',   [CategoryController::class, 'getcategory']);
 Route::get('/brand',   [BrandController::class, 'getbrand']);
 Route::get('setting', [SettingController::class, 'index']);
