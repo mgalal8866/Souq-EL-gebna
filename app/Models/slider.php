@@ -12,6 +12,6 @@ class slider extends Model
 
     public function getUrlimgAttribute()
     {
-        return  getimage($this->img, 'category');
+        return  getimage($this->img, 'slider');
     }
 }

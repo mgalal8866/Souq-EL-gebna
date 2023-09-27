@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Repositoryinterface\Sliderepositoryinterface;
+use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
@@ -13,7 +14,7 @@ class SliderController extends Controller
     {
         $this->sliderRepositry = $sliderRepositry;
     }
-    function getslider() {
-        return $this->sliderRepositry->getslider();
+    function getslider(Request $request) {
+        return $this->sliderRepositry->getslider($request->all());
     }
 }

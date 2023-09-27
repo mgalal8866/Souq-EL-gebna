@@ -3,7 +3,7 @@ namespace App\Repositoryinterface;
 
 interface Sliderepositoryinterface{
 
-    public function getslider();
+    public function getslider($request);
 
 }
 
