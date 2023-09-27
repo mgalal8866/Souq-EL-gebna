@@ -12,9 +12,9 @@ class DBSlideRepository implements Sliderepositoryinterface
     public function getslider($request)
     {
 
-        $slider = slider::when('city_id',function($q)use( $request){
+        $slider = slider::where(function($q)use( $request){
             if($request['city_id'] != null){
-                $q->where('city_id',$request['city_id']);
+                $q->where('city_id', $request['city_id'])->orWhereNull('city_id');
             }
         })->get();
         return Resp(SliderResource::collection($slider),'success');
