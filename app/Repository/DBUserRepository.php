@@ -13,6 +13,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\QuestionResource;
+use App\Http\Resources\LoginUserResource;
 use App\Repositoryinterface\UserRepositoryinterface;
 
 class DBUserRepository implements UserRepositoryinterface
@@ -76,7 +77,7 @@ class DBUserRepository implements UserRepositoryinterface
         }
         $user =  auth('api')->user();
         $user->token = $token;
-        $data =  new UserResource($user);
+        $data =  new LoginUserResource($user);
         return Resp($data, 'Success', 200, true);
     }
     public function edit($request)
@@ -153,7 +154,7 @@ class DBUserRepository implements UserRepositoryinterface
         $user->activity_id = $request['activity_id'] ?? $user->activity_id;
         $user->address     = $request['address'] ?? $user->address;
         $user->save();
-        $data =  new UserResource($user);
+        $data =  new LoginUserResource($user);
         return Resp($data, 'Success', 200, true);
 
     }
@@ -168,7 +169,7 @@ class DBUserRepository implements UserRepositoryinterface
         }
         $user = $this->model->where('phone', $user->phone)->first();
         $user->token = $token;
-        $data =  new UserResource($user);
+        $data =  new LoginUserResource($user);
         return Resp($data, 'Success', 200, true);
     }
 

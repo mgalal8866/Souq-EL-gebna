@@ -15,7 +15,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('img')->nullable();
-            $table->string('url')->nullable();
+            $table->integer('store_id')->nullable();
+            $table->integer('city_id')->nullable();
             $table->timestamps();
         });
     }
