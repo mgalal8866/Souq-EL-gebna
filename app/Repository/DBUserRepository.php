@@ -75,6 +75,10 @@ class DBUserRepository implements UserRepositoryinterface
         if ($token == null) {
             return Resp(null, 'User Not found', 404, false);
         }
+        if (auth('api')->user()->active == 0) {
+            return Resp(null, 'تم ايقاف حسابك ', 404, false);
+        }
+
         $user =  auth('api')->user();
         $user->token = $token;
         $data =  new LoginUserResource($user);
