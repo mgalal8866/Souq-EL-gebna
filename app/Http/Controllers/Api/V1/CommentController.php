@@ -8,6 +8,7 @@ use App\Models\items;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
+use App\Models\comments;
 use App\Repositoryinterface\CategoryRepositoryinterface;
 
 class CommentController extends Controller
@@ -44,4 +45,11 @@ class CommentController extends Controller
         $user = User::find($id);
         return Resp(CommentResource::collection($user->comments), 'success', 200);
     }
+    function delete_comment_by_id($id)
+    {
+        $comments = comments::find($id);
+         $comments->delete();
+        return Resp('', 'success', 200);
+    }
+
 }
