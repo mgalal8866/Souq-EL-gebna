@@ -144,6 +144,7 @@ class DBUserRepository implements UserRepositoryinterface
     public function editprofile($request)
     {
         $user = $this->model->find(auth('api')->user()->id);
+
         $user->user_name   = $request['user_name'] ?? $user->user_name;
         $user->store_name  = $request['store_name'] ?? $user->store_name;
         $user->phone       = $request['phone'] ?? $user->phone;
@@ -155,8 +156,12 @@ class DBUserRepository implements UserRepositoryinterface
         $user->img2        = isset($request['img2']) == true ? uploadimages('store', $request['img2']) : $user->img2;
         $user->region_id   = $request['region'] ?? $user->region_id;
         $user->city_id     = $user->city_id;
-        $user->activity_id = $request['activity_id'] ?? $user->activity_id;
-        $user->address     = $request['address'] ?? $user->address;
+        $user->question1_id = $request['question1_id'] ?? $user->question1_id;
+        $user->answer1      = $request['answer1'] ?? $user->answer1;
+        $user->question2_id = $request['question2_id'] ?? $user->question2_id;
+        $user->answer2      = $request['answer2'] ?? $user->answer2;
+        $user->activity_id  = $request['activity_id'] ?? $user->activity_id;
+        $user->address      = $request['address'] ?? $user->address;
         $user->save();
         $data =  new LoginUserResource($user);
         return Resp($data, 'Success', 200, true);
