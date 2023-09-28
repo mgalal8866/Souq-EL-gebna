@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Http\Resources\OrderResource;
-use App\Models\order;
+use App\Http\Resources\MainOrderResource;
+use App\Models\MainOrder;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Repositoryinterface\OrderRepositoryinterface;
@@ -12,34 +12,43 @@ class DBOrderRepository implements OrderRepositoryinterface
 {
 
     protected Model $model;
-    public function __construct(order $model)
+    public function __construct(MainOrder $model)
     {
         $this->model = $model;
     }
     public function please_order($data)
     {
-
-        $neworder = $this->model->create([
+        $Mainorder = $this->model->create([
             'user_id'  => auth('api')->user()->id,
-            'subtotal' => $data['data']['subtotal'],
-            'discount' => $data['data']['discount'],
-            'total'    => $data['data']['total'],
+            'main_subtotal' => $data['main']['main_subtotal'],
+            'main_discount' => $data['main']['main_discount'],
+            'main_total'    => $data['main']['main_total'],
         ]);
-        foreach ($data['invo'] as $item) {
-            $neworder->orderdetails()->create([
-                'item_id'  => $item['item_id'],
-                'qty'      => $item['qty'],
-                'price'    => $item['price'],
-                'subtotal' => $item['subtotal'],
-                'discount' => $item['discount'],
-                'total'    => $item['total'],
+        foreach ($data['sub'] as $subitem) {
+            $suborder =   $Mainorder->suborder()->create([
+                'store_id'      => $subitem['store_id'],
+                'sub_subtotal'  => $subitem['sub_subtotal'],
+                'sub_discount'  => $subitem['sub_discount'],
+                'sub_total'     => $subitem['sub_total']
             ]);
+            foreach ($subitem['details'] as $details) {
+                $suborder->orderdetails()->create([
+                    'item_id'           => $details['item_id'],
+                    'details_price'     => $details['details_price'],
+                    'details_qty'       => $details['details_qty'],
+                    'details_discount'  => $details['details_discount'],
+                    'details_subtotal'  => $details['details_subtotal'],
+                    'details_total'  => $details['details_total'],
+                ]);
+            }
         }
-        return  Resp(new OrderResource($neworder), 'success');
+
+
+        return  Resp(new MainOrderResource($Mainorder), 'success');
     }
     public function get_order_user()
     {
         $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->get();
-        return  Resp(OrderResource::collection($orderuser), 'success');
+        return  Resp(MainOrderResource::collection($orderuser), 'success');
     }
 }

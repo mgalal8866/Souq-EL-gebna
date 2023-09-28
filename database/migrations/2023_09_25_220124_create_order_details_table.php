@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id')->nullable();
+            $table->integer('sub_order_id')->nullable();
             $table->integer('item_id')->nullable();
-            $table->decimal('qty')->default(0);
-            $table->decimal('price', 8, 2)->default(0);
-            $table->decimal('total', 8, 2)->default(0);
-            $table->decimal('subtotal', 8, 3)->nullable(); 
-            $table->decimal('discount', 8, 3)->nullable(); //الخصم
+            $table->decimal('details_price', 8, 2)->default(0);
+            $table->decimal('details_qty')->default(0);
+            $table->decimal('details_subtotal', 8, 3)->nullable();
+            $table->decimal('details_discount', 8, 3)->nullable(); //الخصم
+            $table->decimal('details_total', 8, 2)->default(0);
             $table->timestamps();
         });
     }

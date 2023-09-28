@@ -31,9 +31,12 @@ class LoginUserResource extends JsonResource
             'sales_active'  => $this->sales_active ?? '',
             'type_activity' => $this->type_activity ?? '',
             'rating_view'   => $this->rating_view ?? '',
-            'active'        => $this->active ?? '',
             'access_token'  => $this->token ?? '',
-           
+            'question1'     => $this->question1->question ?? '',
+            'answer1'       => $this->answer1 ?? '',
+            'question2'     => $this->question2->question ?? '',
+            'answer2'       => $this->answer2 ?? '',
+
         ];
     }
 }

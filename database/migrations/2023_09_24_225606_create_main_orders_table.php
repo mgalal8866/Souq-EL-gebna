@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('header_orders', function (Blueprint $table) {
+        Schema::create('main_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable();//id العميل
-            $table->decimal('discount',8,2)->default(0);
-            $table->decimal('subtotal',8,2)->default(0);
-            $table->decimal('total',8,2)->default(0);
-            $table->text('note')->nullable();
+            $table->decimal('main_discount',8,2)->default(0);
+            $table->decimal('main_subtotal',8,2)->default(0);
+            $table->decimal('main_total',8,2)->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('header_orders');
+        Schema::dropIfExists('main_orders');
     }
 };
