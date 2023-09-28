@@ -17,7 +17,8 @@ class SubOrderResource extends JsonResource
     {
         return [
                 'sub_order_id'     => $this->id ?? '',
-                'store_id'         => $this->store->store_name ?? '',
+                'store_id'         => $this->store_id ?? '',
+                'store_name'       => $this->store->store_name ?? '',
                 'sub_subtotal'     => $this->sub_subtotal ?? '',
                 'sub_discount'     => $this->sub_discount ?? '',
                 'sub_total'        => $this->sub_total ?? '',
