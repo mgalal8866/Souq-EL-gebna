@@ -38,12 +38,10 @@ class DBOrderRepository implements OrderRepositoryinterface
                     'details_qty'       => $details['details_qty'],
                     'details_discount'  => $details['details_discount'],
                     'details_subtotal'  => $details['details_subtotal'],
-                    'details_total'  => $details['details_total'],
+                    'details_total'     => $details['details_total'],
                 ]);
             }
         }
-
-
         return  Resp(new MainOrderResource($Mainorder), 'success');
     }
     public function get_order_user()
