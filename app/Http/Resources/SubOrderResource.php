@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\OrderDetailsResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -22,8 +23,9 @@ class SubOrderResource extends JsonResource
                 'sub_subtotal'     => $this->sub_subtotal ?? '',
                 'sub_discount'     => $this->sub_discount ?? '',
                 'sub_total'        => $this->sub_total ?? '',
-                'created_at'       => $this->created_at ?? '',
-                'order_details' => OrderDetailsResource::collection($this->orderdetails)
+                'sub_order_statu'  => $this->sub_statu_delivery ?? '',
+                'created_at'       => Carbon::parse($this->created_at)->translatedFormat('H:i / l j F Y') ?? '',
+                'order_details'    => OrderDetailsResource::collection($this->orderdetails)
         ];
     }
 }

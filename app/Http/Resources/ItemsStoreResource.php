@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -25,12 +26,12 @@ class ItemsStoreResource extends JsonResource
             'stock_qty'       => $this->stock_qty ?? '',
             'price_offer'     => $this->price_offer ?? '',
             'is_offer'        => $this->price_offer > 0 ? '1' : '0' ?? '',
-            'exp_date'        => $this->exp_date ?? '',
-            'pro_date'        => $this->pro_date ?? '',
+            'exp_date'        => Carbon::parse($this->exp_date)->translatedFormat('l j F Y') ?? '',
+            'pro_date'        => Carbon::parse($this->pro_date)->translatedFormat('l j F Y') ?? '',
             'description'     => $this->description ?? '',
             'rating_view'     => $this->rating_view ?? '',
             'stars'           => culcrating($this->comments->count(), $this->comments->sum('rating')) ?? '',
-           
+
         ];
     }
 }

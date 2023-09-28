@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Enums\OrderStatusEnum;
 use App\Http\Resources\MainOrderResource;
 use App\Models\MainOrder;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +30,8 @@ class DBOrderRepository implements OrderRepositoryinterface
                 'store_id'      => $subitem['store_id'],
                 'sub_subtotal'  => $subitem['sub_subtotal'],
                 'sub_discount'  => $subitem['sub_discount'],
-                'sub_total'     => $subitem['sub_total']
+                'sub_total'     => $subitem['sub_total'],
+                'sub_statu_delivery'     => OrderStatusEnum::New
             ]);
             foreach ($subitem['details'] as $details) {
                 $suborder->orderdetails()->create([
