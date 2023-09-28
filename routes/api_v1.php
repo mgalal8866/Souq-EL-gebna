@@ -64,6 +64,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     ################################### Start Cart  ########################
     Route::post('/order/please',   [OrderController::class, 'please_order']);
     Route::get('/order/user',      [OrderController::class, 'get_order_user']);
+    Route::get('/sub/orders/{id?}', [OrderController::class, 'get_suborder_by_main_id']);
 
     ################################### End Cart  ##########################
 

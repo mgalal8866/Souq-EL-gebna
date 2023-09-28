@@ -38,6 +38,7 @@ class LoginUserResource extends JsonResource
             'question2_id'  => $this->question2_id ?? '',
             'question2'     => $this->question2->question ?? '',
             'answer2'       => $this->answer2 ?? '',
+            'sharelink'     => 'http://souqelgebna.com?store='.$this->id,
 
         ];
     }

@@ -49,4 +49,10 @@ class DBOrderRepository implements OrderRepositoryinterface
         $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->get();
         return  Resp(MainOrderResource::collection($orderuser), 'success');
     }
+
+    public function get_suborder_by_main_id($id)
+    {
+        $orderuser = $this->model->where(['user_id' => auth('api')->user()->id,'id'=>$id])->first();
+        return  Resp(new MainOrderResource($orderuser), 'success');
+    }
 }

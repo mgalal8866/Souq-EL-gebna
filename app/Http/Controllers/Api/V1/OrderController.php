@@ -23,4 +23,9 @@ class OrderController extends Controller
     {
         return $this->orderRepositry->get_order_user();
     }
+
+    function get_suborder_by_main_id($id)
+    {
+        return $this->orderRepositry->get_suborder_by_main_id($id);
+    }
 }

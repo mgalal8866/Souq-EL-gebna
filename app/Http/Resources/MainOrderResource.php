@@ -19,7 +19,7 @@ class MainOrderResource extends JsonResource
         return [
             'main_order' => [
                 'main_id'         => $this->id ?? '',
-                'user_id'         => $this->user->user_name ?? '',
+                'user_name'       => $this->user->user_name ?? '',
                 'sub_total'       => $this->main_subtotal ?? '',
                 'discount'        => $this->main_discount ?? '',
                 'total'           => $this->main_total ?? '',
