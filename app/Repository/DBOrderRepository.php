@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Enums\OrderStatusEnum;
 use App\Http\Resources\MainOrderResource;
+use App\Http\Resources\SubOrderResource;
 use App\Models\MainOrder;
+use App\Models\SubOrder;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Repositoryinterface\OrderRepositoryinterface;
@@ -50,6 +52,11 @@ class DBOrderRepository implements OrderRepositoryinterface
     {
         $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->get();
         return  Resp(MainOrderResource::collection($orderuser), 'success');
+    }
+    public function get_order_by_statu($statu)
+    {
+        $orderstatu = SubOrder::where(['sub_order_statu' => $statu])->get();
+        return  Resp(SubOrderResource::collection($orderstatu), 'success');
     }
 
     public function get_suborder_by_main_id($id)
