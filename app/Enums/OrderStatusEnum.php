@@ -3,8 +3,8 @@
 namespace App\Enums;
 
 enum OrderStatusEnum:string {
-case New       = 'جديد';
-case Process   = 'قيد التحضير';
-case Delivered = 'تم التوصيل';
-case Rejected  = 'رفض الاستلام';
+case New       = '1'; //جديد
+case Process   = '2'; //جارى التوصيل
+case Delivered = '3'; //تم التوصيل
+case Rejected  = '4'; //رفض الاستلام
 }

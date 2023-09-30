@@ -2,13 +2,16 @@
 
 namespace App\Repository;
 
-use App\Enums\OrderStatusEnum;
-use App\Http\Resources\MainOrderResource;
-use App\Http\Resources\SubOrderResource;
-use App\Models\MainOrder;
 use App\Models\SubOrder;
+use App\Models\MainOrder;
+use App\Models\OrderDetails;
+use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\SubOrderResource;
 
+use App\Http\Resources\MainOrderResource;
+use App\Http\Resources\SubOrderForStoreResource;
+use App\Http\Resources\OrderDetailsForStoreResource;
 use App\Repositoryinterface\OrderRepositoryinterface;
 
 class DBOrderRepository implements OrderRepositoryinterface
@@ -55,8 +58,23 @@ class DBOrderRepository implements OrderRepositoryinterface
     }
     public function get_order_by_statu($statu)
     {
-        $orderstatu = SubOrder::where(['sub_order_statu' => $statu])->get();
-        return  Resp(SubOrderResource::collection($orderstatu), 'success');
+
+        $orderstatu = SubOrder::with(['main','main.user'])->where(['sub_statu_delivery' => $statu])->get();
+
+        return  Resp(SubOrderForStoreResource::collection($orderstatu), 'success');
+    }
+    public function change_statu($request)
+    {
+        $suborder = SubOrder::find($request['suborder_id']);
+        $suborder->update(['sub_statu_delivery' => $request['statu']]);
+
+        return  Resp(new SubOrderForStoreResource($suborder), 'success');
+    }
+    public function get_order_details($id)
+    {
+        $orderdetails = OrderDetails::with('suborder')->where('sub_order_id',$id)->get();
+        $data = ['details'=> $orderdetails];
+        return  Resp( new OrderDetailsForStoreResource($data), 'success');
     }
 
     public function get_suborder_by_main_id($id)

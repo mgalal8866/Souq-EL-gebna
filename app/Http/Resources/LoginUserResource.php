@@ -32,7 +32,7 @@ class LoginUserResource extends JsonResource
             'activity_id'   => $this->activity_id ?? '',
             'rating_view'   => $this->rating_view ?? '',
             'access_token'  => $this->token ?? '',
-            'question1_id'  => $this->question2_id ?? '',
+            'question1_id'  => $this->question1_id ?? '',
             'question1'     => $this->question1->question ?? '',
             'answer1'       => $this->answer1 ?? '',
             'question2_id'  => $this->question2_id ?? '',

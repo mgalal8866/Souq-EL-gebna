@@ -19,4 +19,8 @@ class SubOrder extends Model
     {
         return $this->belongsTo(User::class, 'store_id');
     }
+    public function main()
+    {
+        return $this->belongsTo(MainOrder::class, 'main_order_id');
+    }
 }

@@ -26,6 +26,19 @@ class OrderController extends Controller
 
     function get_suborder_by_main_id($id)
     {
+
         return $this->orderRepositry->get_suborder_by_main_id($id);
+    }
+    function get_order_by_statu(Request $request)
+    {
+        return $this->orderRepositry->get_order_by_statu($request->statu);
+    }
+    function change_statu(Request $request)
+    {
+        return $this->orderRepositry->change_statu($request->all());
+    }
+    function get_order_details(Request $request)
+    {
+        return $this->orderRepositry->get_order_details($request->suborder_id);
     }
 }

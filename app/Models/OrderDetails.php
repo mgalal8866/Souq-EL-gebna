@@ -12,12 +12,13 @@ class OrderDetails extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function order()
-    {
-        return $this->belongsTo(SubOrder::class, 'order_id');
-    }
+    
     public function item()
     {
         return $this->belongsTo(items::class, 'item_id');
+    }
+    public function suborder()
+    {
+        return $this->belongsTo(SubOrder::class, 'sub_order_id');
     }
 }
