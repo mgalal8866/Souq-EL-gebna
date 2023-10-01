@@ -14,4 +14,9 @@ class slider extends Model
     {
         return  getimage($this->img, 'slider');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

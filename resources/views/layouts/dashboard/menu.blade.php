@@ -38,11 +38,15 @@
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.brands') }}</span></a>
              </li>
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('brands')}}"><i
+                         data-feather="home"></i><span
+                         class="menu-title text-truncate">{{ __('tran.brands') }}</span></a>
+             </li>
              {{--  <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('categorys') }}"><i
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.categorys') }}</span></a>
              </li>
-             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('units') }}"><i
+            {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('units') }}"><i
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.unit') }}</span></a>
              </li>

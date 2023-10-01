@@ -1,6 +1,9 @@
 <?php
 
 use App\Livewire\Dashboard\Brands;
+use App\Livewire\Dashboard\Slider\EditSlider;
+use App\Livewire\Dashboard\Slider\ViewSlider;
+use App\Models\slider;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +21,5 @@ Route::get('/', function () {return view('welcome');})->name('dashboard');
 
 
 Route::get('/brands',Brands::class)->name('brands');
+Route::get('/slider',ViewSlider::class)->name('slider');
+Route::get('/update/slider',EditSlider::class)->name('updateslider');
