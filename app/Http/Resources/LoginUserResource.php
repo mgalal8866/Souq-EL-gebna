@@ -11,6 +11,7 @@ class LoginUserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id'         => $this->id ?? '',
             'user_name'  => $this->user_name ?? '',
             'store_name' => $this->store_name ?? '',
             'phone'      => $this->phone ?? '',

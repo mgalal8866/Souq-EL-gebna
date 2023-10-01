@@ -117,7 +117,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
-        $region = region::find($request['region'])->first();
+        $region = region::find($request['region']);
         $user = $this->model->create([
             'user_name'    => $request['user_name'] ?? null,
             'store_name'   => $request['store_name'] ?? null,
@@ -144,7 +144,7 @@ class DBUserRepository implements UserRepositoryinterface
     public function editprofile($request)
     {
         $user = $this->model->find(auth('api')->user()->id);
-
+        $region = region::find($request['region']);
         $user->user_name   = $request['user_name'] ?? $user->user_name;
         $user->store_name  = $request['store_name'] ?? $user->store_name;
         $user->phone       = $request['phone'] ?? $user->phone;
@@ -155,7 +155,7 @@ class DBUserRepository implements UserRepositoryinterface
         $user->img1        = isset($request['img1']) == true ? uploadimages('store', $request['img1']) : $user->img1;
         $user->img2        = isset($request['img2']) == true ? uploadimages('store', $request['img2']) : $user->img2;
         $user->region_id   = $request['region'] ?? $user->region_id;
-        $user->city_id     = $user->city_id;
+        $user->city_id     =  $region->city_id  ?? $user->city_id;
         $user->question1_id = $request['question1_id'] ?? $user->question1_id;
         $user->answer1      = $request['answer1'] ?? $user->answer1;
         $user->question2_id = $request['question2_id'] ?? $user->question2_id;
