@@ -147,7 +147,6 @@ class DBUserRepository implements UserRepositoryinterface
         $region = region::find($request['region']);
         $user->user_name   = $request['user_name'] ?? $user->user_name;
         $user->store_name  = $request['store_name'] ?? $user->store_name;
-        $user->phone       = $request['phone'] ?? $user->phone;
         $user->phone1      = $request['phone1'] ?? $user->phone1;
         $user->lat         = $request['lat'] ?? $user->lat;
         $user->long        = $request['long'] ?? $user->long;
