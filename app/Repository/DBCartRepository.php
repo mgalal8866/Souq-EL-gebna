@@ -22,7 +22,9 @@ class DBCartRepository implements CartRepositoryinterface
     public function del_from_cart($request)
     {
         $delete =   $this->model->where(['user_id' => auth('api')->user()->id, 'item_id' =>  $request->item_id])->first();
-             $delete->delete();
+        if($delete != null){
+            $delete->delete();
+        }
         return $delete == true ? Resp('', 'success') : Resp('', 'error', 301, false);
     }
 
