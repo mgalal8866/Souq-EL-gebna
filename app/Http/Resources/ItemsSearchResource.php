@@ -28,6 +28,9 @@ class ItemsSearchResource extends JsonResource
             'pro_date'        => $this->pro_date ?? '',
             'description'     => $this->description ?? '',
             'rating_view'     => $this->rating_view ?? '',
+            'in_cart'         => $this->cart ?? '',
+            'qty_cart'        => $this->rating_view ?? '',
+            'rating_view'     => $this->rating_view ?? '',
             'stars'           => culcrating($this->comments->count(), $this->comments->sum('rating')) ?? '',
             'store'           => [
                 'store_id'    => $this->user->id ?? '',

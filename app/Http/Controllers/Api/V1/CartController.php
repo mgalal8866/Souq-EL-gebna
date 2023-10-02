@@ -5,31 +5,28 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Repositoryinterface\CartRepositoryinterface;
-
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    // private $cartRepositry;
-    // public function __construct(CartRepositoryinterface $cartRepositry)
-    // {
-    //     $this->cartRepositry = $cartRepositry;
-    // }
+    private $cartRepositry;
+    public function __construct(CartRepositoryinterface $cartRepositry)
+    {
+        $this->cartRepositry = $cartRepositry;
+    }
 
-    // function getusercart()
-    // {
+    function getusercart()
+    {
 
-    //     return $this->cartRepositry->getusercart();
-    // }
-    // function add_to_cart($item_id)
-    // {
-    //     return $this->cartRepositry->add_to_cart($item_id);
-    // }
-    // function del_from_cart($item_id)
-    // {
-    //     return $this->cartRepositry->del_from_cart($item_id);
-    // }
-    // function edit_qty_cart($item_id, $qty)
-    // {
-    //     return $this->cartRepositry->edit_qty_cart($item_id, $qty);
-    // }
+        return $this->cartRepositry->getusercart();
+    }
+    function add_to_cart(Request $request)
+    {
+        return $this->cartRepositry->add_to_cart($request);
+    }
+    function del_from_cart(Request $request)
+    {
+        return $this->cartRepositry->del_from_cart($request);
+    }
+
 }

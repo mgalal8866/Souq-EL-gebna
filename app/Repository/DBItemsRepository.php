@@ -20,23 +20,26 @@ class DBItemsRepository implements ItemsRepositoryinterface
     }
     public function search($data)
     {
+
         $item = $this->model->active_admin()->active()
-        ->where('name', 'LIKE', "%" .  $data['search'] . "%")
+            ->where('name', 'LIKE', "%" .  $data['search'] . "%")
             ->whereIn('category_id', $data['category_ids'])->WhereHas('user', function ($q) use ($data) {
                 $q->where('city_id', $data['city_id']);
+            })->with('cart', function ($q)  {
+                $q->wherehas('user_id', auth('api')->user()->id);
             })
-            ->with(['brand', 'category', 'comments', 'user'])->get();
-            // $item = $this->model->active_admin()->active()
-            // ->where(function ($query) use ($data) {
-            //     $query->where('name', 'LIKE', "%" . $data['search']. "%");
-            //         // ->orWhereRaw("name REGEXP '[جچ][ةه]'");
-            // })
-            // ->whereIn('category_id', $data['category_ids'])
-            // ->whereHas('user', function ($q) use ($data) {
-            //     $q->where('city_id', $data['city_id']);
-            // })
-            // ->with(['brand', 'category', 'comments', 'user'])
-            // ->get();
+            ->with(['brand', 'category', 'comments', 'user', 'cart'])->get();
+        // $item = $this->model->active_admin()->active()
+        // ->where(function ($query) use ($data) {
+        //     $query->where('name', 'LIKE', "%" . $data['search']. "%");
+        //         // ->orWhereRaw("name REGEXP '[جچ][ةه]'");
+        // })
+        // ->whereIn('category_id', $data['category_ids'])
+        // ->whereHas('user', function ($q) use ($data) {
+        //     $q->where('city_id', $data['city_id']);
+        // })
+        // ->with(['brand', 'category', 'comments', 'user'])
+        // ->get();
         $result = [
             'item'       => $item,
             'count'      => $item->count(),

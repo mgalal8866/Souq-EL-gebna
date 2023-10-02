@@ -25,6 +25,10 @@ class items extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function cart()
+    {
+        return $this->hasMany(cart::class, 'item_id');
+    }
     public function getUrlimgAttribute()
     {
         return  getimage($this->img, 'brand');

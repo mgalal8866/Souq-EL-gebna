@@ -22,7 +22,7 @@
                                     <td>
                                         <span class="fw-bold">{{ $slider->name }}</span>
                                     </td>
-                                    <td> <img src=" {{ $slider->image ?? 'N/A' }}" class="me-75" height="50"
+                                    <td> <img src=" {{ $slider->urlimg ?? 'N/A' }}" class="me-75" height="50"
                                             width="100" />
                                     </td>
                                     <td><span
