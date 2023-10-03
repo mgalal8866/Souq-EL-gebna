@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Models\cart;
+use App\Http\Resources\CartResource;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositoryinterface\CartRepositoryinterface;
 
@@ -17,7 +18,7 @@ class DBCartRepository implements CartRepositoryinterface
     public function getusercart()
     {
         $getcart =   $this->model->where('user_id', auth('api')->user()->id)->get();
-        return Resp($getcart, 'success');
+        return Resp(CartResource::collection($getcart), 'success');
     }
     public function del_from_cart($request)
     {

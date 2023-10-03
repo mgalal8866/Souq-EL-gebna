@@ -27,7 +27,7 @@ class items extends Model
     }
     public function cart()
     {
-        return $this->hasMany(cart::class, 'item_id');
+        return $this->hasOne(cart::class, 'item_id');
     }
     public function getUrlimgAttribute()
     {
