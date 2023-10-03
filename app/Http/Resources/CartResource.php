@@ -26,15 +26,16 @@ class CartResource extends JsonResource
                 'min_qty'         => $this->item->min_qty ?? '',
                 'max_qty'         => $this->item->max_qty ?? '',
                 'price_salse'     => $this->item->price_salse ?? '',
-                'stock_qty'       => $this->item->stock_qty ?? '',
                 'price_offer'     => $this->item->price_offer ?? '',
+                'stock_qty'       => $this->item->stock_qty ?? '',
+                'qty_cart'        => $this->qty ?? '',
                 'is_offer'        => $this->item->price_offer > 0 ? '1' : '0' ?? '',
                 'exp_date'        => $this->item->exp_date ?? '',
                 'pro_date'        => $this->item->pro_date ?? '',
                 'description'     => $this->item->description ?? '',
                 'store_name'      => $this->item->user->store_name ?? '',
                 'active'          => $this->item->active ?? '',
-            
+
         ];
     }
 }
