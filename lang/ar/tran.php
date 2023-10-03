@@ -10,7 +10,8 @@ return [
     'birthday'        => 'Birth Day',
     'email'           => 'Email',
     'pricing'         => 'Pricing',
-    'brands'          => 'البراند',
+    'brands'          => 'العلامات التجارية',
+    'brand'          => 'العلامة التجارية',
     'customerdata'    => 'بيانات العميل',
     'product'         => 'Products',
     'gomla'           => 'جملة',
@@ -153,8 +154,11 @@ return [
     'lass_price'          => 'اقل سعر',
     'date_buy'          => 'تاريخ الشراء',
     'report_purchases'          => 'تقرير المشتريات',
+    
     'employee_advance'          =>  'سلفيات الموظفين',
-
+    'city'               =>  'المحافظة',
+    'delete'               => 'حذف',
+    'restore'           => 'توجية السلايدر ',
     'pos_shift'          => 'تقرير الشفتات',
     'namesafe'           => 'اسم الخزنة',
     'start_shift'        => 'بداية الشفت',

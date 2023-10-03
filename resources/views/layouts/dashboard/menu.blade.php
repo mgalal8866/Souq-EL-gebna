@@ -34,13 +34,17 @@
                          class="menu-title text-truncate">{{ __('tran.dashboard') }}</span></a>
              </li>
 
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('brands')}}"><i
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('slider')}}"><i
+                         data-feather="home"></i><span
+                         class="menu-title text-truncate">{{ __('tran.slider') }}</span></a>
+             </li>
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('brand')}}"><i
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.brands') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('brands')}}"><i
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('category')}}"><i
                          data-feather="home"></i><span
-                         class="menu-title text-truncate">{{ __('tran.brands') }}</span></a>
+                         class="menu-title text-truncate">{{ __('tran.categorys') }}</span></a>
              </li>
              {{--  <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('categorys') }}"><i
                          data-feather="home"></i><span
