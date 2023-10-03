@@ -45,4 +45,10 @@ class items extends Model
     {
         return $q->where('active_admin','1');
     }
+    public function scopeInmycart($q)
+    {
+        return $q->with('cart', function ($q)  {
+            $q->where('user_id', auth('api')->user()->id);
+        });
+    }
 }
