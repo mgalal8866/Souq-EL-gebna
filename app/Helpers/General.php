@@ -183,6 +183,7 @@ function splititem($item)
 }
 function culcrating($count,$stars)
 {
+    
     if($count == 0){
         return "0";
     }else{

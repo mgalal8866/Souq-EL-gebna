@@ -2,36 +2,71 @@
 
 namespace App\Repository;
 
-use App\Models\cart;
-use App\Http\Resources\CartResource;
+
+use App\Models\items;
+use App\Models\Cart\CartMain;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\Cart\CartMainResource;
+use App\Models\Cart\CartItem;
 use App\Repositoryinterface\CartRepositoryinterface;
 
 class DBCartRepository implements CartRepositoryinterface
 {
 
     protected Model $model;
-    public function __construct(cart $model)
+    public function __construct(CartMain $model)
     {
         $this->model = $model;
     }
     public function getusercart()
     {
-        $getcart =   $this->model->where('user_id', auth('api')->user()->id)->get();
-        return Resp(CartResource::collection($getcart), 'success');
+        $cartuser = $this->model->where(['user_id' => auth('api')->user()->id])->with(['cartsub', 'cartsub.cartitem'])->get();
+        return  Resp(CartMainResource::collection($cartuser), 'success');
     }
     public function del_from_cart($request)
     {
-        $delete =   $this->model->where(['user_id' => auth('api')->user()->id, 'item_id' =>  $request->item_id])->first();
-        if($delete != null){
-            $delete->delete();
+
+        $q = CartItem::whereHas('cartsub', function ($qq) {
+            $qq->whereHas('cartmain', function ($qqq) {
+                return  $qqq->where('cart_mains.user_id', auth('api')->user()->id);
+            });
+        })->where( 'item_id' , $request->item_id)->first();
+        if ($q != null) {
+            $q->delete();
         }
-        return $delete == true ? Resp('', 'success') : Resp('', 'error', 301, false);
+        return $q == true ? Resp('', 'success') : Resp('', 'error', 301, false);
+
     }
 
     public function add_to_cart($request)
     {
-        $addtocart =   $this->model->updateOrCreate(['user_id' => auth('api')->user()->id, 'item_id' => $request->item_id],['user_id' => auth('api')->user()->id, 'item_id' => $request->item_id, 'qty' => $request->qty]);
-        return  Resp($addtocart, 'success');
+        // $addtocart =   $this->model->updateOrCreate(['user_id' => auth('api')->user()->id, 'item_id' => $request->item_id], ['user_id' => auth('api')->user()->id]);
+        // return  Resp($addtocart, 'success');
+        $items = items::with('user')->find($request->item_id);
+        if ($items->price_offer > 0) {
+            $price      = $items->price_offer;
+            $qty        = $request->qty;
+            $subtotal   = $request->qty * $items->price_salse;
+            $discount   = ($request->qty * $items->price_salse) - ($request->qty * $items->price_offer);
+            $total      = $request->qty * $items->price_offer;
+        } else {
+            $price      = $items->price_salse;
+            $qty        = $request->qty;
+            $subtotal   = $request->qty * $items->price_salse;
+            $discount   = 0;
+            $total      = $request->qty * $items->price_salse;
+        };
+        $cartmain =   $this->model->updateOrCreate(['user_id' => auth('api')->user()->id], ['user_id' => auth('api')->user()->id]);
+        $cartsub = $cartmain->cartsub()->updateOrCreate([
+            'store_id' => $items->user_id
+        ]);
+        $cartsub->cartitem()->updateOrCreate(['item_id'  =>  $items->id], [
+            'details_price'      =>     $price,
+            'details_qty'         => $qty,
+            'details_subtotal'   => $subtotal,
+            'details_discount'     =>  $discount,
+            'details_total'      => $total
+
+        ]);
     }
 }
