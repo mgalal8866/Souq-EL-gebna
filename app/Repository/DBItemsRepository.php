@@ -21,8 +21,9 @@ class DBItemsRepository implements ItemsRepositoryinterface
     public function search($data)
     {
         // dd(auth('api')->user()->id);
+        $search= normalize_name($data['search']);
         $item = $this->model->active_admin()->active()
-            ->where('name', 'LIKE', "%" .  $data['search'] . "%")
+            ->where('name', 'LIKE', "%" .    $search . "%")
             ->whereIn('category_id', $data['category_ids'])->WhereHas('user', function ($q) use ($data) {
                 $q->where('city_id', $data['city_id']);
             })->with('cart', function ($q)  {
@@ -31,7 +32,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
             ->with(['brand', 'category', 'comments', 'user' ])->get();
         // $item = $this->model->active_admin()->active()
         // ->where(function ($query) use ($data) {
-        //     $query->where('name', 'LIKE', "%" . $data['search']. "%");
+        //     $query->where('name', 'LIKE', "%" .   $search. "%");
         //         // ->orWhereRaw("name REGEXP '[جچ][ةه]'");
         // })
         // ->whereIn('category_id', $data['category_ids'])
@@ -54,7 +55,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
         Log::error(auth('api')->user()->id);
         $result1 =  $this->model->where(['id' => $data['id'], 'user_id' => auth('api')->user()->id])->first();
         $result =  $result1->update([
-            'name'        => $data['name'],
+            'name'        => normalize_name($data['name']),
             'img'         => (isset($data['img']) == true) ? uploadimages('item', $data['img'] ?? null) : $result1->img ?? null,
             'category_id' => $data['category_id'],
             'brand_id'    => $data['brand_id'],
@@ -77,7 +78,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
     public function createitem($data)
     {
         $result =  $this->model->create([
-            'name'        => $data['name'],
+            'name'        => normalize_name($data['name']),
             'user_id'     => auth('api')->user()->id,
             'img'         => uploadimages('item', $data['img'] ?? null) ?? null,
             'category_id' => $data['category_id'],

@@ -183,11 +183,17 @@ function splititem($item)
 }
 function culcrating($count,$stars)
 {
-    
+
     if($count == 0){
         return "0";
     }else{
         return number_format($stars/$count,2);
     }
 
+}
+function normalize_name($name)
+{
+    $patterns     = array("/إ|أ|آ/", "/ة/", "/َ|ً|ُ|ِ|ٍ|ٌ|ّ/");
+    $replacements = array("ا",  "ه", "");
+    return preg_replace($patterns, $replacements, $name);
 }
