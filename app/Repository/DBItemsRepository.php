@@ -55,7 +55,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
         Log::error(auth('api')->user()->id);
         $result1 =  $this->model->where(['id' => $data['id'], 'user_id' => auth('api')->user()->id])->first();
         $result =  $result1->update([
-            'name'        => normalize_name($data['name']),
+            'name'        => $data['name'],
             'img'         => (isset($data['img']) == true) ? uploadimages('item', $data['img'] ?? null) : $result1->img ?? null,
             'category_id' => $data['category_id'],
             'brand_id'    => $data['brand_id'],
@@ -78,7 +78,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
     public function createitem($data)
     {
         $result =  $this->model->create([
-            'name'        => normalize_name($data['name']),
+            'name'        => $data['name'],
             'user_id'     => auth('api')->user()->id,
             'img'         => uploadimages('item', $data['img'] ?? null) ?? null,
             'category_id' => $data['category_id'],

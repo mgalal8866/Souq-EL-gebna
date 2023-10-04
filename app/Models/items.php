@@ -51,4 +51,8 @@ class items extends Model
             $q->where('user_id', auth('api')->user()->id);
         });
     }
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = normalize_name($value);
+    }
 }
