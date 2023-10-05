@@ -21,19 +21,19 @@ class DBItemsRepository implements ItemsRepositoryinterface
     public function search($data)
     {
         // dd(auth('api')->user()->id);
-        $search= generate_pattern($data['search']);
-        // $search= normalize_name($data['search']);
+        // $search= generate_pattern($data['search']);
+        $search= normalize_name($data['search']);
         $item = $this->model
         ->active_admin()
         ->active()
         ->whereRaw("name REGEXP ?", ["%" . $search . "%"])
-        // ->where('name', 'regexp LIKE', "%" . $search . "%")
         ->whereIn('category_id', $data['category_ids'])
         ->WhereHas('user', function ($q) use ($data) {
-                $q->where('city_id', $data['city_id']);
+            $q->where('city_id', $data['city_id']);
         })
         ->inmycart()
         ->with(['brand', 'category', 'comments', 'user' ])->get();
+        // ->where('name', 'regexp LIKE', "%" . $search . "%")
             // with('cart', function ($q)  {
             //     $q->whereHas('cartsub', function ($qq) {
             //         $qq->whereHas('cartmain', function ($qqq) {
