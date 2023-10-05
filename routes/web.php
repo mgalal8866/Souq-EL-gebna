@@ -7,6 +7,7 @@ use App\Livewire\Dashboard\Category\EditCategory;
 use App\Livewire\Dashboard\Category\ViewCategory;
 use App\Livewire\Dashboard\Slider\EditSlider;
 use App\Livewire\Dashboard\Slider\ViewSlider;
+use App\Models\items;
 use App\Models\slider;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
- 
+
+Route::get('/it', function () {
+   $i = items::get();
+   foreach($i as $q){
+    $q->update(['name'=>normalize_name($q->name)]);
+   }
+})->name('dashboard');
 Route::get('/', function () {return view('welcome');})->name('dashboard');
 
 

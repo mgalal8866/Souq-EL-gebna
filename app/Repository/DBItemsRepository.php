@@ -26,14 +26,15 @@ class DBItemsRepository implements ItemsRepositoryinterface
         $item = $this->model
         ->active_admin()
         ->active()
-        ->whereRaw("name REGEXP ?", ["%" . $search . "%"])
+        ->where('name', 'LIKE', "%" . $search . "%")
+        // ->whereRaw("name REGEXP_LIKE ?", ["%" . $search . "%"])
         ->whereIn('category_id', $data['category_ids'])
         ->WhereHas('user', function ($q) use ($data) {
             $q->where('city_id', $data['city_id']);
         })
         ->inmycart()
         ->with(['brand', 'category', 'comments', 'user' ])->get();
-        // ->where('name', 'regexp LIKE', "%" . $search . "%")
+
             // with('cart', function ($q)  {
             //     $q->whereHas('cartsub', function ($qq) {
             //         $qq->whereHas('cartmain', function ($qqq) {
