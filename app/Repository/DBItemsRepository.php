@@ -21,7 +21,8 @@ class DBItemsRepository implements ItemsRepositoryinterface
     public function search($data)
     {
         // dd(auth('api')->user()->id);
-        $search= normalize_name($data['search']);
+        $search= generate_pattern($data['search']);
+        // $search= normalize_name($data['search']);
         $item = $this->model->active_admin()->active()
             ->where('name', 'LIKE', "%" .    $search . "%")
             ->whereIn('category_id', $data['category_ids'])->WhereHas('user', function ($q) use ($data) {
