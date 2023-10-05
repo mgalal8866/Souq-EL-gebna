@@ -29,7 +29,7 @@ class ItemsSearchResource extends JsonResource
             'description'     => $this->description ?? '',
             'rating_view'     => $this->rating_view ?? '',
             'in_cart'         => $this->cart !=  null ?true :false,
-            'qty_cart'        => $this->mainc->qty ?? '',
+            'qty_cart'        => $this->cart->cart_item_qty ?? '',
             'rating_view'     => $this->rating_view ?? '',
             'stars'           => culcrating($this->comments->count(), $this->comments->sum('rating')) ?? '',
             'store'           => [

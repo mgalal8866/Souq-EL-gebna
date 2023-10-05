@@ -27,7 +27,7 @@ class ItemsStoreResource extends JsonResource
             'price_offer'     => $this->price_offer ?? '',
             'is_offer'        => $this->price_offer > 0 ? '1' : '0' ?? '',
             'in_cart'         => $this->cart !=  null ?true :false,
-            'qty_cart'        => $this->cart->qty ?? '',
+            'qty_cart'        => $this->cart->cart_item_qty ?? '',
             'exp_date'        => Carbon::parse($this->exp_date)->format('Y-m-d') ?? '',
             'pro_date'        => Carbon::parse($this->pro_date)->format('Y-m-d') ?? '',
             'description'     => $this->description ?? '',
