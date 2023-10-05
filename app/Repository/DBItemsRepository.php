@@ -24,7 +24,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
         $search= generate_pattern($data['search']);
         // $search= normalize_name($data['search']);
         $item = $this->model->active_admin()->active()
-            ->where('name', 'LIKE', "%" .    $search . "%")
+            ->where('name', 'regexp LIKE', "%" . $search . "%")
             ->whereIn('category_id', $data['category_ids'])->WhereHas('user', function ($q) use ($data) {
                 $q->where('city_id', $data['city_id']);
             })->inmycart()
