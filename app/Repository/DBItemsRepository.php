@@ -26,15 +26,16 @@ class DBItemsRepository implements ItemsRepositoryinterface
             ->where('name', 'LIKE', "%" .    $search . "%")
             ->whereIn('category_id', $data['category_ids'])->WhereHas('user', function ($q) use ($data) {
                 $q->where('city_id', $data['city_id']);
-            })->with('cart', function ($q)  {
-                $q->whereHas('cartsub', function ($qq) {
-                    $qq->whereHas('cartmain', function ($qqq) {
-                        return  $qqq->where('cart_mains.user_id', auth('api')->user()->id);
-                    });});
-                // $q->whereHas('user_id', auth('api')->user()->id);
-                // $q->where('user_id', auth('api')->user()->id);
-            })
+            })->inmycart()
             ->with(['brand', 'category', 'comments', 'user' ])->get();
+            // with('cart', function ($q)  {
+            //     $q->whereHas('cartsub', function ($qq) {
+            //         $qq->whereHas('cartmain', function ($qqq) {
+            //             return  $qqq->where('cart_mains.user_id', auth('api')->user()->id);
+            //         });});
+            //     // $q->whereHas('user_id', auth('api')->user()->id);
+            //     // $q->where('user_id', auth('api')->user()->id);
+            // })
         // $item = $this->model->active_admin()->active()
         // ->where(function ($query) use ($data) {
         //     $query->where('name', 'LIKE', "%" .   $search. "%");

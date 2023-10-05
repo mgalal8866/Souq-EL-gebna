@@ -36,20 +36,24 @@ class items extends Model
     }
     public function comments()
     {
-        return $this->morphMany(comments::class,'commentable');
+        return $this->morphMany(comments::class, 'commentable');
     }
     public function scopeActive($q)
     {
-        return $q->where('active','1');
+        return $q->where('active', '1');
     }
     public function scopeActive_admin($q)
     {
-        return $q->where('active_admin','1');
+        return $q->where('active_admin', '1');
     }
-    public function scopeInmycart($q)
+    public function scopeInmycart($quary)
     {
-        return $q->with('cart', function ($q)  {
-            $q->where('user_id', auth('api')->user()->id);
+        return $quary->with('cart', function ($q) {
+            $q->whereHas('cartsub', function ($qq) {
+                $qq->whereHas('cartmain', function ($qqq) {
+                    return  $qqq->where('cart_mains.user_id', auth('api')->user()->id);
+                });
+            });
         });
     }
     public function setNameAttribute($value)
