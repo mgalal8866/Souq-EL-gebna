@@ -197,3 +197,8 @@ function normalize_name($name)
     $replacements = array("ا",  "ه", "");
     return preg_replace($patterns, $replacements, $name);
 }
+function generate_pattern($search_string) {
+    $patterns     = array( "/(ا|إ|أ|آ)/", "/(ه|ة)/" );
+    $replacements = array( "[ا|إ|أ|آ]", "[ه|ة]" );
+    return preg_replace($patterns, $replacements, $search_string);
+}

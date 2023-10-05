@@ -27,7 +27,12 @@ class DBItemsRepository implements ItemsRepositoryinterface
             ->whereIn('category_id', $data['category_ids'])->WhereHas('user', function ($q) use ($data) {
                 $q->where('city_id', $data['city_id']);
             })->with('cart', function ($q)  {
-                $q->where('user_id', auth('api')->user()->id);
+                $q->whereHas('cartsub', function ($qq) {
+                    $qq->whereHas('cartmain', function ($qqq) {
+                        return  $qqq->where('cart_mains.user_id', auth('api')->user()->id);
+                    });});
+                // $q->whereHas('user_id', auth('api')->user()->id);
+                // $q->where('user_id', auth('api')->user()->id);
             })
             ->with(['brand', 'category', 'comments', 'user' ])->get();
         // $item = $this->model->active_admin()->active()

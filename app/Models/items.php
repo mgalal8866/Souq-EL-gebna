@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\brand;
+use App\Models\Cart\CartItem;
 use App\Models\category;
 use App\Models\comments;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +28,7 @@ class items extends Model
     }
     public function cart()
     {
-        return $this->hasOne(cart::class, 'item_id');
+        return $this->hasOne(CartItem::class, 'item_id');
     }
     public function getUrlimgAttribute()
     {
