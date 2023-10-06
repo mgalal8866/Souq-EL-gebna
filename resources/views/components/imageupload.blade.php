@@ -9,7 +9,7 @@
     <img src="{{ $imagenew == null ? $imageold   : $imagenew->temporaryUrl() }}" id="account-upload-img"
         class="uploadedAvatar rounded me-50" alt="image" height="{{ $height }}" width="{{ $width }}" />
 </a>
-<div class="d-flex align-items-center mt-75 ms-1">
+<div class=" d-flex align-items-center mt-75 ms-1">
 
     {{-- <label for="account-upload" class="btn btn-sm btn-success mb-75 me-75 ">Upload</label> --}}
     {{-- <button type="button" id="account-reset" class="btn btn-sm btn-outline-secondary mb-75">Reset</button> --}}

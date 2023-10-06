@@ -7,11 +7,13 @@ use App\Livewire\Dashboard\Brands;
 use App\Livewire\Dashboard\Category\EditCategory;
 use App\Livewire\Dashboard\Category\NewCategory;
 use App\Livewire\Dashboard\Category\ViewCategory;
+use App\Livewire\Dashboard\Setting\Settings;
 use App\Livewire\Dashboard\Slider\EditSlider;
 use App\Livewire\Dashboard\Slider\NewSlider;
 use App\Livewire\Dashboard\Slider\ViewSlider;
 use App\Livewire\Dashboard\User\Users;
 use App\Models\items;
+use App\Models\setting;
 use App\Models\slider;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +37,7 @@ Route::get('/it', function () {
 
 Route::get('/', function () {return view('welcome');})->name('dashboard');
 
+Route::get('/settings',Settings::class)->name('settings');
 
 Route::get('/users',Users::class)->name('users');
 

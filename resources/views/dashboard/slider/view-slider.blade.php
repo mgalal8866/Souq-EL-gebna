@@ -29,7 +29,7 @@
                                     </td>
                                     <td>
                                         @if ( $slider->city->name?? null)
-                                        <span class="badge  rounded-pill  bg-success">s {{ $slider->city->name }}  </span>
+                                        <span class="badge  rounded-pill  bg-success">{{ $slider->city->name }}  </span>
                                         @else
                                         <span class="badge  rounded-pill    bg-danger"> جميع المحافظات </span>
                                         @endif

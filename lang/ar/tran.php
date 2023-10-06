@@ -100,6 +100,7 @@ return [
     'report'          => 'التقارير',
     'setting'          => 'الاعدادات',
     'settingfirebase'     => 'اعدادات الاشعارات',
+    'settings'          => 'الاعدادات',
     'settingsms'          => 'اعدادات الرسايل النصية',
     'site_color_primary'  => 'لون الموقع الرئيسي',
     'site_color_second'   => 'لون الموقع الثانوى',

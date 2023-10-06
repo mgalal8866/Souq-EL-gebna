@@ -24,7 +24,7 @@ class EditSlider extends Component
 
     public function saveslider()
     {
-        
+
         $slider = slider::find($this->id);
         $slider->name     = $this->name;
         if ($this->imagenew) {
