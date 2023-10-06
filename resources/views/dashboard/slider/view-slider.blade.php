@@ -4,7 +4,7 @@
             <div class="card outline-success">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.slider') }}</h4>
-                    <a href='{{ route('updateslider') }}' class="btn  btn-success">New</a>
+                    <a href='{{ route('addslider') }}' class="btn  btn-success">New</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
@@ -29,7 +29,7 @@
                                     </td>
                                     <td>
                                         @if ( $slider->city->name?? null)
-                                        <span class="badge  rounded-pill  bg-success"> متجر : {{ $slider->city->name }}  </span>
+                                        <span class="badge  rounded-pill  bg-success">s {{ $slider->city->name }}  </span>
                                         @else
                                         <span class="badge  rounded-pill    bg-danger"> جميع المحافظات </span>
                                         @endif
@@ -42,7 +42,9 @@
                                         @endif
                                     </td>
 
-                                    <td><button class="btn btn-flat-warning waves-effect"
+                                    <td>  <a class="btn btn-flat-warning btn-sm waves-effect"
+                                        href="{{route('editslider',['id'=>$slider->id])}}">{{ __('tran.edit') }}</a>
+                                        <button class="btn  btn-flat-danger btn-sm waves-effect"
                                             wire:click="delete({{ $slider->id }})">{{ __('tran.delete') }}</button>
                                     </td>
                                 </tr>

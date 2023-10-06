@@ -7,7 +7,7 @@
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
                     <div class="col-12 col-md-12  ">
-                        <x-imageupload wire:model.defer='imagenew' :imagenew="$imagenew" :imageold="$image" />
+                        <x-imageupload wire:model.defer='imagenew' :imagenew="$imagenew" :imageold="$image" required/>
                     </div>
                     <div class="col-12 col-md-12">
                         <label class="form-label" for="name">{{ __('tran.name') }}</label>
@@ -17,16 +17,16 @@
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="name">{{ __('tran.city') }}</label>
                         <select class="form-select" wire:model='selectcity'>
-                            <option value=""> جميع المحافظات</option>
+                            <option> جميع المحافظات</option>
                             @foreach ($city as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
-                           @endforeach
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="name">{{ __('tran.restore') }}</label>
                         <select class="form-select" wire:model='selectstore'>
-                            <option value=""> اختار المتجر</option>
+                            <option> اختار المتجر</option>
                                 @foreach ($store as $item)
                                 <option value="{{ $item->id }}">{{ $item->store_name }}</option>
                             @endforeach

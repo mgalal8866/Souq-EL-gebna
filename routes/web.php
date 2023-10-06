@@ -1,11 +1,14 @@
 <?php
 
 use App\Livewire\Dashboard\Brand\EditBrand;
+use App\Livewire\Dashboard\Brand\NewBrand;
 use App\Livewire\Dashboard\Brand\ViewBrand;
 use App\Livewire\Dashboard\Brands;
 use App\Livewire\Dashboard\Category\EditCategory;
+use App\Livewire\Dashboard\Category\NewCategory;
 use App\Livewire\Dashboard\Category\ViewCategory;
 use App\Livewire\Dashboard\Slider\EditSlider;
+use App\Livewire\Dashboard\Slider\NewSlider;
 use App\Livewire\Dashboard\Slider\ViewSlider;
 use App\Models\items;
 use App\Models\slider;
@@ -33,9 +36,14 @@ Route::get('/', function () {return view('welcome');})->name('dashboard');
 
 // Route::get('/brands',Brands::class)->name('brands');
 Route::get('/brands',ViewBrand::class)->name('brand');
-Route::get('/update/brands',EditBrand::class)->name('updatebrand');
+Route::get('/brand/add',NewBrand::class)->name('addbrand');
+Route::get('/brand/edit/{id?}',EditBrand::class)->name('editbrand');
+
 Route::get('/category',ViewCategory::class)->name('category');
-Route::get('/update/category',EditCategory::class)->name('updatecategory');
+Route::get('/category/add',NewCategory::class)->name('addcategory');
+Route::get('/category/edit/{id?}',EditCategory::class)->name('editcategory');
 
 Route::get('/slider',ViewSlider::class)->name('slider');
-Route::get('/update/slider',EditSlider::class)->name('updateslider');
+Route::get('/slider/add',NewSlider::class)->name('addslider');
+Route::get('/slider/edit/{id?}',EditSlider::class)->name('editslider');
+

@@ -27,7 +27,6 @@ class CartItemResource extends JsonResource
             'pro_date'            => $this->item->pro_date ?? '',
             'description'         => $this->item->description ?? '',
             'stars'               => culcrating($this->item->comments->count(), $this->item->comments->sum('rating')) ?? '',
-
             'cart_item_price'     => $this->cart_item_price,
             'cart_item_qty'       => $this->cart_item_qty,
             'cart_item_subtotal'  => $this->cart_item_subtotal,

@@ -7,7 +7,7 @@
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
                     <div class="col-12 col-md-12  ">
-                        <x-imageupload wire:model.defer='imagenew' :imagenew="$imagenew" :imageold="$image" />
+                        <x-imageupload wire:model.defer='imagenew' :imagenew="$imagenew" :imageold="$image" required/>
                     </div>
                     <div class="col-12 col-md-12">
                         <label class="form-label" for="name">{{ __('tran.name') }}</label>

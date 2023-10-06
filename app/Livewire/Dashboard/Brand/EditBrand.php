@@ -9,18 +9,26 @@ use Livewire\WithFileUploads;
 class EditBrand extends Component
 {
     use WithFileUploads;
-    public $imagenew, $name, $image, $edit = false;
+    public $id, $imagenew, $name, $image, $brand;
+
+    use WithFileUploads;
+    public function mount($id = null)
+    {
+        $this->id = $id;
+        $this->brand = brand::find($id);
+        $this->name     = $this->brand->name;
+        $this->image    = $this->brand->urlimg;
+    }
     public function savebrand()
     {
-        if ($this->edit == false) {
-            brand::create([
-                'name'     => $this->name,
-                'img'      => $this->imagenew != null ? uploadimages('brand', $this->imagenew) : null,
-            ]);
-            $this->dispatch('swal', message: 'تم التعديل بنجاح');
-            $this->redirect('/brands');
-        } else {
+        $brand = brand::find($this->id);
+        $brand->name = $this->name;
+        if ($this->imagenew) {
+            $brand->img      = $this->imagenew != null ? uploadimages('brand', $this->imagenew) : $brand->img;
         }
+        $brand->save();
+        $this->dispatch('swal', message: 'تم التعديل بنجاح');
+        $this->redirect('/brands');
     }
     public function render()
     {

@@ -9,19 +9,24 @@ use Livewire\WithFileUploads;
 class EditCategory extends Component
 {
     use WithFileUploads;
-    public $imagenew, $name, $image, $edit = false;
+    public $id, $imagenew, $name, $image, $category;
+    public function mount($id = null)
+    {
+        $this->id = $id;
+        $this->category = category::find($id);
+        $this->name     = $this->category->name;
+        $this->image    = $this->category->urlimg;
+    }
     public function savecategory()
     {
-        if ($this->edit == false) {
-            category::create([
-                'name'     => $this->name,
-                'img'      => $this->imagenew != null ? uploadimages('category', $this->imagenew) : null,
-            ]);
-            $this->dispatch('swal', message: 'تم التعديل بنجاح');
-            $this->redirect('/category');
-        }else{
-
+        $category = category::find($this->id);
+        $category->name = $this->name;
+        if ($this->imagenew) {
+            $category->img      = $this->imagenew != null ? uploadimages('category', $this->imagenew) : $category->img;
         }
+        $category->save();
+        $this->dispatch('swal', message: 'تم التعديل بنجاح');
+        $this->redirect('/category');
     }
     public function render()
     {

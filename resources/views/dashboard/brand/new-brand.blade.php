@@ -1,13 +1,13 @@
 <div>
-    <form id="newproductForm" wire:submit.prevent="savecategory">
+    <form id="newproductForm" wire:submit.prevent="savebrand">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">{{ __('tran.datacategory') }}</h4>
+                <h4 class="card-title">{{ __('tran.databrand') }}</h4>
             </div>
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
                     <div class="col-12 col-md-12  ">
-                        <x-imageupload wire:model.defer='imagenew' :imagenew="$imagenew" :imageold="$image" />
+                        <x-imageupload wire:model.defer='imagenew' :imagenew="$imagenew" :imageold="$image" required/>
                     </div>
                     <div class="col-12 col-md-12">
                         <label class="form-label" for="name">{{ __('tran.name') }}</label>
@@ -23,7 +23,7 @@
             <div class="card-footer">
                 <div class="col-12 text-center mt-2 pt-50">
                     <button type="submit" class="btn btn-success me-1">Save</button>
-                    <a class="btn btn-outline-secondary" href="{{ route('category') }}">
+                    <a class="btn btn-outline-secondary" href="{{ route('brand') }}">
                         Cancel
                     </a>
                 </div>

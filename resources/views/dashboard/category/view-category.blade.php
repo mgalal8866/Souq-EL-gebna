@@ -4,7 +4,7 @@
             <div class="card outline-success">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.category') }}</h4>
-                    <a href='{{ route('updatecategory') }}' class="btn  btn-success">New</a>
+                    <a href='{{ route('addcategory') }}' class="btn  btn-success">New</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
@@ -25,7 +25,10 @@
                                             width="100" />
                                     </td>
 
-                                    <td><button class="btn btn-flat-warning waves-effect"
+                                    <td>
+                                        <a class="btn btn-flat-warning btn-sm waves-effect"
+                                        href="{{route('editcategory',['id'=>$category->id])}}">{{ __('tran.edit') }}</a>
+                                        <button class="btn btn-flat-danger btn-sm waves-effect"
                                             wire:click="delete({{ $category->id }})">{{ __('tran.delete') }}</button>
                                     </td>
                                 </tr>
