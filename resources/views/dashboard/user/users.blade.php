@@ -34,7 +34,7 @@
                                         <span class="fw-bold">{{ $user->phone }}</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $user->region->name . ' , ' . $user->city->name }}</span>
+                                        <span class="fw-bold">{{ $user->city->name . ' , ' .  $user->region->name }}</span>
                                     </td>
                                     <td>
                                         <div class="small-ratings">
