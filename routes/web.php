@@ -10,6 +10,7 @@ use App\Livewire\Dashboard\Category\ViewCategory;
 use App\Livewire\Dashboard\Slider\EditSlider;
 use App\Livewire\Dashboard\Slider\NewSlider;
 use App\Livewire\Dashboard\Slider\ViewSlider;
+use App\Livewire\Dashboard\User\Users;
 use App\Models\items;
 use App\Models\slider;
 use Illuminate\Support\Facades\Route;
@@ -30,11 +31,13 @@ Route::get('/it', function () {
    foreach($i as $q){
     $q->update(['name'=>normalize_name($q->name)]);
    }
-})->name('dashboard');
+});
+
 Route::get('/', function () {return view('welcome');})->name('dashboard');
 
 
-// Route::get('/brands',Brands::class)->name('brands');
+Route::get('/users',Users::class)->name('users');
+
 Route::get('/brands',ViewBrand::class)->name('brand');
 Route::get('/brand/add',NewBrand::class)->name('addbrand');
 Route::get('/brand/edit/{id?}',EditBrand::class)->name('editbrand');
