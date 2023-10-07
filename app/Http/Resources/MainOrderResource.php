@@ -23,7 +23,7 @@ class MainOrderResource extends JsonResource
                 'sub_total'       => $this->main_subtotal ?? '',
                 'discount'        => $this->main_discount ?? '',
                 'total'           => $this->main_total ?? '',
-                'sub_orders'      => SubOrderResource::collection($this->suborder)
+                // 'sub_orders'      => SubOrderResource::collection($this->suborder)
             ]
         ];
     }
