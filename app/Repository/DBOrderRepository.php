@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\SubOrderResource;
 
 use App\Http\Resources\MainOrderResource;
+use App\Http\Resources\MainsubOrderResource;
 use App\Http\Resources\SubOrderForStoreResource;
 use App\Http\Resources\OrderDetailsForStoreResource;
 use App\Repositoryinterface\OrderRepositoryinterface;
@@ -80,6 +81,6 @@ class DBOrderRepository implements OrderRepositoryinterface
     public function get_suborder_by_main_id($id)
     {
         $orderuser = $this->model->where(['user_id' => auth('api')->user()->id,'id'=>$id])->first();
-        return  Resp(new MainOrderResource($orderuser), 'success');
+        return  Resp(new MainsubOrderResource($orderuser), 'success');
     }
 }
