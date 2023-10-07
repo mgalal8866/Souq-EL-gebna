@@ -19,9 +19,9 @@ class CartsubResource extends JsonResource
             'sub_order_id'     => $this->id ?? '',
             'store_id'         => $this->store_id ?? '',
             'store_name'       => $this->store->store_name ?? '',
-            'sub_subtotal'     => number_format($this->cartitem->sum('cart_item_subtotal'),2,'.','') ?? '',
-            'sub_discount'     => number_format($this->cartitem->sum('cart_item_discount'), 2,'.','') ?? '',
-            'sub_total'        => number_format($this->cartitem->sum('cart_item_total'),2,'.','') ?? '',
+            'sub_subtotal'     => number_format($this->cartitem->sum('cart_item_subtotal'),0,'.','') ?? '',
+            'sub_discount'     => number_format($this->cartitem->sum('cart_item_discount'), 0,'.','') ?? '',
+            'sub_total'        => number_format($this->cartitem->sum('cart_item_total'),0,'.','') ?? '',
             'created_at'       => Carbon::parse($this->created_at)->translatedFormat('H:i / Y-m-d') ?? '',
             'cart_item'    => CartItemResource::collection($this->cartitem)
         ];
