@@ -98,6 +98,8 @@ return [
     'rememberme'      => 'تذكرنى ؟',
     'gallery'         => 'معرض الصور',
     'report'          => 'التقارير',
+    'items'          => 'الاصناف',
+    'item'          => 'النصف',
     'setting'          => 'الاعدادات',
     'settingfirebase'     => 'اعدادات الاشعارات',
     'settings'          => 'الاعدادات',

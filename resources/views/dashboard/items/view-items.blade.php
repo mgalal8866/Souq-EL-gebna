@@ -11,7 +11,7 @@
                         <thead>
                             <tr>
                                 <th>{{ __('tran.image') }}</th>
-                                <th>{{ __('tran.product') }}</th>
+                                <th>{{ __('tran.item') }}</th>
                                 <th>{{ __('tran.username') }}</th>
                                 <th>{{ __('tran.storename') }}</th>
                                 <th>{{ __('tran.brand') }}</th>
@@ -19,14 +19,14 @@
                                 <th>{{ __('tran.storename') }}</th>
                                 <th>{{ __('tran.storename') }}</th>
                                 <th>{{ __('tran.storename') }}</th>
-                                <th>{{ __('tran.storename') }}</th>
+                                <th>{{ __('tran.active') }}</th>
                                 <th>{{ __('tran.action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($items  as $item)
                                 <tr>
-                                    <td> <img src=" {{ $item->urlimg ?? 'N/A' }}" class="me-75" height="50"
+                                    <td> <img src=" {{ $item->img == null ?  $item->brand->urlimg : $item->urlimg ?? 'N/A' }}" class="me-75" height="50"
                                             width="50" />
                                     </td>
                                     <td>
