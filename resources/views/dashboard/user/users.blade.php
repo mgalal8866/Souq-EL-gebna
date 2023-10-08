@@ -97,10 +97,9 @@
                                         <span class="badge  rounded-pill bg-{{ $user->sales_active == 1 ? 'success' : 'danger ' }} ">{{ $user->sales_active == 1 ? 'مفعل' : 'غير مفعل' }}</span>
                                     </td>
                                     <td>
-                                        {{-- <a class="btn btn-flat-warning btn-sm waves-effect"
-                                        href="{{route('edituser',['id'=>$user->id])}}">{{ __('tran.edit') }}</a> --}}
-                                        <button class="btn btn-warning btn-sm waves-effect"
-                                            wire:click="delete({{ $user->id }})">{{ __('tran.edit') }}</button>
+                                        <a class="btn btn-warning btn-sm waves-effect"
+                                        href="{{route('editusers',['id'=>$user->id])}}">{{ __('tran.edit') }}</a>
+                                        {{-- <button class="btn btn-warning btn-sm waves-effect" wire:click="delete({{ $user->id }})">{{ __('tran.edit') }}</button> --}}
                                     </td>
                                 </tr>
                                 @empty

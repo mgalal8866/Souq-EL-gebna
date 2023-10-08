@@ -11,6 +11,7 @@ use App\Livewire\Dashboard\Setting\Settings;
 use App\Livewire\Dashboard\Slider\EditSlider;
 use App\Livewire\Dashboard\Slider\NewSlider;
 use App\Livewire\Dashboard\Slider\ViewSlider;
+use App\Livewire\Dashboard\User\EditUser;
 use App\Livewire\Dashboard\User\Users;
 use App\Models\items;
 use App\Models\setting;
@@ -40,6 +41,7 @@ Route::get('/', function () {return view('welcome');})->name('dashboard');
 Route::get('/settings',Settings::class)->name('settings');
 
 Route::get('/users',Users::class)->name('users');
+Route::get('/user/edit/{id?}',EditUser::class)->name('editusers');
 
 Route::get('/brands',ViewBrand::class)->name('brand');
 Route::get('/brand/add',NewBrand::class)->name('addbrand');
