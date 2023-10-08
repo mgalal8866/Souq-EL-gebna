@@ -7,10 +7,23 @@ use Livewire\Component;
 
 class Users extends Component
 {
-    public $users;
+    public $users=[], $search;
+    public function updatedSearch()
+    {
+
+        $this->users =    User::where('user_name', 'LIKE', "%" . $this->search . "%")
+            ->orwhere('phone', 'LIKE', "%" . $this->search . "%")
+            ->orwhere('phone1', 'LIKE', "%" . $this->search . "%")
+            ->get();
+    }
+    public function mount()
+    {
+        $this->users =    User::get();
+
+    }
     public function render()
     {
-            $this->users=    User::get();
+
         return view('dashboard.user.users');
     }
 }
