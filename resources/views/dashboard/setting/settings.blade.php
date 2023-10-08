@@ -7,12 +7,12 @@
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
                     <div class="col-12 col-md-12  ">
-                        <x-imageupload class="form-control" wire:model.defer='imagenew' :imagenew="$logonew"
+                        <x-imageupload class="form-control" wire:model.defer='logonew' :imagenew="$logonew"
                             :imageold="$logo"  />
                     </div>
                     <div class="col-12 col-md-12 mt-5 mb-2">
 
-                        <x-imageupload class="form-control" wire:model.defer='imagenew' :imagenew="$splashnew"
+                        <x-imageupload class="form-control" wire:model.defer='splashnew' :imagenew="$splashnew"
                             :imageold="$splash"  />
                     </div>
                     <div class="col-6 col-md-6">

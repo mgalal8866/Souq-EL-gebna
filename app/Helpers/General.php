@@ -92,6 +92,23 @@ function uploadimages($folder, $image)
     $filename = $image->hashName();
     return  $filename;
 }
+function uploadimagesdir( $image,$nameimg)
+{
+    $path = public_path() . '/asset/images/';
+    if (!File::exists($path)) {
+        mkdir($path, 0777, true);
+    }
+    // $image = $image;  // your base64 encoded
+    // $image = str_replace('data:image/png;base64,', '', $image);
+    // $image = str_replace(' ', '+', $image);
+    // File::put($path . $nameimg ,base64_decode($image));
+    // $imageName = time() . '_' . $request->image->getClientOriginalName();
+
+    // Store the uploaded image using the 'public' disk
+    $image->storeAs('public/asset/images', $nameimg);
+dd($image);
+    return  $nameimg;
+}
 function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null, $sav = true)
 {
 
@@ -156,7 +173,7 @@ function replacetext($originalString, $user = null, $product = null, $cart = nul
 function getimage($imagename, $folder = null)
 {
 
-    $mainpath   = 'asset/images/';
+    $folder == 'images'?  $mainpath = 'asset/': $mainpath = 'asset/images/';
     $unfiend    = asset($mainpath . 'logo.png');
     if($folder == null ){ return   $unfiend;}
 

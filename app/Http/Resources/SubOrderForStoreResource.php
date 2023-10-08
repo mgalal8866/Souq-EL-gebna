@@ -24,7 +24,7 @@ class SubOrderForStoreResource extends JsonResource
             'sub_discount'     => $this->sub_discount ?? '',
             'sub_total'        => $this->sub_total ?? '',
             'sub_order_statu'  => $this->sub_statu_delivery ?? '',
-            'created_at'       => Carbon::parse($this->created_at)->translatedFormat('H:i / l j F Y') ?? '',
+            'created_at'       => Carbon::parse($this->created_at)->format('H:i a / Y-d-m') ?? '',
             'user'             => [
                 'user_name' => $this->main->user->user_name,
                 'phone'     => $this->main->user->phone,

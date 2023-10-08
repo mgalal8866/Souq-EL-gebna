@@ -30,16 +30,16 @@ class Settings extends Component
         $this->setting->maintenance = $this->maintenance;
         $this->setting->policy      = $this->policy;
         if ($this->logonew) {
-            $this->setting->logo    = $this->logonew != null ? uploadimages('slider', $this->logonew) : null;
+            $this->setting->logo    = $this->logonew != null ? uploadimages('images',$this->logonew) : null;
         }
         if ($this->splashnew) {
-            $this->setting->splash  = $this->splashnew != null ? uploadimages('slider', $this->splashnew) : null;
+            $this->setting->splash  = $this->splashnew != null ?  uploadimages('images', $this->splashnew) : null;
         }
         $this->setting->phone1 = $this->phone1;
         $this->setting->phone  = $this->phone;
         $this->setting->save();
         $this->dispatch('swal', message: 'تم التعديل بنجاح');
-      
+
     }
     public function render()
     {

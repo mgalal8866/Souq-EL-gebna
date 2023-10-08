@@ -12,10 +12,10 @@ class setting extends Model
 
     public function getUrlsplashAttribute()
     {
-        return  getimage($this->splash,'/');
+        return  getimage($this->splash, 'images');
     }
     public function getUrllogoAttribute()
     {
-        return  getimage($this->logo);
+        return  getimage($this->logo, 'images');
     }
 }
