@@ -7,6 +7,7 @@ use App\Livewire\Dashboard\Brands;
 use App\Livewire\Dashboard\Category\EditCategory;
 use App\Livewire\Dashboard\Category\NewCategory;
 use App\Livewire\Dashboard\Category\ViewCategory;
+use App\Livewire\Dashboard\Items\ViewItems;
 use App\Livewire\Dashboard\Setting\Settings;
 use App\Livewire\Dashboard\Slider\EditSlider;
 use App\Livewire\Dashboard\Slider\NewSlider;
@@ -39,6 +40,8 @@ Route::get('/it', function () {
 Route::get('/', function () {return view('welcome');})->name('dashboard');
 
 Route::get('/settings',Settings::class)->name('settings');
+
+Route::get('/items',ViewItems::class)->name('items');
 
 Route::get('/users',Users::class)->name('users');
 Route::get('/user/edit/{id?}',EditUser::class)->name('editusers');

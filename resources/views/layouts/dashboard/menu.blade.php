@@ -38,6 +38,10 @@
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.users') }}</span></a>
              </li>
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('items')}}"><i
+                         data-feather="home"></i><span
+                         class="menu-title text-truncate">{{ __('tran.items') }}</span></a>
+             </li>
              <li class="nav-item "><a class="d-flex align-items-center" href="{{route('slider')}}"><i
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.slider') }}</span></a>
