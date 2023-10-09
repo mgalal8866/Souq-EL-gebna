@@ -32,7 +32,7 @@ class items extends Model
     }
     public function getUrlimgAttribute()
     {
-        return  getimage($this->img, 'brand');
+        return  getimage($this->img, 'store');
     }
     public function comments()
     {

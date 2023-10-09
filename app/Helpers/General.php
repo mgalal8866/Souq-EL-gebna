@@ -2,8 +2,9 @@
 
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\notification;
+use App\Models\setting;
 use Illuminate\Support\Str;
+use App\Models\notification;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -173,18 +174,20 @@ function replacetext($originalString, $user = null, $product = null, $cart = nul
 function getimage($imagename, $folder = null)
 {
 
+
     $folder == 'images'?  $mainpath = 'asset/': $mainpath = 'asset/images/';
-    $unfiend    = asset($mainpath . 'logo.png');
-    if($folder == null ){ return   $unfiend;}
+
+    if($folder == null ){ $setting = setting::find(1); return   $setting->urllogo;}
 
     $folder = $folder == '/' ? '' :  $folder .  '/'   ;
 
     $path       = public_path($mainpath . $folder   . $imagename);
 
     if (File::exists($path)) {
-        return ($imagename !== null) ? asset($mainpath . $folder . $imagename) : $unfiend;
+        return ($imagename !== null) ? asset($mainpath . $folder . $imagename) :   $setting = setting::find(1)->urllogo;
     } else {
-        return   $unfiend;
+        $setting = setting::find(1);
+        return    $setting->urllogo;
     }
 }
 function splititem($item)

@@ -24,4 +24,9 @@ class CartSub extends Model
     {
         return $this->belongsTo(CartMain::class, 'cart_main_id');
     }
+    protected static function booted () {
+        static::deleting(function(CartSub $CartSub) { // before delete() method call this
+            $CartSub->cartitem()->delete();
+        });
+    }
 }

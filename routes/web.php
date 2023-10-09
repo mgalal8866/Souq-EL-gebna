@@ -1,23 +1,25 @@
 <?php
 
-use App\Livewire\Dashboard\Brand\EditBrand;
-use App\Livewire\Dashboard\Brand\NewBrand;
-use App\Livewire\Dashboard\Brand\ViewBrand;
+use App\Models\items;
+use App\Models\slider;
+use App\Models\setting;
+use App\Models\Cart\CartMain;
 use App\Livewire\Dashboard\Brands;
-use App\Livewire\Dashboard\Category\EditCategory;
-use App\Livewire\Dashboard\Category\NewCategory;
-use App\Livewire\Dashboard\Category\ViewCategory;
+use Illuminate\Support\Facades\Route;
+use App\Livewire\Dashboard\User\Users;
+use App\Livewire\Dashboard\User\EditUser;
+use App\Livewire\Dashboard\Brand\NewBrand;
+use App\Livewire\Dashboard\Brand\EditBrand;
+use App\Livewire\Dashboard\Brand\ViewBrand;
 use App\Livewire\Dashboard\Items\ViewItems;
 use App\Livewire\Dashboard\Setting\Settings;
-use App\Livewire\Dashboard\Slider\EditSlider;
 use App\Livewire\Dashboard\Slider\NewSlider;
+use App\Livewire\Dashboard\Slider\EditSlider;
 use App\Livewire\Dashboard\Slider\ViewSlider;
-use App\Livewire\Dashboard\User\EditUser;
-use App\Livewire\Dashboard\User\Users;
-use App\Models\items;
-use App\Models\setting;
-use App\Models\slider;
-use Illuminate\Support\Facades\Route;
+use App\Livewire\Dashboard\Category\NewCategory;
+use App\Livewire\Dashboard\Category\EditCategory;
+use App\Livewire\Dashboard\Category\ViewCategory;
+use App\Livewire\Dashboard\Items\EditItem;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +33,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/it', function () {
-   $i = items::get();
-   foreach($i as $q){
-    $q->update(['name'=>normalize_name($q->name)]);
-   }
+    $cartmain =  CartMain::where('user_id',1)->first();
+    $cartmain->delete();
+//    $i = items::get();
+//    foreach($i as $q){
+//     $q->update(['name'=>normalize_name($q->name)]);
+//    }
 });
 
 Route::get('/', function () {return view('welcome');})->name('dashboard');
@@ -42,6 +46,7 @@ Route::get('/', function () {return view('welcome');})->name('dashboard');
 Route::get('/settings',Settings::class)->name('settings');
 
 Route::get('/items',ViewItems::class)->name('items');
+Route::get('/item/edit/{id?}',EditItem::class)->name('edititem');
 
 Route::get('/users',Users::class)->name('users');
 Route::get('/user/edit/{id?}',EditUser::class)->name('editusers');

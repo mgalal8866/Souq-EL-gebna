@@ -19,5 +19,10 @@ class CartMain extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
+    protected static function booted () {
+        static::deleting(function(CartMain $CartMain) { // before delete() method call this
+              
+             $CartMain->cartsub()->delete();
+        });
+    }
 }

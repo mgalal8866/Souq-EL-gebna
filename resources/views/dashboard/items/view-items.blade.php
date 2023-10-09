@@ -16,9 +16,9 @@
                                 <th>{{ __('tran.storename') }}</th>
                                 <th>{{ __('tran.brand') }}</th>
                                 <th>{{ __('tran.category') }}</th>
-                                <th>{{ __('tran.storename') }}</th>
-                                <th>{{ __('tran.storename') }}</th>
-                                <th>{{ __('tran.storename') }}</th>
+                                <th>{{ __('tran.qtystock') }}</th>
+                                <th>{{ __('tran.price1') }}</th>
+                                <th>{{ __('tran.price2') }}</th>
                                 <th>{{ __('tran.active') }}</th>
                                 <th>{{ __('tran.action') }}</th>
                             </tr>
@@ -52,7 +52,12 @@
                                         <span class="fw-bold">{{ $item->price_salse }}</span>
                                     </td>
                                     <td>
+                                        @if ($item->price_offer> 0)
+                                            <span class="badge  rounded-pill  bg-warning ">{{ $item->price_offer }}</span>
+                                        @else
                                         <span class="fw-bold">{{ $item->price_offer }}</span>
+                                        @endif
+
                                     </td>
                                     <td>
                                         @if ($item->active ?? null)
@@ -70,10 +75,10 @@
                                     </td>
 
                                     <td>
-                                        {{-- <a class="btn btn-flat-warning btn-sm waves-effect"
+                                      <a class="btn btn-flat-warning btn-sm waves-effect"
                                         href="{{route('edititem',['id'=>$item->id])}}">{{ __('tran.edit') }}</a>
-                                        <button class="btn btn-flat-danger btn-sm waves-effect"
-                                            wire:click="delete({{ $item->id }})">{{ __('tran.delete') }}</button> --}}
+                                        {{-- <button class="btn btn-flat-danger btn-sm waves-effect"
+                                            wire:click="delete({{ $item->id }})">{{ __('tran.delete') }}</button>   --}}
                                     </td>
                                 </tr>
                             @empty

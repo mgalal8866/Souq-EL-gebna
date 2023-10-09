@@ -13,6 +13,7 @@ use App\Http\Resources\MainOrderResource;
 use App\Http\Resources\MainsubOrderResource;
 use App\Http\Resources\SubOrderForStoreResource;
 use App\Http\Resources\OrderDetailsForStoreResource;
+use App\Models\Cart\CartMain;
 use App\Repositoryinterface\OrderRepositoryinterface;
 
 class DBOrderRepository implements OrderRepositoryinterface
@@ -50,6 +51,8 @@ class DBOrderRepository implements OrderRepositoryinterface
                 ]);
             }
         }
+      $cartmain =  CartMain::where('user_id',auth('api')->user()->id)->first();
+      $cartmain->delete();
         return  Resp(new MainOrderResource($Mainorder), 'success');
     }
     public function get_order_user()
