@@ -68,7 +68,6 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('/order/statu', [OrderController::class, 'get_order_by_statu']);
     Route::get('/order/change/statu', [OrderController::class, 'change_statu']);
     Route::get('/order/details', [OrderController::class, 'get_order_details']);
-
     ################################### End Cart  ##########################
 
     ################################### Start ITEMS ##########################

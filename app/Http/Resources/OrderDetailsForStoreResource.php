@@ -21,6 +21,7 @@ class OrderDetailsForStoreResource  extends JsonResource
                 'sub_order_id'     => $this['details'][0]->suborder->id ?? '',
                 'store_id'         => $this['details'][0]->suborder->store_id ?? '',
                 'store_name'       => $this['details'][0]->suborder->store->store_name ?? '',
+                'client_nam'       => $this['details'][0]->main->user->user_name ?? '',
                 'sub_subtotal'     => $this['details'][0]->suborder->sub_subtotal ?? '',
                 'sub_discount'     => $this['details'][0]->suborder->sub_discount ?? '',
                 'sub_total'        => $this['details'][0]->suborder->sub_total ?? '',
