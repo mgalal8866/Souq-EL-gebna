@@ -23,12 +23,12 @@
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="phone1">{{ __('tran.phone') }}</label>
                         <input type="text" wire:model.defer='phone1' id="phone1" name="phone1"
-                            class="form-control" required />
+                            class="form-control"  />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="phone">{{ __('tran.phone') }}</label>
                         <input type="text" wire:model.defer='phone' id="phone" name="phone"
-                            class="form-control" required />
+                            class="form-control"  />
                     </div>
                 </div>
             </div>
