@@ -51,8 +51,11 @@ class DBOrderRepository implements OrderRepositoryinterface
                 ]);
             }
         }
-      $cartmain =  CartMain::where('user_id',auth('api')->user()->id)->first();
-      $cartmain->delete();
+        $cartmain =  CartMain::where('user_id',auth('api')->user()->id)->first();
+
+        if($cartmain != null)
+        $cartmain->delete();
+
         return  Resp(new MainOrderResource($Mainorder), 'success');
     }
     public function get_order_user()
