@@ -61,10 +61,10 @@ class DBCartRepository implements CartRepositoryinterface
             'store_id' => $items->user_id
         ]);
         $cartsub->cartitem()->updateOrCreate(['item_id'  =>  $items->id], [
-            'cart_item_price'      =>     $price,
-            'cart_item_qty'         => $qty,
+            'cart_item_price'      => $price,
+            'cart_item_qty'        => $qty,
             'cart_item_subtotal'   => $subtotal,
-            'cart_item_discount'     =>  $discount,
+            'cart_item_discount'   => $discount,
             'cart_item_total'      => $total
 
         ]);
