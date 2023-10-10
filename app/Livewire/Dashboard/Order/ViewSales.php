@@ -2,14 +2,20 @@
 
 namespace App\Livewire\Dashboard\Order;
 
+use Carbon\Carbon;
+use App\Models\User;
 use Livewire\Component;
 
 class ViewSales extends Component
 {
-    public $orders;
+    public $orders, $fromdate, $todate;
     public function mount()
     {
-$this->orders;
+        $this->fromdate     =  Carbon::now()->startOfMonth()->format('Y/m/d');
+        $this->todate       =  Carbon::now()->endOfMonth()->format('Y/m/d');
+        $this->orders = User::with('suborder')->when('suborder',function($q){
+            $q->whereBetween('created_at', [$this->fromdate, $this->todate]);
+        })->get();
     }
     public function render()
     {

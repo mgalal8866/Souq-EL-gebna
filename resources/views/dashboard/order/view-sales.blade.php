@@ -3,94 +3,107 @@
         <div class="col-12">
             <div class="card outline-success">
                 <div class="card-header">
-                    <h4 class="card-title">{{ __('tran.item') }}</h4>
+                    <h4 class="card-title">{{ __('tran.orders') }}</h4>
                     {{-- <a href='{{ route('additem') }}' class="btn  btn-success">New</a> --}}
                 </div>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>{{ __('tran.image') }}</th>
-                                <th>{{ __('tran.item') }}</th>
-                                <th>{{ __('tran.username') }}</th>
-                                <th>{{ __('tran.storename') }}</th>
-                                <th>{{ __('tran.brand') }}</th>
-                                <th>{{ __('tran.category') }}</th>
-                                <th>{{ __('tran.qtystock') }}</th>
-                                <th>{{ __('tran.price1') }}</th>
-                                <th>{{ __('tran.price2') }}</th>
-                                <th>{{ __('tran.active') }}</th>
-                                <th>{{ __('tran.action') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($items  as $item)
+                <div class="card-body ">
+                    <div class="">
+                        <div class="row ">
+                            <div class="col-md-4">
+                                <x-label for="fromdate" label="من" />
+                                <x-daterange id="fromdate" wire:model.lazy='fromdate' :date='$fromdate' />
+                            </div>
+                            <div class="col-md-4">
+                                <x-label for="todate" label="الى" />
+                                <x-daterange id="todate" wire:model.lazy='todate' :date='$todate' />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        {{-- <div class="col-md-2">
+                            <label for="pages">عرض</label>
+                            <select class="form-select" wire:model="pg" name="pages" id="pages">
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                            </select>
+                        </div> --}}
+                        <span class=" text-center mt-2">
+                              <div wire:loading>
+                                <span class="spinner-border text-warning"></span>
+                            </div>
+                        </span>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td> <img
-                                            src=" {{ $item->img == null ? $item->brand->urlimg : $item->urlimg ?? 'N/A' }}"
-                                            class="me-75" height="50" width="50" />
-                                    </td>
-                                    <td>
-                                        <span class="fw-bold">{{ $item->name }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="fw-bold">{{ $item->user->user_name }}</span>
-                                    </td>
+                                    <th>{{ __('tran.username') }}</th>
+                                    <th>{{ __('tran.storename') }}</th>
+                                    <th>{{ __('tran.countorders') }}</th>
+                                    <th>{{ __('tran.saleorders') }}</th>
+                                    <th>{{ __('tran.neworders') }}</th>
+                                    <th>{{ __('tran.processorders') }}</th>
+                                    <th>{{ __('tran.deliverdorders') }}</th>
+                                    <th>{{ __('tran.rejectorders') }}</th>
 
-                                    <td>
-                                        <span class="fw-bold">{{ $item->user->store_name }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="fw-bold">{{ $item->brand->name }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="fw-bold">{{ $item->category->name }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="fw-bold">{{ $item->stock_qty }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="fw-bold">{{ $item->price_salse }}</span>
-                                    </td>
-                                    <td>
-                                        @if ($item->price_offer > 0)
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($orders  as $item)
+                                    <tr>
+
+                                        <td>
+                                            <span class="fw-bold">{{ $item->user_name }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold">{{ $item->store_name }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold">{{ $item->suborder->count() }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold">{{ $item->suborder->sum('sub_total') }}</span>
+                                        </td>
+                                        <td>
                                             <span
-                                                class="badge  rounded-pill  bg-warning ">{{ $item->price_offer }}</span>
-                                        @else
-                                            <span class="fw-bold">{{ $item->price_offer }}</span>
-                                        @endif
+                                                class="fw-bold badge  rounded-pill  bg-info">{{ $item->suborder->where('sub_statu_delivery', 1)->count() }}</span>
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="fw-bold badge  rounded-pill  bg-warning">{{ $item->suborder->where('sub_statu_delivery', 2)->count() }}</span>
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="fw-bold badge  rounded-pill  bg-success">{{ $item->suborder->where('sub_statu_delivery', 3)->count() }}</span>
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="fw-bold badge  rounded-pill  bg-danger">{{ $item->suborder->where('sub_statu_delivery', 4)->count() }}</span>
+                                        </td>
 
-                                    </td>
-                                    <td>
-                                        @if ($item->active ?? null)
-                                            <span class="badge  rounded-pill  bg-success">user : مفعل</span>
-                                        @else
-                                            <span class="badge  rounded-pill  bg-danger">user : غير مفعل</span>
-                                        @endif
-
-                                        @if ($item->active_admin ?? null)
-                                            <span class="badge  rounded-pill  bg-success">admin: مفعل </span>
-                                        @else
-                                            <span class="badge  rounded-pill  bg-danger">admin: غير مفعل</span>
-                                        @endif
-                                    </td>
-
-                                    <td>
+                                    {{-- <td>
                                         <a class="btn btn-flat-warning btn-sm waves-effect"
                                             href="{{ route('edititem', ['id' => $item->id]) }}">{{ __('tran.edit') }}</a>
-                                        {{-- <button class="btn btn-flat-danger btn-sm waves-effect"
-                                            wire:click="delete({{ $item->id }})">{{ __('tran.delete') }}</button>   --}}
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
-                                </tr>
-                            @endforelse
+                                        <button class="btn btn-flat-danger btn-sm waves-effect"
+                                            wire:click="delete({{ $item->id }})">{{ __('tran.delete') }}</button>
+                                    </td> --}}
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="alert alert-danger text-center"> No Data Here</td>
+                                    </tr>
+                                @endforelse
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </div>

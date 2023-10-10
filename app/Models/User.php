@@ -6,8 +6,9 @@ namespace App\Models;
 use App\Models\city;
 use App\Models\region;
 use App\Models\comments;
-use Laravel\Sanctum\HasApiTokens;
+use App\Models\SubOrder;
 
+use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -49,6 +50,10 @@ class User extends Authenticatable implements JWTSubject
     public function question2()
     {
         return $this->belongsTo(question::class,'question2_id');
+    }
+    public function suborder()
+    {
+        return $this->hasMany(SubOrder::class, 'store_id');
     }
     public function getJWTCustomClaims()
     {

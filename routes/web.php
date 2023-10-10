@@ -20,6 +20,7 @@ use App\Livewire\Dashboard\Category\NewCategory;
 use App\Livewire\Dashboard\Category\EditCategory;
 use App\Livewire\Dashboard\Category\ViewCategory;
 use App\Livewire\Dashboard\Items\EditItem;
+use App\Livewire\Dashboard\Order\ViewSales;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,8 @@ Route::get('/settings',Settings::class)->name('settings');
 
 Route::get('/items',ViewItems::class)->name('items');
 Route::get('/item/edit/{id?}',EditItem::class)->name('edititem');
+
+Route::get('/orders',ViewSales::class)->name('viewsales');
 
 Route::get('/users',Users::class)->name('users');
 Route::get('/user/edit/{id?}',EditUser::class)->name('editusers');
