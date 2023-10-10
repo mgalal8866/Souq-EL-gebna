@@ -50,6 +50,14 @@
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.brands') }}</span></a>
              </li>
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('orders')}}"><i
+                         data-feather="home"></i><span
+                         class="menu-title text-truncate">{{ __('tran.orders') }}</span></a>
+             </li>
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('activitys')}}"><i
+                         data-feather="home"></i><span
+                         class="menu-title text-truncate">{{ __('tran.activitys') }}</span></a>
+             </li>
              <li class="nav-item "><a class="d-flex align-items-center" href="{{route('category')}}"><i
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.categorys') }}</span></a>

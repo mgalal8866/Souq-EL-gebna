@@ -94,6 +94,7 @@ return [
     'addcart'         => 'اضافة للعربة',
     'yousave'         => 'وفرت',
     'orders'         => 'الطلبات',
+    'activitys'         => 'النشاط',
     'countorders'         => 'عدد الطلبات',
     'saleorders'         => 'اجمالى الطلبات',
     'neworders'         =>  'جديد',
