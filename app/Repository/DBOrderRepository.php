@@ -5,15 +5,16 @@ namespace App\Repository;
 use App\Models\SubOrder;
 use App\Models\MainOrder;
 use App\Models\OrderDetails;
+use App\Models\Cart\CartMain;
 use App\Enums\OrderStatusEnum;
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\SubOrderResource;
-
 use App\Http\Resources\MainOrderResource;
 use App\Http\Resources\MainsubOrderResource;
 use App\Http\Resources\SubOrderForStoreResource;
 use App\Http\Resources\OrderDetailsForStoreResource;
-use App\Models\Cart\CartMain;
 use App\Repositoryinterface\OrderRepositoryinterface;
 
 class DBOrderRepository implements OrderRepositoryinterface
@@ -52,6 +53,8 @@ class DBOrderRepository implements OrderRepositoryinterface
             }
         }
         $cartmain =  CartMain::where('user_id',auth('api')->user()->id)->first();
+
+        Log::error($cartmain);
 
         if($cartmain != null)
         $cartmain->delete();
