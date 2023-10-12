@@ -23,9 +23,9 @@ class OrderController extends Controller
     {
         return $this->orderRepositry->get_order_user();
     }
-    function get_chart_order()
+    function get_chart_order($id)
     {
-        return $this->orderRepositry->get_chart_order();
+        return $this->orderRepositry->get_chart_order($id);
     }
 
     function get_suborder_by_main_id($id)

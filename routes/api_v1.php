@@ -48,7 +48,7 @@ Route::get('setting', [SettingController::class, 'index']);
 
 Route::middleware(['jwt.verify'])->group(function () {
     ################################### Start Comments ##########################
-    Route::get('/order/chart',   [OrderController::class, 'get_chart_order']);
+    Route::get('/order/chart/{id?}',   [OrderController::class, 'get_chart_order']);
     Route::post('/comment/item',   [CommentController::class, 'CreateCommentItem']);
     Route::post('/comment/store',  [CommentController::class, 'CreateCommentStore']);
     Route::get('/comment/store/{id?}', [CommentController::class, 'get_store_by_id']);

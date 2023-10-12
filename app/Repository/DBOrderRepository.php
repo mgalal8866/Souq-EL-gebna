@@ -2,13 +2,14 @@
 
 namespace App\Repository;
 
+use Carbon\Carbon;
 use App\Models\SubOrder;
 use App\Models\MainOrder;
 use App\Models\OrderDetails;
 use App\Models\Cart\CartMain;
 use App\Enums\OrderStatusEnum;
-use Illuminate\Support\Facades\Log;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\SubOrderResource;
 use App\Http\Resources\MainOrderResource;
@@ -69,13 +70,29 @@ class DBOrderRepository implements OrderRepositoryinterface
          }
         return  Resp(MainOrderResource::collection($orderuser), 'success');
     }
-    public function get_chart_order()
-    {
-        // $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->get();
-        //  if($orderuser == null){
-        //     Resp('', 'Not Found Orders');
-        //  }
-        return  Resp(new ChartOrderResource([]), 'success');
+    public function get_chart_order($id)
+ {
+        switch ($id) {
+            case 1:
+                $fromdate     = Carbon::now()->today()->format('Y/m/d');
+                $todate     = Carbon::now()->today()->format('Y/m/d');
+                break;
+            case 2:
+                $fromdate     = Carbon::now()->yesterday()->format('Y/m/d');
+                $todate     = Carbon::now()->yesterday()->format('Y/m/d');
+                break;
+            case 3:
+                $fromdate     = Carbon::now()->startOfWeek()->format('Y/m/d');
+                $todate       = Carbon::now()->endOfWeek()->format('Y/m/d');
+                break;
+            case 4:
+                $fromdate     = Carbon::now()->startOfMonth()->format('Y/m/d');
+                $todate       = Carbon::now()->endOfMonth()->format('Y/m/d');
+                break;
+
+        }
+        $orderuser = $this->model->where(['user_id' => auth('api')->user()->id, 'created_at'=> [$fromdate, $todate]])->get();
+        return  Resp(new ChartOrderResource($orderuser), 'success');
     }
     public function get_order_by_statu($statu)
     {
