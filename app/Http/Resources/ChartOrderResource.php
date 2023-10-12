@@ -14,9 +14,10 @@ class ChartOrderResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         return [
-            'count' => $this->count(),
-            'total' => $this->sum('main_total')
+            'count' => number_format($this->count(),0),
+            'total' =>  number_format($this->sum('sub_total'),0)
         ];
     }
 }

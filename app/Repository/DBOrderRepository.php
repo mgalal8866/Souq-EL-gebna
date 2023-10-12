@@ -56,7 +56,7 @@ class DBOrderRepository implements OrderRepositoryinterface
         }
         $cartmain =  CartMain::where('user_id', auth('api')->user()->id)->first();
 
-        if($cartmain != null){
+        if ($cartmain != null) {
             $cartmain->delete();
         }
 
@@ -65,13 +65,13 @@ class DBOrderRepository implements OrderRepositoryinterface
     public function get_order_user()
     {
         $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->get();
-         if($orderuser == null){
+        if ($orderuser == null) {
             Resp('', 'Not Found Orders');
-         }
+        }
         return  Resp(MainOrderResource::collection($orderuser), 'success');
     }
     public function get_chart_order($id)
- {
+    {
         switch ($id) {
             case 1:
                 $fromdate     = Carbon::now()->today()->format('Y/m/d');
@@ -89,16 +89,14 @@ class DBOrderRepository implements OrderRepositoryinterface
                 $fromdate     = Carbon::now()->startOfMonth()->format('Y/m/d');
                 $todate       = Carbon::now()->endOfMonth()->format('Y/m/d');
                 break;
-
         }
-        $orderuser = SubOrder::where('store_id', auth('api')->user()->id)->where(['created_at' => [$fromdate, $todate]])->get();
-       
+        $orderuser = SubOrder::where('store_id', auth('api')->user()->id)->whereBetween('created_at', [$fromdate, $todate])->get();
         return  Resp(new ChartOrderResource($orderuser), 'success');
     }
     public function get_order_by_statu($statu)
     {
 
-        $orderstatu = SubOrder::with(['main','main.user'])->where(['sub_statu_delivery' => $statu, 'store_id'=> auth('api')->user()->id])->get();
+        $orderstatu = SubOrder::with(['main', 'main.user'])->where(['sub_statu_delivery' => $statu, 'store_id' => auth('api')->user()->id])->get();
 
         return  Resp(SubOrderForStoreResource::collection($orderstatu), 'success');
     }
@@ -111,14 +109,14 @@ class DBOrderRepository implements OrderRepositoryinterface
     }
     public function get_order_details($id)
     {
-        $orderdetails = OrderDetails::with('suborder')->where('sub_order_id',$id)->get();
-        $data = ['details'=> $orderdetails];
-        return  Resp( new OrderDetailsForStoreResource($data), 'success');
+        $orderdetails = OrderDetails::with('suborder')->where('sub_order_id', $id)->get();
+        $data = ['details' => $orderdetails];
+        return  Resp(new OrderDetailsForStoreResource($data), 'success');
     }
 
     public function get_suborder_by_main_id($id)
     {
-        $orderuser = $this->model->where(['user_id' => auth('api')->user()->id,'id'=>$id])->first();
+        $orderuser = $this->model->where(['user_id' => auth('api')->user()->id, 'id' => $id])->first();
         return  Resp(new MainsubOrderResource($orderuser), 'success');
     }
 }
