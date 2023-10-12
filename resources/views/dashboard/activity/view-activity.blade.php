@@ -12,6 +12,7 @@
                             <tr>
                                 <th>{{ __('tran.name') }}</th>
                                 <th>{{ __('tran.image') }}</th>
+                                <th>{{ __('tran.countstore') }}</th>
                                 <th>{{ __('tran.action') }}</th>
                             </tr>
                         </thead>
@@ -24,12 +25,14 @@
                                     <td> <img src=" {{ $activity->urlimg ?? 'N/A' }}" class="me-75" height="50"
                                             width="100" />
                                     </td>
-
+                                   <td>
+                                        <span class="fw-bold">{{ $activity->user_count }}</span>
+                                    </td>
                                     <td>
-                                        {{-- <a class="btn btn-flat-warning btn-sm waves-effect"
-                                        href="{{route('editactivity',['id'=>$activity->id])}}">{{ __('tran.edit') }}</a> --}}
-                                        {{-- <button class="btn btn-danger btn-sm waves-effect"
-                                            wire:click="delete({{ $activity->id }})">{{ __('tran.delete') }}</button> --}}
+                                        <a class="btn btn-warning btn-sm waves-effect"
+                                        href="{{route('editactivity',['id'=>$activity->id])}}">{{ __('tran.edit') }}</a>
+                                      <button class="btn btn-danger btn-sm waves-effect"
+                                            wire:click="delete({{ $activity->id }})">{{ __('tran.delete') }}</button>
                                     </td>
                                 </tr>
                             @empty

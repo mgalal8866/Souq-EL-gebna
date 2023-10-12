@@ -49,6 +49,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'activity' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/activity'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'images' => [
             'driver' => 'local',
             'root' => public_path('asset/images'),

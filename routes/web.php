@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Dashboard\Activity\EditActivity;
 use App\Livewire\Dashboard\Activity\ViewActivity;
 use App\Models\items;
 use App\Models\slider;
@@ -50,6 +51,7 @@ Route::get('/', function () {return view('welcome');})->name('dashboard');
 Route::get('/settings',Settings::class)->name('settings');
 
 Route::get('/activitys',ViewActivity::class)->name('activitys');
+Route::get('/activity/edit/{id?}',EditActivity::class)->name('editactivity');
 
 Route::get('/items',ViewItems::class)->name('items');
 Route::get('/item/edit/{id?}',EditItem::class)->name('edititem');

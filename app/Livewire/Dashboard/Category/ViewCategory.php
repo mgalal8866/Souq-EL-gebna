@@ -22,7 +22,7 @@ class ViewCategory extends Component
     public function edit($categoryid)
     {
         $delcategoryid = category::find($categoryid);
-        
+
         // if ($delcategoryid->item->count() > 0) {
         //     $this->dispatch('swal', message: '  لايمكن حذف القسم يوجد اصناف مرتبطه بة');
         // } else {
@@ -32,7 +32,7 @@ class ViewCategory extends Component
     }
     public function render()
     {
-        $this->categorys = category::get();
+        $this->categorys = category::withCount('item')->get();
         return view('dashboard.category.view-category');
     }
 }

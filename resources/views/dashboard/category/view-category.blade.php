@@ -12,6 +12,7 @@
                             <tr>
                                 <th>{{ __('tran.name') }}</th>
                                 <th>{{ __('tran.image') }}</th>
+                                <th>{{ __('tran.countitem') }}</th>
                                 <th>{{ __('tran.action') }}</th>
                             </tr>
                         </thead>
@@ -24,10 +25,12 @@
                                     <td> <img src=" {{ $category->urlimg ?? 'N/A' }}" class="me-75" height="50"
                                             width="100" />
                                     </td>
-
+                                    <td>
+                                        <span class="fw-bold">{{ $category->item_count }}</span>
+                                    </td>
                                     <td>
                                         <a class="btn btn-flat-warning btn-sm waves-effect"
-                                        href="{{route('editcategory',['id'=>$category->id])}}">{{ __('tran.edit') }}</a>
+                                            href="{{ route('editcategory', ['id' => $category->id]) }}">{{ __('tran.edit') }}</a>
                                         <button class="btn btn-flat-danger btn-sm waves-effect"
                                             wire:click="delete({{ $category->id }})">{{ __('tran.delete') }}</button>
                                     </td>

@@ -14,4 +14,8 @@ class activity extends Model
     {
         return  getimage($this->img, 'activity');
     }
+    public function user()
+    {
+        return $this->hasMany(user::class, 'activity_id');
+    }
 }

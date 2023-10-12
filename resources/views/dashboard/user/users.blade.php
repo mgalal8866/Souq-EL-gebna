@@ -19,6 +19,7 @@
                                 <th>{{ __('tran.storename') }}</th>
                                 <th>{{ __('tran.phone') }}</th>
                                 <th>{{ __('tran.address') }}</th>
+                                <th>{{ __('tran.datepayment') }}</th>
                                 <th>{{ __('tran.rating') }}</th>
                                 <th>{{ __('tran.featured') }}</th>
                                 <th>{{ __('tran.statu') }}</th>
@@ -42,13 +43,16 @@
                                         <span class="fw-bold">{{ $user->city->name . ' , ' .  $user->region->name }}</span>
                                     </td>
                                     <td>
+                                        <span class="fw-bold">{{$user->date_payment? \Carbon\Carbon::parse($user->date_payment)->format('Y-m-d') : 'N/A' }}</span>
+                                    </td>
+                                    <td>
                                         <div class="small-ratings">
                                             @switch(culcrating($user->comments->count(),
                                                 $user->comments->sum('rating')))
                                                 @case(1)
-                                                    <i class="fa fa-star rating-color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
+                                                <i class="fa fa-star rating-color"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                 @case(2)

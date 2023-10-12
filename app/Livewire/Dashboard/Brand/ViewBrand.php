@@ -21,7 +21,7 @@ class ViewBrand extends Component
     }
     public function render()
     {
-        $this->brands = brand::get();
+        $this->brands = brand::withCount('item')->get();
         return view('dashboard.brand.view-brand');
     }
 }

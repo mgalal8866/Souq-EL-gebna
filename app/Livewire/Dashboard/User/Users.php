@@ -14,11 +14,11 @@ class Users extends Component
         $this->users =    User::where('user_name', 'LIKE', "%" . $this->search . "%")
             ->orwhere('phone', 'LIKE', "%" . $this->search . "%")
             ->orwhere('phone1', 'LIKE', "%" . $this->search . "%")
-            ->get();
+            ->orderBy('date_payment', 'ASC')->get();
     }
     public function mount()
     {
-        $this->users =    User::get();
+        $this->users =    User::orderBy('date_payment', 'ASC')->get();
 
     }
     public function render()
