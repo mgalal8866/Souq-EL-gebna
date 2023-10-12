@@ -55,6 +55,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'notifi' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/notifi'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'item' => [
             'driver' => 'local',
             'root' => public_path('asset/images/item'),

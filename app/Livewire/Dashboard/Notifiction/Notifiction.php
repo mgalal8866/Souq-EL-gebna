@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\DB;
 class Notifiction extends Component
 {
     use WithFileUploads;
-    public $selectactive =true,$users, $image, $selectmultiuser, $title, $body;
+    public $selectactive = true, $users, $image, $selectmultiuser, $title, $body;
     public function mount()
     {
-        $this->users =User::all();
+        $this->users = User::all();
     }
 
     public function sendnotifiction()
@@ -24,7 +24,12 @@ class Notifiction extends Component
             $send =   DB::table('users')->where('fsm', '!=', null)->pluck('fsm')->toArray();
         }
         if (count($send) != 0) {
-            $results =  notificationFCM($this->title, $this->body, $send);
+            if ($this->image !=  null) {
+                $image  =  uploadimages('notifi', $this->image);
+            } else {
+                $image = null;
+            }
+            $results =  notificationFCM($this->title, $this->body, $send, null, $image);
         }
     }
     public function render()
