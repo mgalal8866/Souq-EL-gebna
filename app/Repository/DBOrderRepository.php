@@ -91,7 +91,9 @@ class DBOrderRepository implements OrderRepositoryinterface
                 break;
 
         }
-        $orderuser = $this->model->where(['user_id' => auth('api')->user()->id, 'created_at'=> [$fromdate, $todate]])->get();
+        $orderuser = $this->model->where([ 'created_at'=> [$fromdate, $todate]])->when('suborder',function($q){
+            $q->where('user_id', auth('api')->user()->id);
+        })->get();
         return  Resp(new ChartOrderResource($orderuser), 'success');
     }
     public function get_order_by_statu($statu)
