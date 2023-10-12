@@ -4,7 +4,11 @@
             <div class="card outline-success">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.item') }}</h4>
-                    {{-- <a href='{{ route('additem') }}' class="btn  btn-success">New</a> --}}
+                    <div class="col-6 col-md-6">
+                        <label class="form-label" for="name">بحث (بالاسم )</label>
+                        <input type="text" wire:model.live='search' id="search" name="search"
+                            class="form-control" required />
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table">

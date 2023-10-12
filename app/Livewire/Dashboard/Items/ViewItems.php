@@ -11,12 +11,20 @@ class ViewItems extends Component
     use WithPagination;
     protected $listeners = ['view-product' => '$refresh'];
     protected $paginationTheme = 'bootstrap';
-    public $search;
-    
+    public $search, $items1;
+
+    // public function mount()
+    // {
+    //     $this->items1 =  items::latest()->paginate(20);
+    // }
+    // public function updatedSearch()
+    // {
+    //     $this->items1 =    items::where('name', 'LIKE', "%" . $this->search . "%")->latest()->paginate(20);
+    // }
     public function render()
     {
-        $items =  items::latest()->paginate(20);;
-        return view('dashboard.items.view-items',compact('items'));
+        $search = normalize_name($this->search);
+        $items =  items::where('name', 'LIKE', "%" . $search  . "%")->latest()->paginate(20);
+        return view('dashboard.items.view-items', compact('items'));
     }
-
 }
