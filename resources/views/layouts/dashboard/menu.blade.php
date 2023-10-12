@@ -66,29 +66,11 @@
                          data-feather="home"></i><span
                          class="menu-title text-truncate">{{ __('tran.settings') }}</span></a>
              </li>
-             {{--  <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('categorys') }}"><i
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('notifications')}}"><i
                          data-feather="home"></i><span
-                         class="menu-title text-truncate">{{ __('tran.categorys') }}</span></a>
+                         class="menu-title text-truncate">{{ __('tran.notification') }}</span></a>
              </li>
-            {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('units') }}"><i
-                         data-feather="home"></i><span
-                         class="menu-title text-truncate">{{ __('tran.unit') }}</span></a>
-             </li>
-             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('sliders') }}"><i
-                         data-feather="home"></i><span
-                         class="menu-title text-truncate">{{ __('tran.slider') }}</span></a>
-             </li>
-             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('notifiction') }}"><i
-                         data-feather="home"></i><span
-                         class="menu-title text-truncate">{{ __('tran.notifiction') }}</span></a>
-             </li>
-             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('gallerydashboard') }}"><i
-                         data-feather="home"></i><span
-                         class="menu-title text-truncate">{{ __('tran.gallery') }}</span></a>
-             </li>
-             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('chat') }}"><i
-                         data-feather="home"></i><span class="menu-title text-truncate">المحادثة</span></a>
-             </li>
+           {{--
              <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
                          data-feather="layout"></i><span
                          class="menu-title text-truncate">{{ __('tran.customers') }}</span>
