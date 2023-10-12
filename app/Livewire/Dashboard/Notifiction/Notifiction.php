@@ -4,10 +4,12 @@ namespace App\Livewire\Dashboard\Notifiction;
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 
 class Notifiction extends Component
 {
+    use WithFileUploads;
     public $selectactive =true,$users, $image, $selectmultiuser, $title, $body;
     public function mount()
     {
