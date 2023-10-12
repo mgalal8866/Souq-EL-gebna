@@ -13,13 +13,13 @@ class ViewSales extends Component
     {
         $this->fromdate     = Carbon::now()->startOfMonth()->format('Y/m/d');
         $this->todate       = Carbon::now()->endOfMonth()->format('Y/m/d');
-        $this->orders       = User::when('suborder', function ($q) {
-            $q->whereBetween('created_at', [$this->fromdate, $this->todate]);
-        })->with('suborder')->get();
+
     }
     public function render()
     {
-
+        $this->orders       = User::when('suborder', function ($q) {
+            $q->whereBetween('created_at', [$this->fromdate, $this->todate]);
+        })->with('suborder')->get();
         return view('dashboard.order.view-sales');
     }
 }
