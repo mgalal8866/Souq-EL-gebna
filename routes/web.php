@@ -21,7 +21,9 @@ use App\Livewire\Dashboard\Category\NewCategory;
 use App\Livewire\Dashboard\Category\EditCategory;
 use App\Livewire\Dashboard\Category\ViewCategory;
 use App\Livewire\Dashboard\Items\EditItem;
+use App\Livewire\Dashboard\Notifiction\Notifiction;
 use App\Livewire\Dashboard\Order\ViewSales;
+use App\Models\notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +71,4 @@ Route::get('/slider',ViewSlider::class)->name('slider');
 Route::get('/slider/add',NewSlider::class)->name('addslider');
 Route::get('/slider/edit/{id?}',EditSlider::class)->name('editslider');
 
+Route::get('/notifications',Notifiction::class)->name('notifications');

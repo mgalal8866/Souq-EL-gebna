@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\CommentController;
+use App\Http\Controllers\Api\V1\NotifictionController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Models\comments;
 use App\Models\items;
@@ -58,8 +59,11 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('/cart/user',   [CartController::class, 'getusercart']);
     Route::get('/cart/add',   [CartController::class, 'add_to_cart']);
     Route::get('/cart/delete',   [CartController::class, 'del_from_cart']);
-
     ################################### End Cart  ##########################
+    ################################### Start notifiction  ########################
+    Route::post('/user/fsm',   [NotifictionController::class, 'fsm']);
+    Route::get('/get/notifictions',   [NotifictionController::class, 'getnotifiction']);
+    ################################### End notifiction  ##########################
 
     ################################### Start Cart  ########################
     Route::post('/order/please',   [OrderController::class, 'please_order']);

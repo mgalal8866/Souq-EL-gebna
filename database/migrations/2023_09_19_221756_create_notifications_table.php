@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titel')->nullable();
+            $table->string('title')->nullable();
             $table->string('body')->nullable();
             $table->string('img')->nullable();
             $table->string('user_id')->nullable();
