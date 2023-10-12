@@ -68,7 +68,7 @@
              </li>
              <li class="nav-item "><a class="d-flex align-items-center" href="{{route('notifications')}}"><i
                          data-feather="home"></i><span
-                         class="menu-title text-truncate">{{ __('tran.notification') }}</span></a>
+                         class="menu-title text-truncate">{{ __('tran.notifications') }}</span></a>
              </li>
            {{--
              <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i

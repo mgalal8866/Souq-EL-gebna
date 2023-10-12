@@ -114,7 +114,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
 {
 
 
- 
+
     $SERVER_API_KEY = env('FIRE_SERVIES');
     $data = [
         "registration_ids" => $users,
@@ -149,7 +149,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
         $uu = User::where('fsm', $users[0])->first();
     }
     if ($sav == true) {
-        notification::create(['title' => $title, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
+        notification::create(['title' => $title, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'img' => $image, 'results' =>   curl_exec($ch)]);
     }
     return  curl_exec($ch);
 }

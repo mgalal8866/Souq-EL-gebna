@@ -95,6 +95,7 @@ return [
     'yousave'         => 'وفرت',
     'orders'         => 'الطلبات',
     'activitys'         => 'النشاط',
+    'notifications'         => 'الاشعارات',
     'countorders'         => 'عدد الطلبات',
     'saleorders'         => 'اجمالى الطلبات',
     'neworders'         =>  'جديد',
