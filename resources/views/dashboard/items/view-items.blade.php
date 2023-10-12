@@ -83,16 +83,17 @@
                                 </tr>
                             @empty
                                 <tr>
-
-
-                                    <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
-
+                                    <td colspan="11" class="alert alert-danger text-center"> No Data Here</td>
                                 </tr>
                             @endforelse
 
 
                         </tbody>
                     </table>
+                    <div class="card-footer  d-flex justify-content-center">
+
+                            {{ $items->links() }}
+                        </div>
                 </div>
 
             </div>

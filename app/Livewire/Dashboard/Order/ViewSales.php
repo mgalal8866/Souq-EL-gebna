@@ -11,11 +11,11 @@ class ViewSales extends Component
     public $orders, $fromdate, $todate;
     public function mount()
     {
-        $this->fromdate     =  Carbon::now()->startOfMonth()->format('Y/m/d');
-        $this->todate       =  Carbon::now()->endOfMonth()->format('Y/m/d');
-        $this->orders = User::with('suborder')->when('suborder',function($q){
+        $this->fromdate     = Carbon::now()->startOfMonth()->format('Y/m/d');
+        $this->todate       = Carbon::now()->endOfMonth()->format('Y/m/d');
+        $this->orders       = User::when('suborder', function ($q) {
             $q->whereBetween('created_at', [$this->fromdate, $this->todate]);
-        })->get();
+        })->with('suborder')->get();
     }
     public function render()
     {
