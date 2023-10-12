@@ -122,7 +122,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
             "title" => $title,
             "body" => $body,
             // "icon" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
-            "image" => $image,
+            "image" => $image == null ? null : getimage($image, 'notifi'),
             "fcm_options.link" => $link,
             "click_action" => $click,
         ],
