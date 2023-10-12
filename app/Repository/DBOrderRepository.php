@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\SubOrderResource;
 use App\Http\Resources\MainOrderResource;
+use App\Http\Resources\ChartOrderResource;
 use App\Http\Resources\MainsubOrderResource;
 use App\Http\Resources\SubOrderForStoreResource;
 use App\Http\Resources\OrderDetailsForStoreResource;
