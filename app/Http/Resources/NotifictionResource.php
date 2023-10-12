@@ -12,9 +12,9 @@ class NotifictionResource extends JsonResource
     {
         return [
             'id'              => $this->id,
-            'title'            => $this->titel ?? '',
+            'title'            => $this->title ?? '',
             'body'             => $this->body ?? '',
-           
+
 
 
         ];
