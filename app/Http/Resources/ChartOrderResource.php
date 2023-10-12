@@ -16,20 +16,20 @@ class ChartOrderResource extends JsonResource
     {
         return [
                 'today' =>[
-                    'count' =>10,
-                    'total' =>1000,
+                    'count' =>'10',
+                    'total' =>'1000',
                 ],
                 'yesterday' =>[
-                    'count' =>15,
-                    'total' =>2000,
+                    'count' =>'15',
+                    'total' =>'2000',
                 ],
                 'this_week' =>[
-                    'count' =>100,
-                    'total' =>3000,
+                    'count' =>'100',
+                    'total' =>'3000',
                 ],
                 'this_month' =>[
-                    'count' =>200,
-                    'total' =>4000,
+                    'count' =>'200',
+                    'total' =>'4000',
                 ],
         ];
     }

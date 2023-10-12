@@ -71,11 +71,11 @@ class DBOrderRepository implements OrderRepositoryinterface
     }
     public function get_chart_order()
     {
-        $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->get();
-         if($orderuser == null){
-            Resp('', 'Not Found Orders');
-         }
-        return  Resp(ChartOrderResource::collection($orderuser), 'success');
+        // $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->get();
+        //  if($orderuser == null){
+        //     Resp('', 'Not Found Orders');
+        //  }
+        return  Resp(new ChartOrderResource([]), 'success');
     }
     public function get_order_by_statu($statu)
     {
