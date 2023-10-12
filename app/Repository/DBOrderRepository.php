@@ -92,6 +92,7 @@ class DBOrderRepository implements OrderRepositoryinterface
 
         }
         $orderuser = SubOrder::where('store_id', auth('api')->user()->id)->where(['created_at' => [$fromdate, $todate]])->get();
+       
         return  Resp(new ChartOrderResource($orderuser), 'success');
     }
     public function get_order_by_statu($statu)
