@@ -36,6 +36,11 @@ class UserController extends Controller
         return Resp($question,'success');
 
     }
+    public function getuserdata()
+    {
+        return   $this->userRepositry->getuserdata();
+
+    }
     public function register(RegisterUser $request)
     {
 

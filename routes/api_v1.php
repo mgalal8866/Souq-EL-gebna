@@ -63,6 +63,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     ################################### End Cart  ##########################
     ################################### Start notifiction  ########################
     Route::post('/user/fsm',   [NotifictionController::class, 'fsm']);
+    Route::get('/get/user/data',   [UserController::class, 'getuserdata']);
     Route::get('/get/notifictions',   [NotifictionController::class, 'getnotifiction']);
     ################################### End notifiction  ##########################
 

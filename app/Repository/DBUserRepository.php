@@ -69,6 +69,12 @@ class DBUserRepository implements UserRepositoryinterface
             return Resp('', 'كود التحقق خطاء', 302, false);
         }
     }
+      public function getuserdata()
+    {
+        $user =  auth('api')->user();
+        $data =  new LoginUserResource($user);
+       return Resp($data, 'Success', 200, true);
+    }
     public function login($request)
     {
         $token =  Auth::guard('api')->attempt(['phone' => $request->get('phone'), 'password' => $request->get('password')]);

@@ -3,6 +3,7 @@ namespace App\Repositoryinterface;
 
 interface UserRepositoryinterface{
 
+    public function getuserdata();
     public function login($request);
     public function edit($request);
     public function register($request);
