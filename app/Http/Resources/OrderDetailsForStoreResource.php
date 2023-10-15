@@ -26,8 +26,8 @@ class OrderDetailsForStoreResource  extends JsonResource
                 'sub_discount'     => $this['details'][0]->suborder->sub_discount ?? '',
                 'sub_total'        => $this['details'][0]->suborder->sub_total ?? '',
                 'sub_order_statu'  => $this['details'][0]->suborder->sub_statu_delivery ?? '',
-                'created_at'       => $this['details'][0]->suborder->note ?? '',
-                'note'       => Carbon::parse($this['details'][0]->suborder->created_at)->format('H:i a / Y-d-m') ?? '',
+                'note'       => $this['details'][0]->suborder->note ?? '',
+                'created_at'       => Carbon::parse($this['details'][0]->suborder->created_at)->format('H:i a / Y-d-m') ?? '',
                 'order_details'      => OrderDetailsResource::collection($this['details']),
             ],
         ];
