@@ -16,7 +16,7 @@ class NotifictionController extends Controller
 
     function getnotifiction() {
             $notifi = notification::where('user_id', auth('api')->user()->id)->orwhere('user_id', null)->latest()->get();
-        return  NotifictionResource::collection($notifi,'success');
+        return Resp(NotifictionResource::collection($notifi, 'success'), 'success');
     }
     function fsm(Request $request) {
 
