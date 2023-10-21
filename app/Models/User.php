@@ -55,6 +55,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(SubOrder::class, 'store_id');
     }
+    public function scopeActive($q)
+    {
+        return $q->where('active', '1');
+    }
     public function getJWTCustomClaims()
     {
         return [];
