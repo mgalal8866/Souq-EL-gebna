@@ -30,7 +30,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
         // ->whereRaw("name REGEXP_LIKE ?", ["%" . $search . "%"])
         ->whereIn('category_id', $data['category_ids'])
         ->WhereHas('user', function ($q) use ($data) {
-            $q->where('city_id', $data['city_id'])->active();
+            $q->active()->where('city_id', $data['city_id']);
         })
         ->inmycart()
         ->with(['brand', 'category', 'comments', 'user' ])->get();
