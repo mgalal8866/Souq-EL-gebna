@@ -93,6 +93,7 @@ return [
     'sendall'         => 'ارسال للجميع',
     'addcart'         => 'اضافة للعربة',
     'datepayment'         => 'تاريخ السداد',
+    'maintenance'         => 'وضع الصيانة',
     'countstore'         => 'عدد المتاجر',
     'countitem'         => 'يحتوى على عدد الاصناف',
     'yousave'         => 'وفرت',

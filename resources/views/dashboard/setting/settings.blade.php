@@ -7,28 +7,36 @@
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
                     <div class="col-12 col-md-12  ">
-                        <x-imageupload class="form-control" wire:model.defer='logonew' :imagenew="$logonew"
+                        <x-imageupload class="form-control" wire:model='logonew' :imagenew="$logonew"
                             :imageold="$logo"  />
                     </div>
                     <div class="col-12 col-md-12 mt-5 mb-2">
 
-                        <x-imageupload class="form-control" wire:model.defer='splashnew' :imagenew="$splashnew"
+                        <x-imageupload class="form-control" wire:model='splashnew' :imagenew="$splashnew"
                             :imageold="$splash"  />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="name">{{ __('tran.name') }}</label>
-                        <input type="text" wire:model.defer='name' id="name" name="name"
+                        <input type="text" wire:model='name' id="name" name="name"
                             class="form-control" required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="phone1">{{ __('tran.phone') }}</label>
-                        <input type="text" wire:model.defer='phone1' id="phone1" name="phone1"
+                        <input type="text" wire:model='phone1' id="phone1" name="phone1"
                             class="form-control"  />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="phone">{{ __('tran.phone') }}</label>
-                        <input type="text" wire:model.defer='phone' id="phone" name="phone"
+                        <input type="text" wire:model='phone' id="phone" name="phone"
                             class="form-control"  />
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label class="form-label" for="phone">{{ __('tran.maintenance') }}</label>
+
+                            <select   class="form-control"  wire:model='maintenance'  >
+                                <option value="0">التطبيق يعمل</option>
+                                <option value="1">التطبيق فى وضع الصيانة</option>
+                            </select>
                     </div>
                 </div>
             </div>

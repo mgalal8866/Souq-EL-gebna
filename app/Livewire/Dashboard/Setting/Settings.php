@@ -37,6 +37,7 @@ class Settings extends Component
         }
         $this->setting->phone1 = $this->phone1;
         $this->setting->phone  = $this->phone;
+  
         $this->setting->save();
         $this->dispatch('swal', message: 'تم التعديل بنجاح');
 

@@ -110,7 +110,7 @@ function uploadimagesdir( $image,$nameimg)
 dd($image);
     return  $nameimg;
 }
-function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null, $sav = true)
+function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null, $sav = true,$selectstore=null)
 {
 
 
@@ -149,7 +149,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
         $uu = User::where('fsm', $users[0])->first();
     }
     if ($sav == true) {
-        notification::create(['title' => $title, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'img' => $image, 'results' =>   curl_exec($ch)]);
+        notification::create(['title' => $title, 'store_id' => $selectstore, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'img' => $image, 'results' =>   curl_exec($ch)]);
     }
     return  curl_exec($ch);
 }

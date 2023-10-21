@@ -127,42 +127,55 @@
                     <div class="d-flex flex-column">
                         <label class="form-check-label mb-50" for="scales">مخصص / {{ __('tran.sendall') }} </label>
                         <div class="form-check form-switch form-check-success">
-                            <input type="checkbox" class="form-check-input" wire:model.live='selectactive' id="scales"
-                                {{ $selectactive == 0 ? 'checked' : '' }} />
+                            <input type="checkbox" class="form-check-input" wire:model.live='selectactive'
+                                id="scales" {{ $selectactive == 0 ? 'checked' : '' }} />
                             <label class="form-check-label" for="scales">
                                 <span class="switch-icon-left"><i data-feather="check"></i></span>
                                 <span class="switch-icon-right"><i data-feather="x"></i></span>
                             </label>
                         </div>
                     </div>
-                    <div wire:ignore.self >
-                    @if ($selectactive == false)
-                        <div class="col-md-6 mb-1">
-                            <label class="form-label" for="select2-multiple">Multiple</label>
-                            <select class="select2 form-select" id="select2-multiple" wire:model='selectmultiuser' multiple>
-                                @foreach ($users as $item)
-                                    <option value="{{$item->id??''}}">{{ $item->user_name??'' }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div wire:ignore.self>
+                        @if ($selectactive == false)
+                            <div class="col-md-6 mb-1">
+                                <label class="form-label" for="select2-multiple">Multiple</label>
+                                <select class="select2 form-select" id="select2-multiple" wire:model='selectmultiuser'
+                                    multiple>
+                                    @foreach ($users as $item)
+                                        <option value="{{ $item->id ?? '' }}">{{ $item->user_name ?? '' }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         @endif
                     </div>
+
                     <div wire:ignore class="col-12 col-md-6">
                         <x-label for="title" label="{{ __('tran.title') }}" />
                         <input type="text" wire:model='title' id="title" class="form-control" />
                     </div>
-                    <div wire:ignore  class="col-12 col-md-6">
+                    <div wire:ignore class="col-12 col-md-6">
                         <x-label for="body" label="{{ __('tran.body') }}" />
                         <input type="text" wire:model='body' id="body" class="form-control" />
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex  mt-2">
-                            <x-imageupload wire:model="image" :width="100" :height="100"
-                                :imagenew="$image" :imageold="$image" />
+                            <x-imageupload wire:model="image" :width="100" :height="100" :imagenew="$image"
+                                :imageold="$image" />
                         </div>
                     </div>
 
+                    <div class="col-md-6 mb-1">
+                        <label class="form-label" for="select2-multiple">تحويل الى متجر محدد</label>
+                        <select class="form-select" wire:model='selectstore'>
+                            <option value="0">غير موجة</option>
+                            @foreach ($users as $item)
+                                <option value="{{ $item->id ?? '' }}">{{ $item->store_name ?? '' }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                 </div>
+
                 <div class="card-footer">
                     <button class="btn btn-success">{{ __('tran.send') }}</button>
                 </div>
@@ -184,8 +197,6 @@
                 buttonsStyling: false
             });
         })
-
     </script>
     <script src={{ asset('asset/vendors/js/forms/select/select2.full.min.js') }}></script>
-
 @endpush
