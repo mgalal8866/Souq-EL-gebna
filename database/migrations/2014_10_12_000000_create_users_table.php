@@ -29,8 +29,8 @@ return new class extends Migration
             $table->integer('city_id')->nullable();
             $table->string('address')->nullable();
             $table->timestamp('date_payment')->nullable();
-            $table->boolean('featured')->default(1)->nullable();
-            $table->boolean('sales_active')->default(1)->nullable();
+            $table->boolean('featured')->default(0)->nullable();
+            $table->boolean('sales_active')->default(0)->nullable();
             $table->integer('type_activity')->nullable();
             $table->boolean('rating_view')->default(1);
             $table->boolean('active')->default(1)->nullable();
