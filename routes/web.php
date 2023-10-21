@@ -50,9 +50,6 @@ Route::get('/it', function () {
     //    }
 });
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('dashboard');
 Route::get('/newadmin', function () {
 
     admin::create([
@@ -61,14 +58,18 @@ Route::get('/newadmin', function () {
     ]);
 })->name('newadmin');
 
-Route::middleware('guest:admin')->group(
-    function () {
+Route::middleware('guest:admin')->group( function () {
         Route::get('/login', [AuthAdmin::class, 'index'])->name('login');
         Route::post('/postlogin', [AuthAdmin::class, 'postlogin'])->name('postlogin');
     }
 );
 
 Route::middleware('auth:admin')->group(function () {
+    Route::get('/logout', [AuthAdmin::class, 'logout'])->name('logout');
+
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('dashboard');
     Route::get('/settings', Settings::class)->name('settings');
     Route::get('/activitys', ViewActivity::class)->name('activitys');
     Route::get('/activity/edit/{id?}', EditActivity::class)->name('editactivity');

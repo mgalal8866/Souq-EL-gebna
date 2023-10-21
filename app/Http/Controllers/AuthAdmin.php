@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthAdmin extends Controller
 {
@@ -26,8 +26,17 @@ class AuthAdmin extends Controller
 
         if (Auth::guard('admin')->attempt($credentials)) {
             return redirect()->intended('/')
-            ->withSuccess('Signed in');
+                ->withSuccess('Signed in');
+        } else {
+            // return redirect("login")->withSuccess('Login details are not valid');
+            return redirect()->back()->withSuccess('Login details are not valid');
         }
-    
+    }
+    public function logout()
+    {
+        Session::flush();
+        Auth::guard('admin')->logout();
+
+        return Redirect('login');
     }
 }
