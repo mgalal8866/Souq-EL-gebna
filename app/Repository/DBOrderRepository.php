@@ -122,7 +122,7 @@ class DBOrderRepository implements OrderRepositoryinterface
                 break;
         }
         dd($suborder->main->user_id);
-        notificationFCM('اشعار من '  . $suborder->store->store_name, $body, [$suborder->main->user_id], null, null, null, null, true, null);
+        notificationFCM('اشعار من '  . $suborder->store->store_name, $body, $suborder->main->user_id, null, null, null, null, true, null);
         $suborder->update(['sub_statu_delivery' => $request['statu']]);
         return  Resp(new SubOrderForStoreResource($suborder), 'success');
     }
