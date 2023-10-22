@@ -151,7 +151,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
     if ($sav == true) {
         notification::create(['title' => $title, 'store_id' => $selectstore, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'img' => $image, 'results' =>   curl_exec($ch)]);
     }
-    return  curl_exec($ch);
+    // return  curl_exec($ch);
 }
 function replacetext($originalString, $user = null, $product = null, $cart = null, $statu = null)
 {

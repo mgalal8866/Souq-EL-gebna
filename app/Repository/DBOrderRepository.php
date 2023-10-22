@@ -102,9 +102,27 @@ class DBOrderRepository implements OrderRepositoryinterface
     }
     public function change_statu($request)
     {
-        $suborder = SubOrder::find($request['suborder_id']);
+        $suborder = SubOrder::find($request['suborder_id'])->with('main');
         $suborder->update(['sub_statu_delivery' => $request['statu']]);
+        switch ($request['statu']) {
+            case '1':
+                # code...
+                break;
+            case '2':
+                # code...
+                break;
+            case '3':
+                # code...
+                break;
+            case '4':
+                # code...
+                break;
 
+            default:
+                # code...
+                break;
+        }
+        notificationFCM('', '',[$suborder->main->user_id], null, null, null, null, true, null);
         return  Resp(new SubOrderForStoreResource($suborder), 'success');
     }
     public function get_order_details($id)

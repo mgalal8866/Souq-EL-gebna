@@ -34,26 +34,6 @@ class DBItemsRepository implements ItemsRepositoryinterface
         })
         ->inmycart()
         ->with(['brand', 'category', 'comments', 'user' ])->get();
-
-            // with('cart', function ($q)  {
-            //     $q->whereHas('cartsub', function ($qq) {
-            //         $qq->whereHas('cartmain', function ($qqq) {
-            //             return  $qqq->where('cart_mains.user_id', auth('api')->user()->id);
-            //         });});
-            //     // $q->whereHas('user_id', auth('api')->user()->id);
-            //     // $q->where('user_id', auth('api')->user()->id);
-            // })
-        // $item = $this->model->active_admin()->active()
-        // ->where(function ($query) use ($data) {
-        //     $query->where('name', 'LIKE', "%" .   $search. "%");
-        //         // ->orWhereRaw("name REGEXP '[جچ][ةه]'");
-        // })
-        // ->whereIn('category_id', $data['category_ids'])
-        // ->whereHas('user', function ($q) use ($data) {
-        //     $q->where('city_id', $data['city_id']);
-        // })
-        // ->with(['brand', 'category', 'comments', 'user'])
-        // ->get();
         $result = [
             'item'       => $item,
             'count'      => $item->count(),
@@ -125,11 +105,9 @@ class DBItemsRepository implements ItemsRepositoryinterface
         $result = $this->model->where(['user_id' => auth('api')->user()->id, 'id' => $id])->first();
         if ($result != null) {
             if ($result->active == 1) {
-
                 $result->update(['active' => '0']);
                 return Resp(new ItemsResource($result), 'تم ايقاف تفعيل المنتج');
             } else {
-
                 $result->update(['active' => '1']);
                 return Resp(new ItemsResource($result), 'تم تفعيل المنتج');
             }

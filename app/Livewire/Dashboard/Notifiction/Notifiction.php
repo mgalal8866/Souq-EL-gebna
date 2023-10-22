@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class Notifiction extends Component
 {
     use WithFileUploads;
-    public $selectactive = true, $users, $image, $selectmultiuser, $title, $body, $selectstore =null;
+    public $selectactive = true, $users, $image, $selectmultiuser, $title, $body, $selectstore = null;
     public function mount()
     {
         $this->users = User::all();
@@ -30,8 +30,8 @@ class Notifiction extends Component
             } else {
                 $image = null;
             }
-            $results =  notificationFCM($this->title, $this->body, $send, null, $image,null,null,true,$this->selectstore == 0 ? null: $this->selectstore);
-            }
+            $results =  notificationFCM($this->title, $this->body, $send, null, $image, null, null, true, $this->selectstore == 0 ? null : $this->selectstore);
+        }
     }
     public function render()
     {
