@@ -106,23 +106,21 @@ class DBOrderRepository implements OrderRepositoryinterface
         $suborder->update(['sub_statu_delivery' => $request['statu']]);
         switch ($request['statu']) {
             case '1':
-                # code...
+                $body = 'تم استلام طلبك ';
                 break;
             case '2':
-                # code...
+                $body = 'تم تغير حاله طلبك (جارى التوصيل) ';
                 break;
             case '3':
-                # code...
+                $body = 'تم تغير حاله طلبك (تم التوصيل) ';
                 break;
             case '4':
-                # code...
+                $body = 'تم تغير حاله طلبك (رفض الاستلام) ';
                 break;
-
             default:
-                # code...
                 break;
         }
-        notificationFCM('', '',[$suborder->main->user_id], null, null, null, null, true, null);
+        notificationFCM($suborder->store->store_name, $body, [$suborder->main->user_id], null, null, null, null, true, null);
         return  Resp(new SubOrderForStoreResource($suborder), 'success');
     }
     public function get_order_details($id)
