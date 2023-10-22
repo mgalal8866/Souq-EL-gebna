@@ -121,7 +121,7 @@ class DBOrderRepository implements OrderRepositoryinterface
             default:
                 break;
         }
-        dd($suborder->main->user_id);
+        dd($suborder->main->user_id->toArray());
         notificationFCM('اشعار من '  . $suborder->store->store_name, $body, $suborder->main->user_id, null, null, null, null, true, null);
         $suborder->update(['sub_statu_delivery' => $request['statu']]);
         return  Resp(new SubOrderForStoreResource($suborder), 'success');
