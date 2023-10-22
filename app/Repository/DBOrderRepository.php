@@ -120,7 +120,7 @@ class DBOrderRepository implements OrderRepositoryinterface
             default:
                 break;
         }
-        notificationFCM($suborder->store->store_name, $body, [$suborder->main->user_id], null, null, null, null, true, null);
+        notificationFCM('اشعار من '  . $suborder->store->store_name, $body, [$suborder->main->user_id], null, null, null, null, true, null);
         return  Resp(new SubOrderForStoreResource($suborder), 'success');
     }
     public function get_order_details($id)
