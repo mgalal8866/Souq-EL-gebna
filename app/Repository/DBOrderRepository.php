@@ -103,6 +103,7 @@ class DBOrderRepository implements OrderRepositoryinterface
     public function change_statu($request)
     {
         $suborder = SubOrder::find($request['suborder_id'])->with('main');
+        dd($suborder);
         $suborder->update(['sub_statu_delivery' => $request['statu']]);
         switch ($request['statu']) {
             case '1':
