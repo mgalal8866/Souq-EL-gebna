@@ -103,8 +103,7 @@ class DBOrderRepository implements OrderRepositoryinterface
     public function change_statu($request)
     {
         $suborder = SubOrder::find($request['suborder_id']);
-
-
+        $suborder->update(['sub_statu_delivery' => $request['statu']]);
         switch ($request['statu']) {
             case '1':
                 $body = 'تم استلام طلبك ';
@@ -121,9 +120,9 @@ class DBOrderRepository implements OrderRepositoryinterface
             default:
                 break;
         }
- 
+
         notificationFCM('اشعار من '  . $suborder->store->store_name, $body, [$suborder->main->user->fsm], null, null, null, null, true, null);
-        $suborder->update(['sub_statu_delivery' => $request['statu']]);
+
         return  Resp(new SubOrderForStoreResource($suborder), 'success');
     }
     public function get_order_details($id)
