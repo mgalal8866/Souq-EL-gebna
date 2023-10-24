@@ -2,9 +2,9 @@
      <div class="navbar-header" wire:ignore>
          <ul class="nav navbar-nav flex-row">
              <li class="nav-item me-auto"><a class="navbar-brand" href="/"><span class="brand-logo">
-                         <img src="{{asset('asset/images/logo.jpg')}}" width="50" />
+                         <img src="{{asset('asset/images/logo.jpg')}}" width="30" />
                      </span>
-                     {{-- <h2 class="brand-text" style="color: {{ $setting->site_color_primary }}">{{ $setting->name_shop }} --}}
+                     <h2 class="brand-text" >ثلاجة جبنة
                      </h2>
                  </a></li>
              <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
@@ -34,40 +34,31 @@
                          class="menu-title text-truncate">{{ __('tran.dashboard') }}</span></a>
              </li>
 
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('users')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('users')}}"><i data-feather='users'></i><span
                          class="menu-title text-truncate">{{ __('tran.users') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('items')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('items')}}"><i data-feather='list'></i><span
                          class="menu-title text-truncate">{{ __('tran.items') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('slider')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('slider')}}"><i data-feather='sliders'></i><span
                          class="menu-title text-truncate">{{ __('tran.slider') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('brand')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('brand')}}"><i data-feather='menu'></i><span
                          class="menu-title text-truncate">{{ __('tran.brands') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('orders')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('orders')}}"><i data-feather='shopping-bag'></i><span
                          class="menu-title text-truncate">{{ __('tran.orders') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('activitys')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('activitys')}}"><i data-feather='layers'></i><span
                          class="menu-title text-truncate">{{ __('tran.activitys') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('category')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('category')}}"><i data-feather='grid'></i><span
                          class="menu-title text-truncate">{{ __('tran.categorys') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('settings')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('settings')}}"><i data-feather='settings'></i></i><span
                          class="menu-title text-truncate">{{ __('tran.settings') }}</span></a>
              </li>
-             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('notifications')}}"><i
-                         data-feather="home"></i><span
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('notifications')}}"><i data-feather='bell'></i><span
                          class="menu-title text-truncate">{{ __('tran.notifications') }}</span></a>
              </li>
            {{--

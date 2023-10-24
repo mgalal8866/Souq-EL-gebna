@@ -1,6 +1,6 @@
 @extends('dashboard.admin.auth_layout')
 @section('title')
-    Login
+    تسجيل دخول
 @stop
 @section('content')
     <div class="auth-wrapper auth-basic px-2">
@@ -8,7 +8,7 @@
             <!-- Login basic -->
             <div class="card mb-0">
                 <div class="card-body">
-                    <a href="index.html" class="brand-logo">
+                    <a   class="brand-logo">
                         {{-- <img src="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop }}" width="10%" />--}}
                         <h2 class="brand-text text-primary ms-1">سوق الجبنة</h2>
                     </a>
