@@ -51,14 +51,14 @@
                             height="40" width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                    <a class="dropdown-item" href="#"><i class="me-50" data-feather="help-circle"></i>
-                        FAQ</a>
-                    {{-- <a class="dropdown-item" href="{{ route('adminlogout') }}" onclick="event.preventDefault();
+                    {{-- <a class="dropdown-item" href="#"><i class="me-50" data-feather="help-circle"></i>
+                        FAQ</a> --}}
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                         <i class="me-50" data-feather="power"></i> {{ __('tran.logout')}}</a>
-                    <form id="logout-form" action="{{ route('adminlogout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
-                    </form> --}}
+                    </form>
                 </div>
             </li>
         </ul>

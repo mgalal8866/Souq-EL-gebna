@@ -9,13 +9,13 @@
             <div class="card mb-0">
                 <div class="card-body">
                     <a href="index.html" class="brand-logo">
-                        {{-- <img src="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop }}" width="10%" />
-                        <h2 class="brand-text text-primary ms-1">{{ $setting->name_shop }}</h2> --}}
+                        {{-- <img src="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop }}" width="10%" />--}}
+                        <h2 class="brand-text text-primary ms-1">سوق الجبنة</h2>
                     </a>
 
-                    <h4 class="card-title mb-1">اهلا بك فى  لوحه تحكم سوق الجبنة 👋</h4>
+                    <h4 class="card-title mb-1">اهلا بك فى  لوحه تحكم 👋</h4>
                     {{-- <p class="card-text mb-2">Please sign-in to your account and start the adventure</p> --}}
-                    
+
 
                     <form class="auth-login-form mt-2" action="postlogin" method="POST">
                         @csrf

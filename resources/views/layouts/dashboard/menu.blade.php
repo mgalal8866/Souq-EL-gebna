@@ -2,7 +2,7 @@
      <div class="navbar-header" wire:ignore>
          <ul class="nav navbar-nav flex-row">
              <li class="nav-item me-auto"><a class="navbar-brand" href="/"><span class="brand-logo">
-                         <img src="https://{{ request()->getHttpHost() }}/asset/images/logo.png" width="50" />
+                         <img src="{{asset('asset/images/logo.jpg')}}" width="50" />
                      </span>
                      {{-- <h2 class="brand-text" style="color: {{ $setting->site_color_primary }}">{{ $setting->name_shop }} --}}
                      </h2>

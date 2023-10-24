@@ -65,7 +65,7 @@ Route::middleware('guest:admin')->group( function () {
 );
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/logout', [AuthAdmin::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthAdmin::class, 'logout'])->name('logout');
 
     Route::get('/', function () {
         return view('welcome');
