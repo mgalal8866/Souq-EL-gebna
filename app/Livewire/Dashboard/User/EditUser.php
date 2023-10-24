@@ -63,6 +63,8 @@ class EditUser extends Component
         $this->user->answer1 = $this->answer1;
         $this->user->answer2 = $this->answer2;
         $this->user->save();
+        $this->dispatch('swal', message: 'تم التعديل بنجاح');
+
     }
     public function render()
     {

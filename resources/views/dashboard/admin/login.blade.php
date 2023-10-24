@@ -15,7 +15,7 @@
 
                     <h4 class="card-title mb-1">اهلا بك فى  لوحه تحكم سوق الجبنة 👋</h4>
                     {{-- <p class="card-text mb-2">Please sign-in to your account and start the adventure</p> --}}
-                    <p class="card-text mb-2">user = admin & PASSWOED = admin</p>
+                    
 
                     <form class="auth-login-form mt-2" action="postlogin" method="POST">
                         @csrf

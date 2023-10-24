@@ -56,7 +56,7 @@ class DBUserRepository implements UserRepositoryinterface
         if ($user != null) {
             return $this->credentials($user);
         } else {
-            return Resp('', 'اجابة الاسئلة غير صحيحه او هاتفك غير مسجل', 302, false);
+            return Resp('', 'اجابة الاسئلة غير صحيحة', 302, false);
         }
     }
     public function verificationcode($request)

@@ -157,12 +157,7 @@
                         <x-label for="body" label="{{ __('tran.body') }}" />
                         <input type="text" wire:model='body' id="body" class="form-control" />
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="d-flex  mt-2">
-                            <x-imageupload wire:model="image" :width="100" :height="100" :imagenew="$image"
-                                :imageold="$image" />
-                        </div>
-                    </div>
+
 
                     <div class="col-md-6 mb-1">
                         <label class="form-label" for="select2-multiple">تحويل الى متجر محدد</label>
@@ -173,7 +168,30 @@
                             @endforeach
                         </select>
                     </div>
-
+                    <div class="col-md-6 mb-1">
+                        <label class="form-label" for="select2-multiple">حسب المحافظه</label>
+                        <select class="form-select" wire:model='selectcity'>
+                            <option value="0">جميع المحافظات</option>
+                            @foreach ($citys as $city)
+                                <option value="{{ $city->id ?? '' }}">{{ $city->name ?? '' }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-1">
+                        <label class="form-label" for="select2-multiple">حسب النشاط</label>
+                        <select class="form-select" wire:model='selectactivety'>
+                            <option value="0">جميع النشاطات</option>
+                            @foreach ($activity as $item)
+                                <option value="{{ $item->id ?? '' }}">{{ $item->name ?? '' }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex  mt-2">
+                            <x-imageupload wire:model="image" :width="100" :height="100" :imagenew="$image"
+                                :imageold="$image" />
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-footer">

@@ -39,7 +39,7 @@ class EditItem extends Component
     }
     public function saveitem()
     { if ($this->newimg) {
-       
+
         $this->item->img       = $this->newimg != null ? uploadimages('store', $this->newimg) : $this->img;
     }
         $this->item->name = $this->name;
@@ -58,6 +58,8 @@ class EditItem extends Component
         $this->item->active_admin = $this->active_admin;
         $this->item->rating_view = $this->rating_view;
         $this->item->save();
+        $this->dispatch('swal', message: 'تم التعديل بنجاح');
+
     }
     public function render()
     {

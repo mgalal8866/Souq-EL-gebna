@@ -22,9 +22,9 @@ class AuthAdmin extends Controller
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('username', 'password');
 
-        if (Auth::guard('admin')->attempt($credentials)) {
+        $credentials = $request->only('username', 'password');
+        if (Auth::guard('admin')->attempt($credentials,$request->get('remember'))) {
             return redirect()->intended('/')
                 ->withSuccess('Signed in');
         } else {
@@ -32,11 +32,13 @@ class AuthAdmin extends Controller
             return redirect()->back()->withSuccess('Login details are not valid');
         }
     }
+
     public function logout()
     {
         Session::flush();
         Auth::guard('admin')->logout();
-
+        Session::regenerate();
+        Session::invalidate();
         return Redirect('login');
     }
 }
