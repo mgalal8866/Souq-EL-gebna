@@ -7,27 +7,37 @@
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
                     <div class="col-12 col-md-12  ">
-                        {{-- <x-imageupload wire:model.defer='imagenew' :imagenew="$imagenew" :imageold="$image" /> --}}
+                        {{-- <x-imageupload wire:model='imagenew' :imagenew="$imagenew" :imageold="$image" /> --}}
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="name">{{ __('tran.name') }}</label>
-                        <input type="text" wire:model.defer='name' id="name" name="name"
+                        <input type="text" wire:model='name' id="name" name="name"
                             class="form-control" required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="storename">{{ __('tran.storename') }}</label>
-                        <input type="text" wire:model.defer='storename' id="storename" name="storename"
+                        <input type="text" wire:model='storename' id="storename" name="storename"
                             class="form-control" required />
                     </div>
 
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="phone">{{ __('tran.phone') }}</label>
-                        <input type="text" wire:model.defer='phone' id="phone" name="phone"
+                        <input type="text" wire:model='phone' id="phone" name="phone"
                             class="form-control" required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="phone1">{{ __('tran.phone1') }}</label>
-                        <input type="text" wire:model.defer='phone1' id="phone1" name="phone1"
+                        <input type="text" wire:model='phone1' id="phone1" name="phone1"
+                            class="form-control" required />
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label class="form-label" for="balance">{{ __('tran.balance') }}</label>
+                        <input type="text" wire:model='balance' id="balance" name="balance"
+                            class="form-control" required />
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <label class="form-label" for="date_payment">{{ __('tran.date_payment') }}</label>
+                        <input type="date" wire:model='date_payment' id="date_payment" name="date_payment"
                             class="form-control" required />
                     </div>
 
@@ -60,17 +70,17 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="lat">{{ __('tran.lat') }}</label>
-                        <input type="text" wire:model.defer='lat' id="lat" name="lat"
+                        <input type="text" wire:model='lat' id="lat" name="lat"
                             class="form-control" required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="long">{{ __('tran.long') }}</label>
-                        <input type="text" wire:model.defer='long' id="long" name="long"
+                        <input type="text" wire:model='long' id="long" name="long"
                             class="form-control" required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="address">{{ __('tran.address') }}</label>
-                        <input type="text" wire:model.defer='address' id="address" name="address"
+                        <input type="text" wire:model='address' id="address" name="address"
                             class="form-control" required />
                     </div>
 
@@ -126,7 +136,7 @@
                         <div class="d-flex flex-column">
                             <label class="form-check-label mb-50" for="active"> حظر المستخدم </label>
                             <div class="form-check form-switch form-check-success">
-                                <input type="checkbox" class="form-check-input" wire:model.defer='active'
+                                <input type="checkbox" class="form-check-input" wire:model='active'
                                     id="active" />
                                 <label class="form-check-label" for="active">
                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
@@ -164,7 +174,7 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="answer1">اجابة السؤال الاول</label>
-                        <input type="text" wire:model.defer='answer1' id="answer1" name="answer1"
+                        <input type="text" wire:model='answer1' id="answer1" name="answer1"
                             class="form-control" required />
                     </div>
                     <div class="col-6 col-md-6">
@@ -178,7 +188,7 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="answer2">اجابة السؤال الثانى</label>
-                        <input type="text" wire:model.defer='answer2' id="answer2" name="answer2"
+                        <input type="text" wire:model='answer2' id="answer2" name="answer2"
                             class="form-control" required />
                     </div>
 
@@ -189,7 +199,7 @@
         <div class="card">
             <div class="card-footer">
                 <div class="col-12 text-center mt-2 pt-50">
-                    <button type="submit" class="btn btn-success me-1">Save</button>
+                    <button type="submit" wire:loading.attr="disabled" class="btn btn-success me-1">Save</button>
 
                 </div>
             </div>

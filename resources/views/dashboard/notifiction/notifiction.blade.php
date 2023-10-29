@@ -151,11 +151,11 @@
 
                     <div wire:ignore class="col-12 col-md-6">
                         <x-label for="title" label="{{ __('tran.title') }}" />
-                        <input type="text" wire:model='title' id="title" class="form-control" />
+                        <input type="text" wire:model='title' id="title" class="form-control"  required/>
                     </div>
                     <div wire:ignore class="col-12 col-md-6">
                         <x-label for="body" label="{{ __('tran.body') }}" />
-                        <input type="text" wire:model='body' id="body" class="form-control" />
+                        <input type="text" wire:model='body' id="body" class="form-control" required/>
                     </div>
 
 
@@ -195,7 +195,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <button class="btn btn-success">{{ __('tran.send') }}</button>
+                    <button wire:loading.attr="disabled" class="btn btn-success">{{ __('tran.send') }}</button>
                 </div>
 
             </div>
@@ -208,7 +208,7 @@
 
             Swal.fire({
                 title: event.detail.message,
-                icon: 'info',
+                icon: event.detail.ev,
                 customClass: {
                     confirmButton: 'btn btn-danger'
                 },

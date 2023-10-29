@@ -9,7 +9,7 @@
                     <div class="col-12 col-md-12  ">
                         <x-imageupload wire:model='newimg' :imagenew="$newimg" :imageold="$oldimg" />
                         <div wire:loading.block>
-                            Saving post...
+                            Saving ...
                         </div>
                     </div>
                     <div class="col-6 col-md-6">

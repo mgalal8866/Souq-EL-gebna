@@ -13,8 +13,8 @@ class EditUser extends Component
 {
     public $user, $phone, $phone1, $name, $storename, $lat, $long, $address, $citys, $regions, $city_id,
     $region_id, $featured, $active, $sales_active, $activity_id,
-    $activitys, $rating_view,
-     $questions, $question1, $question2, $answer1, $answer2;
+    $activitys, $rating_view,$date_payment,$balance,
+    $questions, $question1, $question2, $answer1, $answer2;
     public function mount($id)
     {
         $this->user     = User::find($id);
@@ -32,6 +32,8 @@ class EditUser extends Component
         $this->rating_view  = $this->user->rating_view == 0 ? false : true;
         $this->active       = $this->user->active == 0 ? false : true;
         $this->activity_id = $this->user->activity_id;
+        $this->balance     = $this->user->balance ;
+         $this->date_payment= $this->user->date_payment  ;
         $this->question1   = $this->user->question1_id;
         $this->question2   = $this->user->question2_id;
         $this->answer1     = $this->user->answer1;
@@ -58,6 +60,8 @@ class EditUser extends Component
         $this->user->active = $this->active      == 0 ? false : true;
          $this->user->rating_view = $this->rating_view  == 0 ? false : true;
         $this->user->activity_id = $this->activity_id;
+        $this->user->balance = $this->balance;
+        $this->user->date_payment = $this->date_payment;
         $this->user->question1_id = $this->question1;
         $this->user->question2_id = $this->question2;
         $this->user->answer1 = $this->answer1;

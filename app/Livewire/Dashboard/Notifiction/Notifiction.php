@@ -24,7 +24,12 @@ class Notifiction extends Component
 
     public function sendnotifiction()
     {
-        $query = DB::table('users');
+        $query = DB::table('users')->where('fsm','!=',null);
+        if($query->count() < 1){
+
+          return  $this->dispatch('swal', message: 'لايوجد مستخدمين لديهم توكن',ev:'danger');
+
+        }
         if($this->selectactivety != '0'){
             $query->where('activity_id', $this->selectactivety);
         }
@@ -45,6 +50,8 @@ class Notifiction extends Component
             }
             $results =  notificationFCM($this->title, $this->body, $send, null, $image, null, null, true, $this->selectstore == 0 ? null : $this->selectstore);
         }
+        $this->dispatch('swal', message: 'تم الارسال بنجاح',ev:'info');
+
     }
     public function render()
     {
