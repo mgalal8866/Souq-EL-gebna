@@ -18,7 +18,9 @@ class Users extends Component
     }
     public function mount()
     {
-        $this->users =    User::orderBy('date_payment', 'ASC')->get();
+      
+        // $this->users =    User::orderBy('date_payment', 'ASC')->get();
+        $this->users =    User::orderBy('created_at', 'DESC')->get();
 
     }
     public function render()
