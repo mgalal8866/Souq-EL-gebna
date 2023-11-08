@@ -20,7 +20,7 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function getusercart()
     {
-        $cartuser = $this->model->where(['user_id' => auth('api')->user()->id])->with(['cartsub', 'cartsub.cartitem'])->get();
+        $cartuser = $this->model->where(['user_id' => auth('api')->user()->id])->with(['cartsub', 'cartsub.cartitem'])->orderBy('created_at', 'DESC')->get();
         return  Resp(CartMainResource::collection($cartuser), 'success');
     }
     public function del_from_cart($request)
