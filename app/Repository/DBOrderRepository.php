@@ -64,7 +64,7 @@ class DBOrderRepository implements OrderRepositoryinterface
     }
     public function get_order_user()
     {
-        $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->get();
+        $orderuser = $this->model->where(['user_id' => auth('api')->user()->id])->orderBy('created_at', 'DESC')->get();
         if ($orderuser == null) {
             Resp('', 'Not Found Orders');
         }
@@ -96,7 +96,7 @@ class DBOrderRepository implements OrderRepositoryinterface
     public function get_order_by_statu($statu)
     {
 
-        $orderstatu = SubOrder::with(['main', 'main.user'])->where(['sub_statu_delivery' => $statu, 'store_id' => auth('api')->user()->id])->get();
+        $orderstatu = SubOrder::with(['main', 'main.user'])->where(['sub_statu_delivery' => $statu, 'store_id' => auth('api')->user()->id])->orderBy('created_at', 'DESC')->get();
 
         return  Resp(SubOrderForStoreResource::collection($orderstatu), 'success');
     }

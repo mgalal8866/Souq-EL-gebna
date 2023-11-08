@@ -93,7 +93,7 @@ class DBItemsRepository implements ItemsRepositoryinterface
     }
     public function getitembyuser()
     {
-        $result = $this->model->active_admin()->inmycart()->where('user_id', auth('api')->user()->id)->get();
+        $result = $this->model->active_admin()->inmycart()->where('user_id', auth('api')->user()->id)->orderBy('created_at', 'DESC')->get();
         if ($result != null) {
             return Resp(ItemsResource::collection($result), 'success');
         } else {
