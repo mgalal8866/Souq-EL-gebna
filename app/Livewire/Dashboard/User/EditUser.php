@@ -8,16 +8,18 @@ use App\Models\question;
 use App\Models\region;
 use App\Models\User;
 use Livewire\Component;
-
+use Livewire\WithFileUploads;
 class EditUser extends Component
 {
-    public $user, $phone, $phone1, $name, $storename, $lat, $long, $address, $citys, $regions, $city_id,
+    use WithFileUploads;
+    public $imagenew,$image,$user, $phone, $phone1, $name, $storename, $lat, $long, $address, $citys, $regions, $city_id,
     $region_id, $featured, $active, $sales_active, $activity_id,
     $activitys, $rating_view,$date_payment,$balance,
     $questions, $question1, $question2, $answer1, $answer2;
     public function mount($id)
     {
         $this->user     = User::find($id);
+        $this->image    = $this->user->urllogo;
         $this->phone    = $this->user->phone;
         $this->phone1   = $this->user->phone1;
         $this->name       = $this->user->user_name;
@@ -45,7 +47,9 @@ class EditUser extends Component
     }
     public function saveuser()
     {
-        // $this->user     = User::find($id);
+        if ($this->imagenew) {
+            $this->user->logo  = $this->imagenew != null ?  uploadimages('store', $this->imagenew) : null;
+        }
         $this->user->phone = $this->phone;
         $this->user->phone1 = $this->phone1;
         $this->user->user_name = $this->name;
@@ -58,7 +62,7 @@ class EditUser extends Component
         $this->user->featured = $this->featured  == 0 ? false : true;
         $this->user->sales_active = $this->sales_active == 0 ? false : true;
         $this->user->active = $this->active      == 0 ? false : true;
-         $this->user->rating_view = $this->rating_view  == 0 ? false : true;
+        $this->user->rating_view = $this->rating_view  == 0 ? false : true;
         $this->user->activity_id = $this->activity_id;
         $this->user->balance = $this->balance;
         $this->user->date_payment = $this->date_payment;

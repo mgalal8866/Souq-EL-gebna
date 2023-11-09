@@ -6,8 +6,8 @@
             </div>
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
-                    <div class="col-12 col-md-12  ">
-                        {{-- <x-imageupload wire:model='imagenew' :imagenew="$imagenew" :imageold="$image" /> --}}
+                    <div class="col-12 col-md-12 ">
+                        <x-imageupload wire:model='imagenew' :imagenew="$imagenew" :imageold="$image" />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="name">{{ __('tran.name') }}</label>
@@ -38,7 +38,7 @@
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="date_payment">{{ __('tran.date_payment') }}</label>
                         <input type="date" wire:model='date_payment' id="date_payment" name="date_payment"
-                            class="form-control" required />
+                            class="form-control"  />
                     </div>
 
                 </div>
