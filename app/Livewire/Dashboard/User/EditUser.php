@@ -7,6 +7,7 @@ use App\Models\city;
 use App\Models\question;
 use App\Models\region;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 class EditUser extends Component
@@ -34,8 +35,9 @@ class EditUser extends Component
         $this->rating_view  = $this->user->rating_view == 0 ? false : true;
         $this->active       = $this->user->active == 0 ? false : true;
         $this->activity_id = $this->user->activity_id;
+
         $this->balance     = $this->user->balance ;
-         $this->date_payment= $this->user->date_payment  ;
+        $this->date_payment=  $this->user->date_payment != null ?Carbon::parse($this->user->date_payment)->format('Y-m-d') :null ;
         $this->question1   = $this->user->question1_id;
         $this->question2   = $this->user->question2_id;
         $this->answer1     = $this->user->answer1;

@@ -38,7 +38,7 @@
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="date_payment">{{ __('tran.date_payment') }}</label>
                         <input type="date" wire:model='date_payment' id="date_payment" name="date_payment"
-                            class="form-control"  />
+                        class="form-control"  />
                     </div>
 
                 </div>
