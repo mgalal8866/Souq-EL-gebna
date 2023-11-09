@@ -69,11 +69,11 @@ class DBUserRepository implements UserRepositoryinterface
             return Resp('', 'كود التحقق خطاء', 302, false);
         }
     }
-      public function getuserdata()
+    public function getuserdata()
     {
         $user =  auth('api')->user();
         $data =  new LoginUserResource($user);
-       return Resp($data, 'Success', 200, true);
+        return Resp($data, 'Success', 200, true);
     }
     public function login($request)
     {
@@ -123,6 +123,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
+        $setting = setting::find(1);
         $region = region::find($request['region']);
         $user = $this->model->create([
             'user_name'    => $request['user_name'] ?? null,
@@ -137,6 +138,7 @@ class DBUserRepository implements UserRepositoryinterface
             'img2'         => uploadimages('store', $request['img2']  ?? null) ?? null,
             'region_id'    => $request['region'] ?? null,
             'city_id'      => $region->city_id ?? null,
+            'sales_active' => $setting->active_salse == 1 ? 1 : 0,
             'activity_id'  => $request['activity_id'] ?? null,
             'address'      => $request['address'] ?? null,
             'question1_id' => $request['question1_id'] ?? null,
@@ -170,7 +172,6 @@ class DBUserRepository implements UserRepositoryinterface
         $user->save();
         $data =  new LoginUserResource($user);
         return Resp($data, 'Success', 200, true);
-
     }
     public function getusers($pg = 30)
     {

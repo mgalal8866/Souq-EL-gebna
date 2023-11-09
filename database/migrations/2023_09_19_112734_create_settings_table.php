@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('splash')->nullable();
             $table->string('phone')->nullable();
             $table->string('phone1')->nullable();
+            $table->boolean('active_salse')->nullable();
             $table->text('policy')->nullable();
             $table->timestamps();
         });

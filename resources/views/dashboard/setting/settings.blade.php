@@ -38,6 +38,19 @@
                                 <option value="1">التطبيق فى وضع الصيانة</option>
                             </select>
                     </div>
+                    <div class="col-6 col-md-6">
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="scales">تفعيل البيع</label>
+                            <div class="form-check form-switch form-check-success">
+                                <input type="checkbox" class="form-check-input" wire:model='saleactive'
+                                    id="scales" {{ $saleactive == 0 ? 'checked' : '' }} />
+                                <label class="form-check-label" for="scales">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

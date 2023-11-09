@@ -9,7 +9,7 @@ use Livewire\WithFileUploads;
 class Settings extends Component
 {
     use WithFileUploads;
-    public $splashnew, $maintenance, $logonew, $name, $logo, $city, $splash, $phone, $phone1, $setting, $policy;
+    public $splashnew,$saleactive, $maintenance, $logonew, $name, $logo, $city, $splash, $phone, $phone1, $setting, $policy;
 
     public function mount()
     {
@@ -22,6 +22,7 @@ class Settings extends Component
         $this->phone1 = $setting->phone1;
         $this->phone  = $setting->phone;
         $this->policy = $setting->policy;
+        $this->saleactive = $setting->active_salse ==1?true:false;
     }
     public function saveslider()
     {
@@ -37,7 +38,7 @@ class Settings extends Component
         }
         $this->setting->phone1 = $this->phone1;
         $this->setting->phone  = $this->phone;
-  
+        $this->setting->active_salse = $this->saleactive  == true ?1:0;
         $this->setting->save();
         $this->dispatch('swal', message: 'تم التعديل بنجاح');
 
