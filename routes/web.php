@@ -57,7 +57,7 @@ Route::get('/newadmin', function () {
         'password' => Hash::make('admin')
     ]);
 })->name('newadmin');
-Route::get('/', function () { return 'Hello'; })->name('dashboard');
+Route::get('/', function () { return view('home'); })->name('dashboard');
 
 Route::middleware('guest:admin')->prefix('dashboard')->group( function () {
         Route::get('/login', [AuthAdmin::class, 'index'])->name('login');
