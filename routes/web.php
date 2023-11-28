@@ -57,19 +57,18 @@ Route::get('/newadmin', function () {
         'password' => Hash::make('admin')
     ]);
 })->name('newadmin');
+Route::get('/', function () { return 'Hello'; })->name('dashboard');
 
-Route::middleware('guest:admin')->group( function () {
+Route::middleware('guest:admin')->prefix('dashboard')->group( function () {
         Route::get('/login', [AuthAdmin::class, 'index'])->name('login');
         Route::post('/postlogin', [AuthAdmin::class, 'postlogin'])->name('postlogin');
     }
 );
 
-Route::middleware('auth:admin')->group(function () {
+Route::middleware('auth:admin')->prefix('dashboard')->group(function () {
     Route::post('/logout', [AuthAdmin::class, 'logout'])->name('logout');
+    Route::get('/', function () { return view('welcome'); })->name('dashboard');
 
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('dashboard');
     Route::get('/settings', Settings::class)->name('settings');
     Route::get('/activitys', ViewActivity::class)->name('activitys');
     Route::get('/activity/edit/{id?}', EditActivity::class)->name('editactivity');

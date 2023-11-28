@@ -26,6 +26,7 @@ class items extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    
     public function cart()
     {
         return $this->hasOne(CartItem::class, 'item_id');
@@ -34,18 +35,22 @@ class items extends Model
     {
         return  getimage($this->img, 'store');
     }
+
     public function comments()
     {
         return $this->morphMany(comments::class, 'commentable');
     }
+
     public function scopeActive($q)
     {
         return $q->where('active', '1');
     }
+
     public function scopeActive_admin($q)
     {
         return $q->where('active_admin', '1');
     }
+
     public function scopeInmycart($quary)
     {
         return $quary->with('cart', function ($q) {
@@ -56,6 +61,7 @@ class items extends Model
             });
         });
     }
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = normalize_name($value);
