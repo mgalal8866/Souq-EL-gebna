@@ -116,7 +116,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
 
 
     $SERVER_API_KEY = env('FIRE_SERVIES');
-    Log::error(getimage($image, 'notifi'));
+//    Log::error(getimage($image, 'notifi'));
     $data = [
         "registration_ids" => $users,
         "notification" => [
