@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page Title</title>
+    <title>سوق الجبنة</title>
 </head>
 <body>
 <p style="text-align:center"><span style="font-size:24px"><strong>مرحبا بك فى سوق الجبنة</strong></span></p>
