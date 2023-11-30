@@ -44,9 +44,9 @@ class DBOrderRepository implements OrderRepositoryinterface
                 'sub_total'     => $subitem['sub_total'],
                 'sub_statu_delivery'     => OrderStatusEnum::New
             ]);
-            // $store = User::find($subitem['store_id']);
-            // $text= auth('api')->user()->user_name . '  قام بانشاء طلب جديد بقيمة  ' . $subitem['sub_total'];
-            // notificationFCM('طلب جديد', $text,[ $store->fsm],null,null,null,null,true,null);
+            $store = User::find($subitem['store_id']);
+            $text= auth('api')->user()->user_name . '  قام بانشاء طلب جديد بقيمة  ' . $subitem['sub_total'];
+            notificationFCM('طلب جديد', $text,[ $store->fsm],null,null,null,null,true,null);
             foreach ($subitem['details'] as $details) {
                 $suborder->orderdetails()->create([
                     'item_id'           => $details['item_id'],
