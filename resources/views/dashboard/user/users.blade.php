@@ -22,9 +22,11 @@
                                 <th>{{ __('tran.datepayment') }}</th>
                                 <th>{{ __('tran.rating') }}</th>
                                 <th>{{ __('tran.featured') }}</th>
+                                <th>{{ __('tran.activity') }}</th>
+                                <th>{{ __('tran.createat') }}</th>
                                 <th>{{ __('tran.statu') }}</th>
-                                <th>{{ __('tran.sales_active') }}</th>
                                 <th>{{ __('tran.action') }}</th>
+                                <th>{{ __('tran.sales_active') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -98,6 +100,12 @@
                                                 <i class="fa fa-star"></i>
                                             @endif
                                         </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge  rounded-pill bg-success">{{$user->activity->name}}</span>
+                                    </td>
+                                    <td>
+                                       {{$user->created_at}}
                                     </td>
                                     <td>
                                         <span class="badge  rounded-pill bg-{{ $user->active == 1 ? 'success' : 'danger ' }} ">{{ $user->active == 1 ? 'مفعل' : 'غير مفعل' }}</span>
