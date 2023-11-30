@@ -17,6 +17,7 @@ use App\Http\Resources\ChartOrderResource;
 use App\Http\Resources\MainsubOrderResource;
 use App\Http\Resources\SubOrderForStoreResource;
 use App\Http\Resources\OrderDetailsForStoreResource;
+use App\Models\User;
 use App\Repositoryinterface\OrderRepositoryinterface;
 
 class DBOrderRepository implements OrderRepositoryinterface
@@ -43,6 +44,9 @@ class DBOrderRepository implements OrderRepositoryinterface
                 'sub_total'     => $subitem['sub_total'],
                 'sub_statu_delivery'     => OrderStatusEnum::New
             ]);
+            $store = User::find($subitem['store_id']);
+            $text= auth('api')->user()->user_name . '  قام بانشاء طلب جديد بقيمة  ' . $subitem['sub_total'];
+            notificationFCM('طلب جديد', $text,[ $store->fsm],null,null,null,null,true,null);
             foreach ($subitem['details'] as $details) {
                 $suborder->orderdetails()->create([
                     'item_id'           => $details['item_id'],

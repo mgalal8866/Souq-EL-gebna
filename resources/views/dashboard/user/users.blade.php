@@ -6,8 +6,8 @@
                     <h4 class="card-title">{{ __('tran.users') }}</h4>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="name">بحث (بالاسم او رقم التليفون )</label>
-                        <input type="text" wire:model.live='search' id="search" name="search"
-                            class="form-control" required />
+                        <input type="text" wire:model.live='search' id="search" name="search" class="form-control"
+                            required />
                     </div>
                     {{-- <a href='{{ route('adduser') }}' class="btn  btn-success">New</a> --}}
                 </div>
@@ -23,7 +23,6 @@
                                 <th>{{ __('tran.rating') }}</th>
                                 <th>{{ __('tran.featured') }}</th>
                                 <th>{{ __('tran.activity') }}</th>
-                                <th>{{ __('tran.createat') }}</th>
                                 <th>{{ __('tran.statu') }}</th>
                                 <th>{{ __('tran.action') }}</th>
                                 <th>{{ __('tran.sales_active') }}</th>
@@ -42,19 +41,21 @@
                                         <span class="fw-bold">{{ $user->phone }}</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $user->city->name . ' , ' .  $user->region->name }}</span>
+                                        <span
+                                            class="fw-bold">{{ $user->city->name . ' , ' . $user->region->name }}</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{$user->date_payment? \Carbon\Carbon::parse($user->date_payment)->format('Y-m-d') : 'N/A' }}</span>
+                                        <span
+                                            class="fw-bold">{{ $user->date_payment ? \Carbon\Carbon::parse($user->date_payment)->format('Y-m-d') : 'N/A' }}</span>
                                     </td>
                                     <td>
                                         <div class="small-ratings">
                                             @switch(culcrating($user->comments->count(),
                                                 $user->comments->sum('rating')))
                                                 @case(1)
-                                                <i class="fa fa-star rating-color"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star rating-color"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                 @case(2)
@@ -102,34 +103,36 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span class="badge  rounded-pill bg-success">{{$user->activity->name}}</span>
+                                        <span class="badge  rounded-pill bg-success">{{ $user->activity->name }}</span>
                                     </td>
                                     <td>
-                                       {{$user->created_at}}
+                                        <span
+                                            class="badge  rounded-pill bg-{{ $user->active == 1 ? 'success' : 'danger ' }} ">{{ $user->active == 1 ? 'مفعل' : 'غير مفعل' }}</span>
                                     </td>
                                     <td>
-                                        <span class="badge  rounded-pill bg-{{ $user->active == 1 ? 'success' : 'danger ' }} ">{{ $user->active == 1 ? 'مفعل' : 'غير مفعل' }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge  rounded-pill bg-{{ $user->sales_active == 1 ? 'success' : 'danger ' }} ">{{ $user->sales_active == 1 ? 'مفعل' : 'غير مفعل' }}</span>
+                                        <span
+                                            class="badge  rounded-pill bg-{{ $user->sales_active == 1 ? 'success' : 'danger ' }} ">{{ $user->sales_active == 1 ? 'مفعل' : 'غير مفعل' }}</span>
                                     </td>
                                     <td>
                                         <a class="btn btn-warning btn-sm waves-effect"
-                                        href="{{route('editusers',['id'=>$user->id])}}">{{ __('tran.edit') }}</a>
+                                            href="{{ route('editusers', ['id' => $user->id]) }}">{{ __('tran.edit') }}</a>
                                         {{-- <button class="btn btn-warning btn-sm waves-effect" wire:click="delete({{ $user->id }})">{{ __('tran.edit') }}</button> --}}
                                     </td>
                                 </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
+                                        <td colspan="17" class="alert alert-danger text-center"> No Data Here</td>
                                     </tr>
                                 @endforelse
 
 
                             </tbody>
                         </table>
-                    </div>
 
+                    </div>
+                    <div class="card-footer  d-flex justify-content-center">
+                        {{ $users->links() }}
+                    </div>
                 </div>
             </div>
         </div>

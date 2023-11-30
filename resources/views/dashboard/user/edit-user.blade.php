@@ -3,17 +3,24 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">بيانات المستخدم</h4>
+                <p class="text-danger">{{ __('tran.updatedat') }} :
+                    {{ $this->user->updated_at->format('d/m/Y') }}  - - {{ __('tran.createat') }} :
+                    {{ $this->user->created_at->format('d/m/Y') }}</p>
+
             </div>
+
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
                     <div class="col-12 col-md-12 ">
                         <x-imageupload wire:model='imagenew' :imagenew="$imagenew" :imageold="$image" />
                     </div>
+
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="name">{{ __('tran.name') }}</label>
-                        <input type="text" wire:model='name' id="name" name="name"
-                            class="form-control" required />
+                        <input type="text" wire:model='name' id="name" name="name" class="form-control"
+                            required />
                     </div>
+
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="storename">{{ __('tran.storename') }}</label>
                         <input type="text" wire:model='storename' id="storename" name="storename"
@@ -22,23 +29,23 @@
 
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="phone">{{ __('tran.phone') }}</label>
-                        <input type="text" wire:model='phone' id="phone" name="phone"
-                            class="form-control" required />
+                        <input type="text" wire:model='phone' id="phone" name="phone" class="form-control"
+                            required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="phone1">{{ __('tran.phone1') }}</label>
-                        <input type="text" wire:model='phone1' id="phone1" name="phone1"
-                            class="form-control" required />
+                        <input type="text" wire:model='phone1' id="phone1" name="phone1" class="form-control"
+                            required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="balance">{{ __('tran.balance') }}</label>
-                        <input type="text" wire:model='balance' id="balance" name="balance"
-                            class="form-control" required />
+                        <input type="text" wire:model='balance' id="balance" name="balance" class="form-control"
+                            required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="date_payment">{{ __('tran.date_payment') }}</label>
                         <input type="date" wire:model='date_payment' id="date_payment" name="date_payment"
-                        class="form-control"  />
+                            class="form-control" />
                     </div>
 
                 </div>
@@ -70,13 +77,13 @@
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="lat">{{ __('tran.lat') }}</label>
-                        <input type="text" wire:model='lat' id="lat" name="lat"
-                            class="form-control" required />
+                        <input type="text" wire:model='lat' id="lat" name="lat" class="form-control"
+                            required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="long">{{ __('tran.long') }}</label>
-                        <input type="text" wire:model='long' id="long" name="long"
-                            class="form-control" required />
+                        <input type="text" wire:model='long' id="long" name="long" class="form-control"
+                            required />
                     </div>
                     <div class="col-6 col-md-6">
                         <label class="form-label" for="address">{{ __('tran.address') }}</label>
@@ -97,7 +104,8 @@
                         <div class="d-flex flex-column">
                             <label class="form-check-label mb-50" for="featured"> مميز </label>
                             <div class="form-check form-switch form-check-success">
-                                <input type="checkbox" class="form-check-input" wire:model='featured' id="featured" />
+                                <input type="checkbox" class="form-check-input" wire:model='featured'
+                                    id="featured" />
                                 <label class="form-check-label" for="featured">
                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
                                     <span class="switch-icon-right"><i data-feather="x"></i></span>
@@ -145,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-   <div class="col-6 col-md-6">
+                    <div class="col-6 col-md-6">
                         <label class="form-label" for="activity_id">نوع النشاط</label>
                         <select class="form-select" wire:model='activity_id'>
                             <option> اختيار المنطقة</option>

@@ -4,28 +4,32 @@ namespace App\Livewire\Dashboard\User;
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Users extends Component
 {
-    public $users=[], $search,$page;
+    use WithPagination;
+    public  $search;
+
+    public $pg = 30;
+    protected $paginationTheme = 'bootstrap';
+
     public function updatedSearch()
     {
-
-        $this->users =    User::where('user_name', 'LIKE', "%" . $this->search . "%")
-            ->orwhere('phone', 'LIKE', "%" . $this->search . "%")
-            ->orwhere('phone1', 'LIKE', "%" . $this->search . "%")
-            ->orderBy('date_payment', 'ASC')->get();
-    }
-    public function mount()
-    {
-
-        // $this->users =    User::orderBy('date_payment', 'ASC')->get();
-        $this->users =    User::orderBy('created_at', 'DESC')->get();
-
+        $this->resetPage();
     }
     public function render()
     {
+        if ($this->search == '') {
 
-        return view('dashboard.user.users');
+            $users =    User::orderBy('created_at', 'DESC')->paginate($this->pg);
+        } else {
+            $users =    User::where('user_name', 'LIKE', "%" . $this->search . "%")
+                ->orwhere('phone', 'LIKE', "%" . $this->search . "%")
+                ->orwhere('phone1', 'LIKE', "%" . $this->search . "%")
+                ->orderBy('date_payment', 'ASC')->paginate($this->pg);
+        }
+
+        return view('dashboard.user.users', compact('users'));
     }
 }

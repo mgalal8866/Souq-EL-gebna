@@ -21,10 +21,14 @@ class ViewItems extends Component
     // {
     //     $this->items1 =    items::where('name', 'LIKE', "%" . $this->search . "%")->latest()->paginate(20);
     // }
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
     public function render()
     {
         $search = normalize_name($this->search);
-        $items =  items::where('name', 'LIKE', "%" . $search  . "%")->latest()->paginate(20);
+        $items =  items::where('name', 'LIKE', "%" . $search  . "%")->latest()->paginate(30);
         return view('dashboard.items.view-items', compact('items'));
     }
 }

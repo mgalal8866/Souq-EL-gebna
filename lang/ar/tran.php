@@ -208,6 +208,10 @@ return [
     'report_user_sales'   => 'تقرير مبيعات مستخدم',
     'report_limit_product'   => 'تقرير حد الطلب للاصناف',
     'qtystock'   => 'الكمية فى المخزن',
+    'activity'   => 'النشاط ',
+    'createat'   => 'تاريخ الالتحاق',
+    'date_payment'   => 'تاريخ الدفع',
+    'updatedat'   => 'تاريخ اخر تحديث',
 
 
 
