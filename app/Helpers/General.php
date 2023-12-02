@@ -187,6 +187,7 @@ function getimage($imagename, $folder = null)
     if (File::exists($path)) {
         return ($imagename !== null) ? asset($mainpath . $folder . $imagename) :   $setting = setting::find(1)->urllogo;
     } else {
+        return   asset('asset/images/logo.jpg');
         $setting = setting::find(1);
         return    $setting->urllogo;
     }
