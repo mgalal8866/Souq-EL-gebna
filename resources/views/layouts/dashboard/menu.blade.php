@@ -49,6 +49,9 @@
              <li class="nav-item "><a class="d-flex align-items-center" href="{{route('orders')}}"><i data-feather='shopping-bag'></i><span
                          class="menu-title text-truncate">{{ __('tran.orders') }}</span></a>
              </li>
+             <li class="nav-item "><a class="d-flex align-items-center" href="{{route('order')}}"><i data-feather='shopping-bag'></i><span
+                         class="menu-title text-truncate">الطلبات والتفاصيل</span></a>
+             </li>
              <li class="nav-item "><a class="d-flex align-items-center" href="{{route('activitys')}}"><i data-feather='layers'></i><span
                          class="menu-title text-truncate">{{ __('tran.activitys') }}</span></a>
              </li>
@@ -61,168 +64,7 @@
              <li class="nav-item "><a class="d-flex align-items-center" href="{{route('notifications')}}"><i data-feather='bell'></i><span
                          class="menu-title text-truncate">{{ __('tran.notifications') }}</span></a>
              </li>
-           {{--
-             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                         data-feather="layout"></i><span
-                         class="menu-title text-truncate">{{ __('tran.customers') }}</span>
 
-                 </a>
-                 <ul class="menu-content">
-                     <li><a class="d-flex align-items-center" href="{{ route('viewusers') }}"><i
-                                 data-feather="circle"></i><span class="menu-item text-truncate">العملاء</span>
-                             <div class="badge bg-danger rounded-pill ms-auto">{{ \App\Models\user::count() }}</div>
-                         </a>
-                     </li>
-
-                 </ul>
-             </li>
-             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="menu"></i><span
-                         class="menu-title text-truncate">{{ __('tran.reports') }}</span></a>
-                 <ul class="menu-content">
-                     <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                 class="menu-item text-truncate">تقارير العملاء</span></a>
-                         <ul class="menu-content">
-                             <li><a class="d-flex align-items-center" href="{{ route('report.client') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_users') }}</span></a>
-                             </li>
-                             <li><a class="d-flex align-items-center" href="{{ route('report.balance_client') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_balance_users') }}</span></a>
-                             </li>
-                             <li><a class="d-flex align-items-center"
-                                     href="{{ route('report.client_statement') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_account_statement_users') }}</span></a>
-                             </li>
-                             <li><a class="d-flex align-items-center"
-                                     href="{{ route('report.client_moreandless') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_client_moreandless') }}</span></a>
-                             </li>
-                         </ul>
-                     </li>
-                 </ul>
-                 <ul class="menu-content">
-                     <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                 class="menu-item text-truncate">تقارير الموردين</span></a>
-                         <ul class="menu-content">
-                             <li><a class="d-flex align-items-center" href="{{ route('report.supplier') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_suppliers') }}</span></a>
-                             </li>
-                             <li><a class="d-flex align-items-center"
-                                     href="{{ route('report.balance_supplier') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_balance_supplier') }}</span></a>
-                             </li>
-                             <li><a class="d-flex align-items-center"
-                                     href="{{ route('report.supplier_statement') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_account_statement_supplier') }}</span></a>
-                             </li>
-                             <li><a class="d-flex align-items-center"
-                                     href="{{ route('report.supplier_moreandless') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_supplier_moreandless') }}</span></a>
-                             </li>
-
-                         </ul>
-                     </li>
-                 </ul>
-                 <ul class="menu-content">
-                     <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                 class="menu-item text-truncate">تقارير الاصناف</span></a>
-                         <ul class="menu-content">
-                             <li><a class="d-flex align-items-center"
-                                     href="{{ route('report.product_moreandless') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_product_moreandless') }}</span></a>
-                             </li>
-
-                         </ul>
-                         <ul class="menu-content">
-                             <li><a class="d-flex align-items-center"
-                                     href="{{ route('report.limit_product') }}"><span
-                                         class="menu-item text-truncate">{{ __('tran.report_limit_product') }}</span></a>
-                             </li>
-
-                         </ul>
-                     </li>
-                 </ul>
-                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate">تقارير الموظفين</span></a>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{ route('report.employee_salery') }}"><span
-                                        class="menu-item text-truncate">{{ __('tran.report_salery') }}</span></a>
-                            </li>
-                        </ul>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{ route('report.employee') }}"><span
-                                        class="menu-item text-truncate">{{ __('tran.report_emp') }}</span></a>
-                            </li>
-                        </ul>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{ route('report.employee_advance') }}"><span
-                                        class="menu-item text-truncate">{{ __('tran.employee_advance') }}</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate">تقارير المشتريات</span></a>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{ route('report.purchases') }}"><span
-                                        class="menu-item text-truncate">{{ __('tran.report_purchases') }}</span></a>
-                            </li>
-                        </ul>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{ route('report.purchases_returned') }}"><span
-                                        class="menu-item text-truncate">{{ __('tran.report_purchases_returned') }}</span></a>
-                            </li>
-                        </ul>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{ route('report.purchases_comparison') }}"><span
-                                        class="menu-item text-truncate">{{ __('tran.report_purchases_comparison') }}</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate">تقارير نقاط البيع</span></a>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{ route('report.pos_shift') }}"><span
-                                        class="menu-item text-truncate">{{ __('tran.pos_shift') }}</span></a>
-                            </li>
-                        </ul>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="{{ route('report.user_sales') }}"><span
-                                        class="menu-item text-truncate">{{ __('tran.report_user_sales') }}</span></a>
-                            </li>
-                        </ul>
-
-                    </li>
-                </ul>
-             </li>
-
-             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                         data-feather="layout"></i><span
-                         class="menu-title text-truncate">{{ __('tran.invoice') }}</span>
-                 </a>
-                 <ul class="menu-content">
-                     <li><a class="d-flex align-items-center" href="{{ route('invoices_open') }}"><i
-                                 data-feather="circle"></i><span
-                                 class="menu-item text-truncate">{{ __('tran.invoiceopen') }}</span>
-                             <div class="badge bg-danger rounded-pill ms-auto">
-                                 {{ \App\Models\DeliveryHeader::count() }}
-                             </div>
-                         </a>
-                     </li>
-                     <li><a class="d-flex align-items-center" href="{{ route('invoices_close') }}"><i
-                                 data-feather="circle"></i><span
-                                 class="menu-item text-truncate">{{ __('tran.invoiceclose') }}</span>
-                             <div class="badge bg-success rounded-pill ms-auto">{{ \App\Models\SalesHeader::count() }}
-                             </div>
-                         </a>
-                     </li>
-
-                 </ul>
-             </li>
---}}
          </ul>
      </div>
  </div>

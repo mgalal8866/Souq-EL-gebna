@@ -1,17 +1,12 @@
 <?php
 
 use App\Models\admin;
-use App\Models\items;
-use App\Models\slider;
-use App\Models\setting;
-use App\Models\notification;
 use App\Models\Cart\CartMain;
-use App\Livewire\Dashboard\Brands;
 use App\Http\Controllers\AuthAdmin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Dashboard\User\Users;
-use App\Livewire\Dashboard\Admin\Login;
+use App\Livewire\Dashboard\Order\Order;
 use App\Livewire\Dashboard\User\EditUser;
 use App\Livewire\Dashboard\Brand\NewBrand;
 use App\Livewire\Dashboard\Items\EditItem;
@@ -21,6 +16,7 @@ use App\Livewire\Dashboard\Items\ViewItems;
 use App\Livewire\Dashboard\Order\ViewSales;
 use App\Livewire\Dashboard\Setting\Settings;
 use App\Livewire\Dashboard\Slider\NewSlider;
+use App\Livewire\Dashboard\Order\Invodetails;
 use App\Livewire\Dashboard\Slider\EditSlider;
 use App\Livewire\Dashboard\Slider\ViewSlider;
 use App\Livewire\Dashboard\Category\NewCategory;
@@ -30,16 +26,6 @@ use App\Livewire\Dashboard\Category\EditCategory;
 use App\Livewire\Dashboard\Category\ViewCategory;
 use App\Livewire\Dashboard\Notifiction\Notifiction;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/it', function () {
     $cartmain =  CartMain::where('user_id', 1)->first();
@@ -57,7 +43,7 @@ Route::get('/newadmin', function () {
         'password' => Hash::make('admin')
     ]);
 })->name('newadmin');
-Route::get('/', function () { return view('home'); })->name('dashboard');
+Route::get('/', function () { return view('home'); });
 
 Route::middleware('guest:admin')->prefix('dashboard')->group( function () {
         Route::get('/login', [AuthAdmin::class, 'index'])->name('login');
@@ -76,6 +62,8 @@ Route::middleware('auth:admin')->prefix('dashboard')->group(function () {
     Route::get('/items', ViewItems::class)->name('items');
     Route::get('/item/edit/{id?}', EditItem::class)->name('edititem');
 
+    Route::get('/order', Order::class)->name('order');
+    Route::get('/order/details/{id}', Invodetails::class)->name('invodetails');
     Route::get('/orders', ViewSales::class)->name('orders');
 
     Route::get('/users', Users::class)->name('users');
