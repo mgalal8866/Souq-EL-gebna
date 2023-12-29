@@ -125,6 +125,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-6 col-md-6">
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="get_brand_img"> استخدام صورة البراند صوره افتراضي</label>
+                            <div class="form-check form-switch form-check-success">
+                                <input type="checkbox" class="form-check-input" wire:model='get_brand_img'
+                                    id="get_brand_img" />
+                                <label class="form-check-label" for="get_brand_img">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
 
 

@@ -13,7 +13,7 @@ class ItemsSearchResource extends JsonResource
         return [
             'id'              => $this->id,
             'name'            => $this->name ?? '',
-            'img'             => $this->img == null ?  $this->brand->urlimg : $this->urlimg ?? '',
+            'img'             => $this->get_brand_img == 1 ?  $this->brand->urlimg : ( $this->img == null ? $this->brand->urlimg : $this->urlimg ?? ''),
             'category_id'     => $this->category_id ?? '',
             'category_name'   => $this->category->name ?? '',
             'brand_id'        => $this->brand_id ?? '',

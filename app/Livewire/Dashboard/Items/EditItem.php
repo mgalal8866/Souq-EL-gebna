@@ -11,12 +11,13 @@ use Livewire\WithFileUploads;
 class EditItem extends Component
 {
     use WithFileUploads;
-    public $item, $newimg, $name, $oldimg, $img, $category_id, $categorys, $brand_id, $brands, $stock_qty, $min_qty, $max_qty,
+    public $get_brand_img,$item, $newimg, $name, $oldimg, $img, $category_id, $categorys, $brand_id, $brands, $stock_qty, $min_qty, $max_qty,
         $price_salse, $price_offer, $exp_date, $pro_date, $description, $active, $active_admin, $rating_view;
     public function mount($id)
     {
         $item = items::find($id);
         $this->item = $item;
+        $this->get_brand_img = $item->get_brand_img == 0 ? false : true;
         $this->name = $item->name;
         $this->oldimg = $item->urlimg;
         $this->img = $item->img;
@@ -43,6 +44,7 @@ class EditItem extends Component
         $this->item->img       = $this->newimg != null ? uploadimages('store', $this->newimg) : $this->img;
     }
         $this->item->name = $this->name;
+        $this->item->get_brand_img = $this->get_brand_img;
         $this->item->name = $this->name;
         $this->item->category_id = $this->category_id;
         $this->item->brand_id = $this->brand_id;
